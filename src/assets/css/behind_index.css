@@ -1,0 +1,215 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+ul li {
+  list-style: none;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clear {
+  clear: both;
+}
+.txtC {
+  text-align: center !important;
+}
+.txtL {
+  text-align: left !important;
+}
+.txtR {
+  text-align: right !important;
+}
+span {
+  font-style: normal;
+  font-size-adjust: none;
+  font-weight: normal;
+}
+.fs14 {
+  font-size: 14px;
+}
+.fs16 {
+  font-size: 16px;
+}
+.fs40 {
+  font-size: 40px;
+}
+.clrW98 {
+  color: rgba(255, 255, 255, 0.98);
+}
+.clrW78 {
+  color: rgba(255, 255, 255, 0.78);
+}
+.clrW50 {
+  color: rgba(255, 255, 255, 0.5);
+}
+.bg_acolor {
+  background: rgba(0, 179, 139, 0.68);
+}
+.bg_color {
+  background-color: rgba(0, 179, 139, 0.98);
+}
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../images/index.jpg") no-repeat center;
+  background-size: cover;
+  z-index: -1;
+}
+/*login forget register resetpw successpw  ----- main big title*/
+.bTit {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 48px;
+  color: rgba(255, 255, 255, 0.98);
+}
+/*forget resetpw title */
+.mTit {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.98);
+}
+/*forget resetpw title */
+.sTit {
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.98);
+}
+/*login forget register resetpw successpw  ----- main submit*/
+.bSub {
+  margin: 20px auto 0px;
+  border: 0;
+  width: 300px;
+  height: 40px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.98);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.mSub {
+  margin: 20px auto 0px;
+  border: 0;
+  width: 120px;
+  height: 40px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.98);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.sSub {
+  margin: 20px auto 0px;
+  border: 0;
+  width: 60px;
+  height: 40px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.98);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.bSub:hover,
+.mSub:hover,
+.sSub:hover {
+  cursor: pointer;
+}
+/*所有导航栏底色*/
+#bench .el-menu {
+  background-color: transparent;
+}
+/*顶部*/
+#bench .header {
+  width: 100%;
+  height: 85px;
+}
+/*左侧菜单栏*/
+#bench .navLeft {
+  width: 205px;
+  height: 100%;
+  background: rgba(49, 53, 65, 0.68);
+  position: relative;
+}
+/*顶部左侧logo*/
+#bench .header .logo {
+  padding: 20px;
+  width: 165px;
+  height: 45px;
+  background: rgba(0, 179, 139, 0.98);
+}
+/*顶部右侧导航部分*/
+#bench .header .headNav {
+  padding-left: 20px;
+}
+/*有下拉菜单的导航模块*/
+#bench .header .headNav .el-submenu__title {
+  height: 85px;
+  line-height: 85px;
+}
+/*无下拉菜单的导航模块*/
+#bench .header .headNav .el-menu-item {
+  height: 85px;
+  line-height: 85px;
+}
+/*导航模块下拉菜单部分*/
+#bench .header .headNav .el-submenu .el-menu {
+  top: 85px;
+  padding: 0;
+  background-color: transparent;
+}
+/*导航模块下拉菜单，每个部分*/
+#bench .header .headNav .el-submenu .el-menu li.el-menu-item {
+  height: 36px;
+  line-height: 36px;
+  background: rgba(0, 179, 139, 0.88);
+}
+/*顶部导航模块下拉菜单，各个部分的border */
+#bench .header .headNav .el-menu--horizontal .el-submenu > .el-menu {
+  border: none;
+}
+/*------------------  下拉菜单的导航模块字体颜色变化  ------------------*/
+#bench .el-menu-item,
+.el-submenu__title,
+#bench .el-menu--horizontal .el-submenu .el-submenu__icon-arrow {
+  color: rgba(255, 255, 255, 0.98) !important;
+  font-size: 16px;
+}
+/*------------------  鼠标移入效果  ------------------*/
+#bench .el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item:hover,
+#bench .el-menu--horizontal.el-menu--dark .el-submenu .el-submenu-title:hover,
+#bench .el-menu-item:hover:hover {
+  background-color: rgba(0, 179, 139, 0.68);
+}
+#bench .el-submenu .el-menu-item:hover,
+#bench .el-submenu__title:hover {
+  background-color: rgba(0, 179, 139, 0.68);
+}
+#bench .el-menu--horizontal .el-submenu .el-submenu__title:hover {
+  background-color: rgba(0, 179, 139, 0.68);
+}
+#bench .header .headNav .el-submenu .el-menu li.el-menu-item:hover {
+  background-color: rgba(0, 179, 139, 0.68);
+}
+.el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item.is-active,
+.el-menu-item.is-active {
+  color: #f00!important;
+}
+/*顶部导航栏鼠标移入，border变化*/
+#bench .header .headNav .el-menu--horizontal > .el-menu-item:hover,
+#bench .header .headNav .el-menu--horizontal > .el-submenu.is-active .el-submenu__title:hover,
+#bench .header .headNav .el-menu--horizontal > .el-submenu:hover .el-submenu__title:hover {
+  border-bottom: 3px solid rgba(255, 255, 255, 0.78);
+}
+/*顶部导航栏鼠标移入二级菜单，border变化*/
+#bench .header .headNav.el-menu--horizontal > .el-menu-item:hover,
+.el-menu--horizontal > .el-submenu.is-active .el-submenu__title,
+.el-menu--horizontal > .el-submenu:hover .el-submenu__title {
+  border-bottom: 3px solid rgba(255, 255, 255, 0.78);
+}

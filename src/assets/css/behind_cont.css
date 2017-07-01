@@ -1,0 +1,322 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+ul li {
+  list-style: none;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clear {
+  clear: both;
+}
+.txtC {
+  text-align: center !important;
+}
+.txtL {
+  text-align: left !important;
+}
+.txtR {
+  text-align: right !important;
+}
+span {
+  font-style: normal;
+  font-size-adjust: none;
+  font-weight: normal;
+}
+.fs14 {
+  font-size: 14px;
+}
+.fs16 {
+  font-size: 16px;
+}
+.fs40 {
+  font-size: 40px;
+}
+.clrW98 {
+  color: rgba(255, 255, 255, 0.98);
+}
+.clrW78 {
+  color: rgba(255, 255, 255, 0.78);
+}
+.clrW50 {
+  color: rgba(255, 255, 255, 0.5);
+}
+.bg_acolor {
+  background: rgba(0, 179, 139, 0.68);
+}
+.bg_color {
+  background-color: rgba(0, 179, 139, 0.98);
+}
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../images/index.jpg") no-repeat center;
+  background-size: cover;
+  z-index: -1;
+}
+/*login forget register resetpw successpw  ----- main big title*/
+.bTit {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 48px;
+  color: rgba(255, 255, 255, 0.98);
+}
+/*forget resetpw title */
+.mTit {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.98);
+}
+/*forget resetpw title */
+.sTit {
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.98);
+}
+/*login forget register resetpw successpw  ----- main submit*/
+.bSub {
+  margin: 20px auto 0px;
+  border: 0;
+  width: 300px;
+  height: 40px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.98);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.mSub {
+  margin: 20px auto 0px;
+  border: 0;
+  width: 120px;
+  height: 40px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.98);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.sSub {
+  margin: 20px auto 0px;
+  border: 0;
+  width: 60px;
+  height: 40px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.98);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.bSub:hover,
+.mSub:hover,
+.sSub:hover {
+  cursor: pointer;
+}
+.win {
+  position: absolute;
+  top: 95px;
+  left: 215px;
+  padding: 30px;
+  height: calc(80%);
+  background: rgba(49, 53, 65, 0.68);
+}
+.wm {
+  padding: 40px 50px;
+}
+.win .wm .wBtn {
+  margin-bottom: 50px;
+}
+.wBtn a {
+  height: 37px;
+  margin-right: 10px;
+  display: inline-block;
+}
+.win .wm .wTit {
+  font-size: 20px;
+  padding-bottom: 30px;
+  color: rgba(0, 179, 139, 0.98);
+}
+.wSub {
+  width: 100%;
+  margin-left: -50px;
+  margin-top: 50px;
+  text-align: center;
+}
+/*---------------index content Fr----------------------*/
+.el-button--primary {
+  background: rgba(0, 179, 139, 0.68);
+  border: none;
+  font-size: 16px;
+}
+.el-button:focus,
+.el-button:hover {
+  color: #fff;
+  border: none;
+  background: rgba(0, 179, 139, 0.98);
+}
+.el-button--primary.is-active,
+.el-button--primary:active {
+  background: rgba(0, 179, 139, 0.98);
+  border-color: rgba(0, 179, 139, 0.98);
+}
+.el-button--primary:hover {
+  background: rgba(0, 179, 139, 0.98);
+}
+.el-table {
+  border: 1px rgba(255, 255, 255, 0.36) dotted;
+  background: none;
+  overflow-x: hidden;
+}
+.el-table::after,
+.el-table::before,
+.el-table tr {
+  background: none;
+}
+.el-table th {
+  font-size: 16px;
+  background: none;
+}
+.el-table__footer-wrapper thead div,
+.el-table__header-wrapper thead div {
+  background: none;
+  color: rgba(255, 255, 255, 0.88);
+}
+.el-table td,
+.el-table th.is-leaf {
+  border-bottom: 1px rgba(255, 255, 255, 0.36) dotted;
+}
+.el-table--enable-row-hover .el-table__body tr:hover>td{
+  background-color:rgba(0,0,0,0.5);
+}
+.el-table .cell{
+  color:#fff;
+}
+.el-pagination {
+  margin: 30px auto 0;
+  width: 400px;
+  text-alig: center;
+}
+.el-pager li.active {
+  border-color: rgba(0, 179, 139, 0.68);
+  background-color: rgba(0, 179, 139, 0.68);
+}
+.el-pager li.active + li {
+  padding: 0 12px;
+}
+.el-pager li:hover {
+  color: rgba(0, 179, 139, 0.68);
+}
+.el-pagination {
+  color: rgba(255, 255, 255, 0.88);
+}
+.el-pager li {
+  margin: 0 5px;
+  padding: 0 12px;
+  border-radius: 4px;
+  border: 1px rgba(0, 179, 139, 0.68) solid !important;
+  background: none;
+}
+.el-autocomplete-suggestion__wrap,
+.el-pager li {
+  border: 1px solid rgba(0, 179, 139, 0.68);
+}
+.el-pagination button:hover {
+  color: rgba(0, 179, 139, 0.98);
+}
+.el-pagination button.disabled,
+.el-pagination .btn-next,
+.el-pagination .btn-prev,
+.el-pagination__editor {
+  background: rgba(0, 179, 139, 0.68);
+  border: 1px solid rgba(0, 179, 139, 0.68);
+  color: rgba(255, 255, 255, 0.88);
+  border-radius: 4px;
+}
+.el-pager li:last-child {
+  border-right: none;
+}
+.el-checkbox {
+  color: rgba(255, 255, 255, 0.88);
+}
+.el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: rgba(0, 179, 139, 0.98);
+  border-color: rgba(0, 179, 139, 0.98);
+}
+/*-----------------------index edit---------------------------*/
+.wm .el-input .el-input__inner {
+  width: 75%;
+  background: rgba(255, 255, 255, 0.98);
+  border: none;
+}
+.wm .el-form-item__label {
+  padding: 10px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 16px;
+}
+.el-radio {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.88);
+}
+.el-date-editor.el-input {
+  width: 100%;
+}
+.el-input__icon {
+  right: 25%;
+}
+.el-upload__tip {
+  color: rgba(255, 255, 255, 0.88);
+}
+.wm .el-form-item__content {
+  line-height: normal;
+}
+.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background-color: rgba(0, 179, 139, 0.98);
+  border-color: rgba(0, 179, 139, 0.98);
+}
+.el-tree {
+  background: transparent;
+  border: none;
+}
+.el-tree-node__content:hover {
+  background: transparent;
+}
+.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
+  background: transparent;
+}
+.el-tree-node__label {
+  color: rgba(255, 255, 255, 0.98);
+  font-size: 14px;
+}
+.el-collapse {
+  border: none;
+}
+.el-collapse-item__header {
+  height: 35px;
+  line-height: 35px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.98);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-color: transparent;
+  background-color: rgba(0, 179, 139, 0.68);
+}
+.el-collapse-item__content {
+  padding: 0;
+  font-size: 14px;
+}
+.el-collapse-item__wrap {
+  line-height: 30px;
+  border: none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background-color: rgba(49, 53, 65, 0.68);
+}

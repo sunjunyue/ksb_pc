@@ -1,0 +1,233 @@
+
+@import "ele_public";
+
+@wmpd:40px 50px;
+@mg:50px;
+@pd:30px;
+
+//右侧内容区域
+.win{
+  position:absolute;
+  top:95px;
+  left:215px;
+  padding:@pd;
+  height:calc(100% - 20px );
+  min-height:600px;
+  background:@w_color;
+}
+//主题内容区域
+.wm{
+  padding:@wmpd;
+}
+//右侧内容区域按钮
+.win .wm .wBtn{
+  margin-bottom:@mg;
+}
+.wBtn a{
+  height:37px;
+  margin-right:10px;
+  display: inline-block;
+}
+//右侧内容区域标题
+.win .wm .wTit{
+  font-size:@fs20;
+  padding-bottom:@pd;
+  color: @skin98;
+}
+
+.wSub{
+  width:100%;
+  margin-left:-@mg;
+  margin-top:@mg;
+  text-align:center
+}
+/*---------------index content Fr----------------------*/
+
+//button按钮  account post
+.el-button--primary{
+  background: @skin68;
+  border:none;
+  font-size:@fs16;
+}
+.el-button:focus, .el-button:hover {
+  color:#fff;
+  border:none;
+  background:@skin98;
+}
+.el-button--primary.is-active, .el-button--primary:active {
+  background: @skin98;
+  border-color: @skin98;
+}
+.el-button--primary:hover{
+  background: @skin98;
+}
+//table表单
+.el-table{
+  border:1px @clr_w36 dotted;
+  background:none;
+  overflow-x: hidden;
+}
+.el-table::after, .el-table::before,.el-table tr{
+  background:none;
+}
+.el-table th {
+  font-size:@fs16;
+  background: none;
+}
+.el-table__footer-wrapper thead div, .el-table__header-wrapper thead div {
+  background:none;
+  color: @clr_w88;
+}
+.el-table td, .el-table th.is-leaf {
+  border-bottom:1px @clr_w36 dotted;
+}
+.el-table .cell{
+  color:@clr_w98;
+}
+
+//page
+.el-pagination{
+  margin:30px auto 0;
+  width:400px;
+  text-alig:center;
+}
+.el-pager li.active {
+  border-color: @skin68;
+  background-color: @skin68;
+}
+.el-pager li.active+li{
+  padding:0 12px;
+}
+.el-pager li:hover {
+  color: @skin68;
+}
+.el-pagination{
+  color:@clr_w88;
+}
+.el-pager li {
+  margin: 0 5px;
+  padding:0 12px;
+  border-radius:@radius;
+  border:1px @skin68 solid !important;
+  background:none;
+}
+.el-autocomplete-suggestion__wrap, .el-pager li {
+  border:@a_border;
+}
+.el-pagination button:hover{
+  color:@skin98;
+}
+.el-pagination button.disabled,.el-pagination .btn-next, .el-pagination .btn-prev,.el-pagination__editor {
+  background: @skin68;
+  border: @a_border;
+  color:@clr_w88;
+  border-radius:@radius;
+}
+.el-pager li:last-child{
+  border-right:none;
+}
+
+//check
+.el-checkbox + .el-checkbox{
+  margin-left:0!important;
+  margin-right:15px;
+}
+.el-checkbox{
+  color:@clr_w88;
+}
+.el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: @skin98;
+  border-color: @skin98;
+}
+.el-table--enable-row-hover .el-table__body tr:hover>td{
+  background:@clr_b50;
+}
+/*-----------------------index edit---------------------------*/
+
+//input
+.wm .el-input .el-input__inner{
+  width:75%;
+  background:@clr_w98;
+  border:none;
+}
+//lable
+.wm .el-form-item__label{
+  padding:10px;
+  color:@clr_w88;
+  font-size:16px;
+}
+
+//性别单选按钮 radio
+.el-radio{
+  margin-top:8px;
+  color:@clr_w88;
+}
+.el-radio+.el-radio{
+  margin-left:0;
+}
+//date 时间控件
+.el-date-editor.el-input{
+  width:100%;
+}
+
+//data icon
+.el-input__icon{
+  right:25%;
+}
+.el-upload__tip{
+  color:@clr_w88;
+}
+.wm .el-form-item__content{
+  line-height:normal;
+}
+
+//树状节点
+
+//节点check
+.el-checkbox__input.is-indeterminate .el-checkbox__inner{
+  background-color:@skin98;
+  border-color: @skin98;
+}
+//去掉背景边框
+.el-tree{
+  background: transparent;
+  border:none;
+}
+//鼠标划过
+.el-tree-node__content:hover{
+  background:transparent;
+}
+//鼠标点击
+.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content{
+  background:transparent;
+}
+.el-tree-node__label{
+  color:@clr_w98;
+  font-size:@fs14;
+}
+//面板
+
+.el-collapse{
+  border:none;
+}
+.el-collapse-item__header{
+  height:35px;
+  line-height:35px;
+  font-size:@fs16;
+  color:@clr_w98;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-color:transparent;
+  background-color:@skin68;
+}
+.el-collapse-item__content{
+  padding:0;
+  font-size:@fs14;
+}
+.el-collapse-item__wrap{
+  line-height:30px;
+  border:none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background-color:@w_color;
+}

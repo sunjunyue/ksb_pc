@@ -1,0 +1,57 @@
+
+@import "ele_public";
+
+//顶部导航高度
+@navH: 85px;
+//顶部导航下拉菜单，各个部分高度
+@navH_p: 36px;
+//左侧导航栏宽度
+@navL: 205px;
+//顶部左侧logo，padding值
+@logo_p: 20px;
+
+/*所有导航栏底色*/
+#bench .el-menu {background-color:transparent;}
+/*顶部*/
+#bench .header {width:100%;height:@navH;}
+.bg_acolor{background-color:@skin68;}
+/*左侧菜单栏*/
+#bench .navLeft {width:@navL;height:100%;background:@w_color;position:relative;}
+/*顶部左侧logo*/
+#bench .header .logo {padding:@logo_p;width:@navL - @logo_p*2;height:@navH - @logo_p*2;background:@skin98;}
+/*顶部右侧导航部分*/
+#bench .header .headNav {padding-left:20px;}
+/*有下拉菜单的导航模块*/
+#bench .header .headNav .el-submenu__title {height:@navH;line-height:@navH;}
+/*无下拉菜单的导航模块*/
+#bench .header .headNav .el-menu-item {height:@navH;line-height:@navH;}
+/*导航模块下拉菜单部分*/
+#bench .header .headNav .el-submenu .el-menu {top:@navH;padding:0;background-color:transparent;}
+/*导航模块下拉菜单，每个部分*/
+#bench .header .headNav .el-submenu .el-menu li.el-menu-item {height:@navH_p;line-height:@navH_p;background:@skin88;}
+/*顶部导航模块下拉菜单，各个部分的border */
+#bench .header .headNav .el-menu--horizontal .el-submenu > .el-menu {border:none;}
+
+/*------------------  下拉菜单的导航模块字体颜色变化  ------------------*/
+#bench .el-menu-item,.el-submenu__title,#bench .el-menu--horizontal .el-submenu .el-submenu__icon-arrow {color:@clr_w98 !important; font-size:@fs16;}
+/*------------------  鼠标移入效果  ------------------*/
+#bench .el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item:hover,#bench .el-menu--horizontal.el-menu--dark .el-submenu .el-submenu-title:hover,#bench .el-menu-item:hover:hover {background-color:@skin68;}
+#bench .el-submenu .el-menu-item:hover,#bench .el-submenu__title:hover {background-color:@skin68;}
+#bench .el-menu--horizontal .el-submenu .el-submenu__title:hover {background-color:@skin68;}
+#bench .header .headNav .el-submenu .el-menu li.el-menu-item:hover {background-color:@skin68;}
+
+.el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item.is-active, .el-menu-item.is-active {
+  color: #f00!important;
+}
+
+/*顶部导航栏鼠标移入，border变化*/
+#bench .header .headNav .el-menu--horizontal > .el-menu-item:hover,#bench .header .headNav .el-menu--horizontal > .el-submenu.is-active .el-submenu__title:hover,
+#bench .header .headNav .el-menu--horizontal > .el-submenu:hover .el-submenu__title:hover {border-bottom:3px solid @clr_w78;}
+/*顶部导航栏鼠标移入二级菜单，border变化*/
+#bench .header .headNav.el-menu--horizontal>.el-menu-item:hover, .el-menu--horizontal>.el-submenu.is-active .el-submenu__title, .el-menu--horizontal>.el-submenu:hover .el-submenu__title {border-bottom:3px solid @clr_w78;}
+
+
+
+
+
+
