@@ -65,7 +65,7 @@
                     {
                         icon: 'el-icon-menu',
                         index: '4',
-                        title: '仓库管理',
+                        title: '面辅料仓库',
                         subs: [{
                             index: 'classmanage',
                             title: '分类管理'
