@@ -69,6 +69,9 @@
                         subs: [{
                             index: 'classmanage',
                             title: '分类管理'
+                        },{
+                            index: 'depotstorage',
+                            title: '入库单'
                         }]
                     },
                     {
