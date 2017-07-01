@@ -40,6 +40,11 @@ const RouterConfigs = {
                 components: {
                     default: require('./components/page/depot/ClassManage.vue'),
                 }
+            }, {
+                path: '/DepotStorage',
+                components: {
+                    default: require('./components/page/depot/DepotStorage.vue'),
+                }
             }]
         },
         {
