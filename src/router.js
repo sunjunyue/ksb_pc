@@ -45,6 +45,11 @@ const RouterConfigs = {
                 components: {
                     default: require('./components/page/depot/DepotStorage.vue'),
                 }
+            }, {
+                path: '/addnewstorage',
+                components: {
+                    default: require('./components/page/depot/AddNewStorage.vue'),
+                }
             }]
         },
         {
