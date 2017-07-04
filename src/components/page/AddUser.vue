@@ -83,6 +83,7 @@
     export default {
         data() {
             return {
+                url: 'http://192.168.31.243/ksbapi2/api/',
                 formAccount: {
                     accountname: '',
                     name: '',
@@ -120,7 +121,7 @@
                     if (valid) {
                         this.$ajax({
                             method: 'post',
-                            url: 'http://192.168.31.243/ksbapi2/api/user/mregister',
+                            url: this.url + 'user/mregister',
                             params: {
                                 token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                             },
@@ -192,6 +193,9 @@
         width: 100px;
         height: 100px;
         display: block;
+    }
+    .el-form-item__label{
+        color:rgba(255, 255, 255, 0.88)!important;
     }
 </style>
 

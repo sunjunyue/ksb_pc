@@ -70,6 +70,9 @@
                             index: 'classmanage',
                             title: '分类管理'
                         },{
+                            index: 'fabricandaccessories',
+                            title: '面辅料目录'
+                        },{
                             index: 'depotstorage',
                             title: '入库单'
                         }]

@@ -290,5 +290,8 @@
         height: 100px;
         display: block;
     }
+    .el-form-item__label{
+    color:rgba(255, 255, 255, 0.88);
+    }
 </style>
 
