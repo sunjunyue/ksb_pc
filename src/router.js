@@ -50,6 +50,11 @@ const RouterConfigs = {
                 components: {
                     default: require('./components/page/depot/AddNewStorage.vue'),
                 }
+            }, {
+                path: '/fabricandaccessories',
+                components: {
+                    default: require('./components/page/depot/FabricAndAccessories.vue'),
+                }
             }]
         },
         {
