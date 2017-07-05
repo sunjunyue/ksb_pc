@@ -142,7 +142,7 @@
                 const self = this;
                 this.$ajax({
                     method: 'post',
-                    url: self.url + 'rmc/getrmcjson',
+                    url: self.apiurl + 'rmc/getrmcjson',
                     params: {
                         token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                     },
@@ -160,7 +160,7 @@
                 const self = this;
                 this.$ajax({
                     method: 'post',
-                    url: self.url + 'rmc/getleveloptions',
+                    url: self.apiurl + 'rmc/getleveloptions',
                     params: {
                         token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                     },
@@ -180,7 +180,7 @@
                     const self = this;
                     this.$ajax({
                         method: 'post',
-                        url: self.url + 'rmc/getplevel',
+                        url: self.apiurl + 'rmc/getplevel',
                         params: {
                             token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                         },
@@ -211,7 +211,7 @@
                 const self = this;
                 this.$ajax({
                     method: 'post',
-                    url: self.url + 'rmc/addrmc',
+                    url: self.apiurl + 'rmc/addrmc',
                     params: {
                         token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                     },
@@ -240,7 +240,6 @@
 
         data() {
             return {
-                url: 'http://192.168.31.243/ksbapi2/api/',
                 labelPosition: 'right',
                 formdata2: {
                     name: '',

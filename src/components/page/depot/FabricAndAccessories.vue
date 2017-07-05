@@ -113,6 +113,10 @@
             this.getData2();
         },
         methods:{
+            handleCurrentChange(val){
+                this.cur_page = val;
+                this.gettableData3();
+            },
             handleCheckChange(data, checked, indeterminate) {
                 //console.log(data, checked, indeterminate);
                 if(checked) {
@@ -146,7 +150,7 @@
                 const self = this;
                 this.$ajax({
                     method: 'post',
-                    url: self.url + 'rmc/getrmcjson',
+                    url: self.apiurl + 'rmc/getrmcjson',
                     params: {
                         token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                     },
@@ -164,7 +168,7 @@
                 const self = this;
                 this.$ajax({
                     method: 'post',
-                    url: self.url + 'faa/createlocalarticlenumber',
+                    url: self.apiurl + 'faa/createlocalarticlenumber',
                     params: {
                         token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                     },
@@ -185,7 +189,7 @@
                 const self = this;
                 this.$ajax({
                     method: 'post',
-                    url: self.url + 'faa/createfabricandaccessories',
+                    url: self.apiurl + 'faa/createfabricandaccessories',
                     params: {
                         token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                     },
@@ -223,7 +227,7 @@
                 self.loading = true;
                 this.$ajax({
                     method: 'post',
-                    url: this.url + 'faa/getfaalist',
+                    url: this.apiurl + 'faa/getfaalist',
                     params: {
                         token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                     },
@@ -244,7 +248,6 @@
         },
         data() {
             return {
-                url: 'http://192.168.31.243/ksbapi2/api/',
                 labelPosition: 'right',
                 filterText: '',
                 data2: [],
@@ -307,7 +310,7 @@
         background-color:#324057
     }
     .el-dialog__title{
-        color:rgba(255,255,255,.98);
+        color:#ffffff;
     }
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 </style>

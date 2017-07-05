@@ -116,7 +116,6 @@
     export default {
         data() {
             return {
-                url: 'http://192.168.31.243/ksbapi2/api/',
                 formAccount: {
                     accountname: '',
                     name: '',
@@ -188,7 +187,7 @@
                     const self = this;
                     this.$ajax({
                         method: 'post',
-                        url: this.url + 'user/modifyuserstatus',
+                        url: this.apiurl + 'user/modifyuserstatus',
                         params: {
                             token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                         },
@@ -216,7 +215,7 @@
                     if (valid) {
                         this.$ajax({
                             method: 'post',
-                            url: this.url + 'user/modifyuserbyid',
+                            url: this.apiurl + 'user/modifyuserbyid',
                             params: {
                                 token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                             },

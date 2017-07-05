@@ -7,46 +7,50 @@
             <el-dialog style="color:#fff" title="选择面辅料" :visible.sync="dialogFormVisible" :modal-append-to-body='false'
                        size="small" @open="handleOpen">
 
-                <span class="demonstration">请选择分类：</span>
-
                 <el-cascader
                         :options="form.options"
                         v-model="form.selectedOptions"
-                        @change="handleChange">
+                        @change="handleChange"
+                        placeholder="请选择分类"
+                        changeOnSelect
+                        size="small"
+                        style="width:400px;">
                 </el-cascader>
                 <!--table-->
                 <el-table
-                        ref="multipleTable"
+                        v-loading="loading"
+                        element-loading-text="拼命加载中..."
                         :data="tableData3"
-                        style="width: 100%;margin-top:30px"
-                >
+                        style="width: 100%">
                     <el-table-column
-                            prop="no"
-                            label="单号"
-                            min-width="50">
+                            prop="localarticlenumber"
+                            label="本地货号"
+                            min-width="100">
                     </el-table-column>
-
                     <el-table-column
-                            prop="name"
+                            prop="faname"
                             label="面辅料名称"
                             min-width="100">
                     </el-table-column>
                     <el-table-column
-                            prop="class"
-                            label="分类"
-                            min-width="50">
-                    </el-table-column>
-
-                    <el-table-column
-                            prop="supplier"
-                            label="供应商货号"
+                            prop="categoryname"
+                            label="所属分类"
                             min-width="100">
                     </el-table-column>
                     <el-table-column
-                            prop="status"
-                            label="操作">
+                            prop="post_select"
+                            label="选择">
+                        <template scope="scope">
+                            <el-button type="primary" icon="check" size="small" @click="handleSelect(scope.$index,scope.row)"></el-button>
+                        </template>
                     </el-table-column>
                 </el-table>
+                <el-pagination
+                        @current-change ="handleCurrentChange"
+                        layout="prev, pager, next"
+                        :pageSize="page_size"
+                        :total="total">
+                </el-pagination>
 
                 <div slot="footer" class="dialog-footer">
                     <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -82,6 +86,23 @@
                             </el-button>
                         </el-form-item>
                     </el-col>
+                    <el-col :span="12">
+                        <!--面辅料名称 -->
+                        <el-form-item label="面辅料名称:">
+                            <el-input v-model="deportstorage.articlename" :disabled="true"></el-input>
+                        </el-form-item>
+                        <!--计量单位 -->
+                        <el-form-item label="计量单位:">
+                            <el-input v-model="deportstorage.measureunit" :disabled="true"></el-input>
+                        </el-form-item>
+                        <!--参考单价 -->
+                        <el-form-item label="单价:">
+                            <el-input v-model="deportstorage.price"></el-input>
+                        </el-form-item>
+                        <el-form-item label="入库数量:">
+                            <el-input v-model="deportstorage.price"></el-input>
+                        </el-form-item>
+                    </el-col>
                 </el-row>
             </el-form>
 
@@ -94,7 +115,6 @@
     export default {
         data() {
             return {
-                url: 'http://192.168.31.243/ksbapi2/api/',
                 labelPosition: 'right',
                 deportstorage: {
                     dpsnumber: '',
@@ -102,6 +122,9 @@
                     consignee_id: '',
                     consignee: '',
                     localarticlenumber: '',
+                    articlename: '',
+                    measureunit: '',
+                    price: '',
                 },
                 dialogFormVisible: false,
                 form: {
@@ -109,6 +132,12 @@
                     selectedOptions: [],
                 },
                 formLabelWidth: '120px',
+                tableData3: [],
+                cur_page: 1,
+                page_size: 5,
+                total: 0,
+                loading: false,
+                categoryid: '',
             }
         },
         mounted: function () {
@@ -117,11 +146,29 @@
             this.deportstorage.consignee = JSON.parse(localStorage.getItem('ksb_user')).data.name;
         },
         methods: {
+            handleSelect(index, row) {
+                //alert(row.localarticlenumber);
+                this.deportstorage.localarticlenumber = row.localarticlenumber;
+                this.deportstorage.articlename = row.faname;
+                this.deportstorage.measureunit = row.measureunit;
+                this.deportstorage.price = row.referenceprice;
+
+                this.dialogFormVisible = false;
+                //this.$message('编辑第'+(index+1)+'行');
+                //localStorage.setItem('ksb_ceu', JSON.stringify(row));
+                //alert(JSON.parse(localStorage.getItem('ksb_ceu')).userguid);
+                //const self = this;
+                //self.$router.push('/edituser');
+            },
+            handleCurrentChange(val){
+                this.cur_page = val;
+                this.gettableData3();
+            },
             getdpsnumber () {
                 const self = this;
                 this.$ajax({
                     method: 'post',
-                    url: this.url + 'deps/createdepsnumber',
+                    url: this.apiurl + 'deps/createdepsnumber',
                     params: {
                         token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                     }
@@ -134,14 +181,62 @@
 
                 });
             },
-            handleOpen() {
+            getform () {
+                const self = this;
+                this.$ajax({
+                    method: 'post',
+                    url: self.apiurl + 'rmc/getrmcjson2',
+                    params: {
+                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
+                    },
+                }).then(function (response) {
+                    if (response.data.flag == 'get_raw_meterial_category_json2_success') {
+                        //alert(response.data.data);
+                        self.form.options = eval(response.data.data);
+                    } else {
 
+                    }
+                }).catch(function (error) {
+
+                })
+            },
+            gettableData3 () {
+                const self = this;
+                self.loading = true;
+                this.$ajax({
+                    method: 'post',
+                    url: this.apiurl + 'faa/getfaalist',
+                    params: {
+                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
+                    },
+                    data: {
+                        curr_page: self.cur_page,
+                        page_size: self.page_size,
+                        categoryid: self.categoryid,
+                    }
+                }).then(function (response) {
+                    if(response.data.flag == 'get_fabricandaccessories_list_success' && response.data.data.faa_count != 0) {
+                        self.tableData3 = response.data.data.faa;
+                        self.total = response.data.data.faa_count;
+                    }
+                    self.loading = false;
+                }).catch(function (error) {
+                    alert(error);
+                    self.loading = false;
+                })
+            },
+            handleOpen() {
+                this.getform();
+            },
+            handleChange () {
+                this.categoryid = this.form.selectedOptions[this.form.selectedOptions.length-1];
+                this.gettableData3();
             },
         },
     }
 </script>
 
-<style>
+<style scoped>
     .win {
         width: calc(100% - 328px);
     }
@@ -161,20 +256,21 @@
     .el-form-item__content {
         width: 100%
     }
-    .el-input__icon{
-        right:4%;
-    }
+
     .wm .el-input .el-input__inner {
-        width: 100%;
+        width: 72%;
     }
-    .demonstration{
-        color:#fff;
+
+    .demonstration {
+        color: #fff;
     }
+
     .el-dialog {
-        background-color:#324057
+        background-color: #324057
     }
-    .el-dialog__title{
-        color:rgba(255,255,255,.98);
+
+    .el-dialog__title {
+        color: rgba(255, 255, 255, .98);
     }
 
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';

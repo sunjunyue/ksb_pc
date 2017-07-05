@@ -6,6 +6,11 @@ import 'element-ui/lib/theme-default/index.css'
 
 import router from './router'
 
+import ksbconfig from './ksbconfig'
+Object.keys(ksbconfig).forEach((key)=>{
+    Vue.prototype[key] = ksbconfig[key];
+})
+
 import axios from 'axios'
 
 Vue.prototype.$ajax = axios

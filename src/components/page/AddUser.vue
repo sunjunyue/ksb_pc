@@ -83,7 +83,6 @@
     export default {
         data() {
             return {
-                url: 'http://192.168.31.243/ksbapi2/api/',
                 formAccount: {
                     accountname: '',
                     name: '',
@@ -121,7 +120,7 @@
                     if (valid) {
                         this.$ajax({
                             method: 'post',
-                            url: this.url + 'user/mregister',
+                            url: this.apiurl + 'user/mregister',
                             params: {
                                 token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                             },
@@ -164,7 +163,7 @@
     @import '../../assets/css/ele_public.less';
 </style>
 
-<style>
+<style scoped>
     /*@import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';*/
     @import '../../assets/css/behind_cont.css';
 

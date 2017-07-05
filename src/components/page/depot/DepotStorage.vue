@@ -115,7 +115,6 @@
     export default {
         data() {
             return {
-                url: 'http://192.168.31.243/ksbapi2/api/',
                 labelPosition: 'right',
                 filteroptions: {
                     startdate: '',
@@ -144,7 +143,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .win{
         width: calc(100% - 328px);
     }
@@ -155,7 +154,7 @@
         font-size:16px;
     }
     .wm .el-input .el-input__inner{
-        width:100%;
+        width:100%!important;
     }
     .el-input__icon {
         right: 4%;

@@ -58,7 +58,6 @@
     export default {
         data() {
             return {
-                url: 'http://192.168.31.243/ksbapi2/api/',
                 tableData: [],
                 cur_page: 1,
                 page_size: 5,
@@ -92,7 +91,7 @@
                 self.loading = true;
                 this.$ajax({
                     method: 'post',
-                    url: this.url + 'user/getuserslist',
+                    url: this.apiurl + 'user/getuserslist',
                     params: {
                         token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                     },

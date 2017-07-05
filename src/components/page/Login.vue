@@ -35,7 +35,6 @@
     export default {
         data () {
             return {
-                url: 'http://192.168.31.243/ksbapi2/api/',
                 labelPosition: 'right',
                 loginForm: {
                     account: 'tomchen01@123.com',
@@ -63,7 +62,7 @@
                     if (valid) {
                         this.$ajax({
                             method: 'post',
-                            url: this.url + 'user/login',
+                            url: this.apiurl + 'user/login',
                             data: {
                                 account: this.loginForm.account,
                                 password: this.loginForm.password
