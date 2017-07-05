@@ -89,7 +89,7 @@
                                 <el-form-item label="分类描述:" required>
                                     <el-row>
                                         <el-col :span="21">
-                                            <el-input type="textarea" v-model="formdata2.description" rows="3"
+                                            <el-input type="textarea" v-model="formdata2.description"
                                                       style="width:75%;"></el-input>
                                         </el-col>
                                         <el-col :span="2" :push="1">

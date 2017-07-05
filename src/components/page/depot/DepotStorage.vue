@@ -4,21 +4,21 @@
         <div class="wm">
             <div class="wTit">| 入库单管理</div>
             <!--list-->
-            <el-form :model="form" :rules="rules" ref="form" class="fl">
+            <el-form :model="form" ref="form" class="fl">
                 <el-row>
                     <el-col :span="10">
                         <!--日期选择-->
                         <el-row>
                             <el-col :span="10">
-                                <el-line-heightform-item  prop="date1">
-                                    <el-date-picker type="date" placeholder="起始日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
-                                </el-line-heightform-item >
+                                <el-date-picker type="date" placeholder="起始日期" v-model="form.date1"
+                                                style="width: 100%;"></el-date-picker>
                             </el-col>
-                            <el-col :span="2" offset="1" style="line-height:37px;color:#fff;">至</el-col>
+                            <el-col :span="2" style="line-height:37px;color:#fff;">至</el-col>
                             <el-col :span="10">
-                                <el-line-heightform-item prop="date2">
-                                    <el-date-picker type="date" placeholder="截止日期" v-model="form.date2" style="width: 100%;"></el-date-picker>
-                                </el-line-heightform-item>
+
+                                <el-date-picker type="date" placeholder="截止日期" v-model="form.date2"
+                                                style="width: 100%;"></el-date-picker>
+
                             </el-col>
                         </el-row>
                     </el-col>
@@ -34,7 +34,7 @@
                     <el-col :span="6">
                         <el-form-item>
                             <!--是否显示红单-->
-                            <el-checkbox v-model="checked"style="margin-left:15px;line-height:37px;">是否显示红单</el-checkbox>
+                            <el-checkbox style="margin-left:15px;line-height:37px;">是否显示红单</el-checkbox>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -44,51 +44,50 @@
             <!--table-->
             <el-table
                     ref="multipleTable"
-                    :data="tableData3"
-                    style="width: 100%"
-            >
+                    :data="tableData33"
+                    style="width: 100%">
                 <el-table-column
-                        prop="no"
+                        prop="dpsnumber"
                         label="单号"
                         min-width="50">
                 </el-table-column>
                 <el-table-column
-                        prop="date"
+                        prop="indate"
                         label="入库时间"
                         min-width="100">
                 </el-table-column>
                 <el-table-column
-                        prop="library"
+                        prop="consignee"
                         label="入库签收"
                         min-width="100">
                 </el-table-column>
                 <el-table-column
-                        prop="name"
+                        prop="articlename"
                         label="面辅料名称"
                         min-width="100">
                 </el-table-column>
                 <el-table-column
-                        prop="class"
+                        prop="categoryname"
                         label="分类"
                         min-width="50">
                 </el-table-column>
                 <el-table-column
-                        prop="num"
+                        prop="localarticlenumber"
                         label="本地货号"
                         min-width="80">
                 </el-table-column>
                 <el-table-column
-                        prop="supplier"
+                        prop="supplierarticlenumber"
                         label="供应商货号"
                         min-width="100">
                 </el-table-column>
                 <el-table-column
-                        prop="unit"
+                        prop="measureunit"
                         label="计量单位"
                         min-width="80">
                 </el-table-column>
                 <el-table-column
-                        prop="account"
+                        prop="quantity"
                         label="入库数量"
                         min-width="80">
                 </el-table-column>
@@ -98,13 +97,9 @@
                         min-width="50">
                 </el-table-column>
                 <el-table-column
-                        prop="total"
+                        prop="zprice"
                         label="总价"
                         min-width="50">
-                </el-table-column>
-                <el-table-column
-                        prop="status"
-                        label="操作">
                 </el-table-column>
             </el-table>
         </div>
@@ -120,11 +115,12 @@
                     startdate: '',
                     enddate: '',
                 },
-                form : {
+                form: {
                     date1: '',
                     date2: '',
                 },
                 input2: '',
+                tableData33: [],
             }
         },
         methods: {
@@ -135,7 +131,7 @@
 
             },
             handleCommand(command){
-                if (command == 'addnewstorage'){
+                if (command == 'addnewstorage') {
                     this.$router.push('addnewstorage');
                 }
             },
@@ -143,19 +139,27 @@
     }
 </script>
 
+<style scoped lang="less">
+    @import '../../../assets/css/ele_public.less';
+</style>
+
 <style scoped>
-    .win{
+    .win {
         width: calc(100% - 328px);
     }
-    .wm{
+
+    .wm {
         width: calc(100% - 100px)
     }
-    .el-checkbox__label{
-        font-size:16px;
+
+    .el-checkbox__label {
+        font-size: 16px;
     }
-    .wm .el-input .el-input__inner{
-        width:100%!important;
+
+    .wm .el-input .el-input__inner {
+        width: 100% !important;
     }
+
     .el-input__icon {
         right: 4%;
     }
