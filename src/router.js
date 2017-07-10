@@ -65,6 +65,11 @@ const RouterConfigs = {
                 components: {
                     default: require('./components/page/depot/FabricAndAccessories.vue'),
                 }
+            },{
+                path: '/demonthlybalance',
+                components: {
+                    default: require('./components/page/depot/DeMonthlyBalance.vue'),
+                }
             }]
         },
         {
