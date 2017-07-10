@@ -46,9 +46,19 @@ const RouterConfigs = {
                     default: require('./components/page/depot/DepotStorage.vue'),
                 }
             }, {
+                path: '/depotoutbound',
+                components: {
+                    default: require('./components/page/depot/DepotOutbound.vue'),
+                }
+            }, {
                 path: '/addnewstorage',
                 components: {
                     default: require('./components/page/depot/AddNewStorage.vue'),
+                }
+            }, {
+                path: '/addnewoutbound',
+                components: {
+                    default: require('./components/page/depot/AddOutbound.vue'),
                 }
             }, {
                 path: '/fabricandaccessories',

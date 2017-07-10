@@ -75,6 +75,9 @@
                         },{
                             index: 'depotstorage',
                             title: '入库单'
+                        }, {
+                            index: 'depotoutbound',
+                            title: '出库单'
                         }]
                     },
                     {

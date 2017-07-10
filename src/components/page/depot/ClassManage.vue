@@ -262,7 +262,7 @@
     };
 </script>
 
-<style>
+<style scoped>
     .sort {
         width: 160px;
     }
@@ -282,6 +282,6 @@
     .el-input__icon {
         right: 2%;
     }
-
+    @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 </style>

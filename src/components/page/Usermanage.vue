@@ -5,9 +5,6 @@
             <!--button-->
             <div class="wBtn">
                 <el-button type="primary" icon="plus" @click="handleCommand('adduser')">添加用户</el-button>
-                <!--<a href=""><el-button type="primary" icon="edit"></el-button></a>
-                <a href=""><el-button type="primary" icon="view"></el-button></a>
-                <a href=""><el-button type="primary" icon="delete"></el-button></a>-->
             </div>
             <!--table-->
             <el-table
@@ -60,7 +57,7 @@
             return {
                 tableData: [],
                 cur_page: 1,
-                page_size: 5,
+                page_size: 1,
                 total: 0,
                 loading: false,
             }
@@ -124,7 +121,6 @@
 </script>
 
 <style scoped lang="less">
-    /*@import '../../assets/css/behind_cont.less';*/
     @import '../../assets/css/ele_public.less';
 </style>
 

@@ -41,7 +41,7 @@
                 const self = this;
                 if (command == 'loginout') {
                     //localStorage.removeItem('ksb_user');
-                    //localStorage.clear();
+                    localStorage.clear();
                     self.$router.push('/');
                 }
             },

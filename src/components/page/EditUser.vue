@@ -8,7 +8,7 @@
                     <el-form :label-position="labelPosition" :model="formAccount" :rules="rules" ref="formAccount"
                              label-width="100px">
                         <el-row>
-                            <el-col :span="12">
+                            <el-col :span="8">
                                 <el-form-item label="头像:">
                                     <el-upload
                                             class="avatar-uploader"
@@ -46,7 +46,7 @@
                                     </el-date-picker>
                                 </el-form-item>
                             </el-col>
-                            <el-col :span="12">
+                            <el-col :span="8">
 
                                 <el-form-item prop="mobile" label="手机号:" required>
                                     <el-input v-model="formAccount.mobile"></el-input>
@@ -66,6 +66,7 @@
                                 </el-form-item>
 
                             </el-col>
+                            <el-col :span="8"></el-col>
                         </el-row>
                         <div class="wSub">
                             <el-form-item>
@@ -291,6 +292,9 @@
     }
     .el-form-item__label{
     color:rgba(255, 255, 255, 0.88);
+    }
+    .wm .el-input .el-input__inner{
+        width:75%
     }
 </style>
 

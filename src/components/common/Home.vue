@@ -30,4 +30,10 @@
         height:12px;
         border:1px rgba(0,179,139,.68) solid;
     }
+    .el-dialog {
+        background-color:#324057
+    }
+    .el-dialog__title{
+        color:#ffffff;
+    }
 </style>

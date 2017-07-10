@@ -1,10 +1,47 @@
+<style scoped>
+    .sort {
+        width: 160px;
+    }
+    .el-select-dropdown{
+        wideh:24%;
+    }
+
+
+    .wm .el-form-item {
+        width: 65%;
+    }
+
+    .el-select {
+        display: block;
+    }
+
+    .el-input__icon {
+        right: 2%;
+    }
+
+    /*.wm .el-form-item__label{
+        color:rgba(49, 53, 65, 0.68)!important;
+    }*/
+    .wm .el-input{
+        border:1px rgba(49, 53, 65, 0.68) solid;
+        border-radius:4px
+    }
+    .el-dialog {
+        background-color:#324057!important;
+    }
+    .el-dialog__title{
+        color:#324057;
+    }
+    @import '../../../assets/css/behind_cont.css';
+    @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+</style>
 <template>
     <div class="win fr" id="win">
         <!--主题区域-->
         <div class="wm">
             <div class="wTit">| 面辅料目录</div>
 
-            <el-dialog style="color:#fff" title="新增面辅料目录" :visible.sync="dialogFormVisible" :modal-append-to-body='false'
+            <el-dialog style="color: #324057" title="新增面辅料目录" :visible.sync="dialogFormVisible" :modal-append-to-body='false'
                 size="small" @open="handleOpen">
                 <el-form :model="form">
                     <el-form-item label="本地货号：" :label-width="formLabelWidth">
@@ -86,8 +123,19 @@
                                 min-width="100">
                         </el-table-column>
                         <el-table-column
-                                prop="post_select"
-                                label="选择">
+                                prop="curr_quantity"
+                                label="当前库存"
+                                min-width="100">
+                        </el-table-column>
+                        <el-table-column
+                                prop="curr_zprice"
+                                label="当前库存金额"
+                                min-width="100">
+                        </el-table-column>
+                        <el-table-column
+                                prop="curr_price"
+                                label="当前库存单价"
+                                min-width="100">
                         </el-table-column>
                     </el-table>
                     <el-pagination
@@ -278,39 +326,3 @@
     };
 </script>
 
-<style>
-    .sort {
-        width: 160px;
-    }
-    .el-select-dropdown{
-        wideh:24%;
-    }
-
-
-    .wm .el-form-item {
-        width: 65%;
-    }
-
-    .el-select {
-        display: block;
-    }
-
-    .el-input__icon {
-        right: 2%;
-    }
-
-    /*.wm .el-form-item__label{
-        color:rgba(49, 53, 65, 0.68)!important;
-    }*/
-    .wm .el-input{
-        border:1px rgba(49, 53, 65, 0.68) solid;
-        border-radius:4px
-    }
-    .el-dialog {
-        background-color:#324057
-    }
-    .el-dialog__title{
-        color:#ffffff;
-    }
-    @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
-</style>
