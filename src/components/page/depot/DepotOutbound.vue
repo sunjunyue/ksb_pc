@@ -189,7 +189,7 @@
                         self.tableData33[o].pricestr = self.$formatCurrency(self.tableData33[o].price, 2);
                         self.tableData33[o].zpricestr = self.$formatCurrency(self.tableData33[o].zprice, 2);
                     }
-                    self.total = response.data.data.depos_count;
+                    self.total = response.data.data.outbound_count;
                     self.loading = false;
                 }).catch(function (error) {
                     alert(error);
