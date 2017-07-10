@@ -78,6 +78,9 @@
                         }, {
                             index: 'depotoutbound',
                             title: '出库单'
+                        },{
+                            index: 'demonthlybalance',
+                            title: '月度结余'
                         }]
                     },
                     {
