@@ -84,6 +84,12 @@
                         min-width="100">
                 </el-table-column>
             </el-table>
+            <el-pagination
+                    @current-change ="handleCurrentChange"
+                    layout="prev, pager, next"
+                    :pageSize="page_size"
+                    :total="total">
+            </el-pagination>
         </div>
     </div>
 </template>
@@ -131,7 +137,7 @@
                 input2: '',
                 tableData33: [],
                 cur_page: 1,
-                page_size: 5,
+                page_size: 1,
                 total: 0,
                 loading: false,
             }
@@ -141,6 +147,10 @@
             this.gettableData33();
         },
         methods: {
+            handleCurrentChange(val){
+                this.cur_page = val;
+                this.gettableData33();
+            },
             getdepsflag () {
                 const self = this;
                 this.$ajax({
