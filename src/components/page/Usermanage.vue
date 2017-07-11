@@ -15,20 +15,22 @@
                 <el-table-column
                         prop="id"
                         label="工号"
-                        width="180" sortable>
+                        min-width="50">
                 </el-table-column>
                 <el-table-column
                         prop="accountname"
                         label="账户名"
-                        width="180">
+                        min-width="100">
                 </el-table-column>
                 <el-table-column
                         prop="email"
-                        label="邮箱">
+                        label="邮箱"
+                        min-width="100">
                 </el-table-column>
                 <el-table-column
                         prop="mobile"
-                        label="手机号">
+                        label="手机号"
+                        min-width="100">
                 </el-table-column>
                 <el-table-column
                         prop="userstatus"
