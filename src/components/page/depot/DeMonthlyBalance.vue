@@ -141,14 +141,6 @@
 </style>
 
 <style scoped>
-    .win {
-        width: calc(100% - 328px);
-    }
-
-    .wm {
-        width: calc(100% - 100px)
-    }
-
     .el-checkbox__label {
         font-size: 16px;
     }
