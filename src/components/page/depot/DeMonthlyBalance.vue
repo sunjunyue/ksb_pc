@@ -38,13 +38,32 @@
                 },
             }
         },
+        mounted: function () {
+           this.getform();
+        },
         methods:{
-            handleOpen() {
-                this.getform();
-            },
             handleChange () {
                 this.categoryid = this.form.selectedOptions[this.form.selectedOptions.length-1];
-                this.gettableData3();
+                //this.gettableData3();
+            },
+            getform () {
+                const self = this;
+                this.$ajax({
+                    method: 'post',
+                    url: self.apiurl + 'rmc/getrmcjson2',
+                    params: {
+                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
+                    },
+                }).then(function (response) {
+                    if (response.data.flag == 'get_raw_meterial_category_json2_success') {
+                        //alert(response.data.data);
+                        self.form.options = eval(response.data.data);
+                    } else {
+
+                    }
+                }).catch(function (error) {
+
+                })
             },
         }
     }
