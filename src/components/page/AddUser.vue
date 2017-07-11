@@ -61,7 +61,7 @@
                         </el-form-item>
                         <!--备注说明-->
                         <el-form-item prop="remarks" label="备注说明:">
-                            <el-input type="textarea" v-model="formAccount.remarks" rows="8" style="width:75%;"></el-input>
+                            <el-input type="textarea" v-model="formAccount.remarks" rows="8"></el-input>
                         </el-form-item>
 
                     </el-col>
