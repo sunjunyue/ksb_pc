@@ -4,11 +4,46 @@
         <div class="wm">
             <div class="wTit">| 月度结余</div>
         </div>
+        <!--<el-button type="primary" class="wNo" style="" @click="dialogFormVisible = true">选择本地货号</el-button>-->
+        <!--<el-dialog style="color:#fff" title="选择面辅料" :visible.sync="dialogFormVisible" :modal-append-to-body='false'-->
+                   <!--size="small" @open="handleOpen">-->
+            <!--<el-cascader-->
+                    <!--:options="form.options"-->
+                    <!--v-model="form.selectedOptions"-->
+                    <!--@change="handleChange"-->
+                    <!--placeholder="请选择分类"-->
+                    <!--changeOnSelect-->
+                    <!--size="small"-->
+                    <!--style="width:400px;">-->
+            <!--</el-cascader>-->
+        <!--</el-dialog>-->
+
+        <el-cascader
+                :options="form.options"
+                placeholder="请选择分类"
+                v-model="form.selectedOptions"
+                @change="handleChange">
+        </el-cascader>
     </div>
 </template>
 
 <script>
-
+    export default {
+        data() {
+            return {
+                dialogFormVisible: false,
+                form: {
+                    options: [],
+                    selectedOptions: [],
+                },
+            }
+        },
+        methods:{
+            handleOpen() {
+                this.getform();
+            },
+        }
+    }
 </script>
 
 <style scoped lang="less">
