@@ -19,7 +19,7 @@
                             <el-date-picker
                                     v-model="value4"
                                     type="month"
-                                    placeholder="选择月">
+                                    placeholder="选择年月">
                             </el-date-picker>
                         </div>
                     </el-col>
@@ -37,13 +37,49 @@
                             min-width="100">
                     </el-table-column>
                     <el-table-column
-                            prop="post_name"
-                            label="面辅料名称"
+                            prop="post_monthly"
+                            label="月度"
                             min-width="100">
                     </el-table-column>
                     <el-table-column
-                            prop="post_select"
-                            label="选择">
+                            prop="post_balance_last"
+                            label="上月结余"
+                            min-width="100">
+                    </el-table-column>
+                    <el-table-column
+                            prop="post_amount_last"
+                            label="上月金额"
+                            min-width="100">
+                    </el-table-column>
+                    <el-table-column
+                            prop="post_storage_current "
+                            label="当月入库"
+                            min-width="100">
+                    </el-table-column>
+                    <el-table-column
+                            prop="post_amount_current "
+                            label="入库金额"
+                            min-width="100">
+                    </el-table-column>
+                    <el-table-column
+                            prop="post_outgoing_current"
+                            label="当月出库"
+                            min-width="100">
+                    </el-table-column>
+                    <el-table-column
+                            prop="post_amount_current"
+                            label="出库金额"
+                            min-width="100">
+                    </el-table-column>
+                    <el-table-column
+                            prop="post_balance"
+                            label="本月结余"
+                            min-width="100">
+                    </el-table-column>
+                    <el-table-column
+                            prop="post_amount"
+                            label="本月金额"
+                            min-width="100">
                     </el-table-column>
                 </el-table>
             </el-col>
