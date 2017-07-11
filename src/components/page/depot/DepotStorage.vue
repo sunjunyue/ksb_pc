@@ -137,7 +137,7 @@
                 input2: '',
                 tableData33: [],
                 cur_page: 1,
-                page_size: 5,
+                page_size: 1,
                 total: 0,
                 loading: false,
             }
