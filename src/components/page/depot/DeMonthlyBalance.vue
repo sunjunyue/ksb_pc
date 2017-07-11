@@ -3,32 +3,59 @@
         <!--主题区域-->
         <div class="wm">
             <div class="wTit">| 月度结余</div>
+            <el-row :gutter="20">
+            <el-col :span="6">
+                <el-cascader
+                        :options="form.options"
+                        placeholder="请选择分类"
+                        v-model="form.selectedOptions"
+                        @change="handleChange">
+                </el-cascader>
+            </el-col>
+            <el-col :span="18">
+                <el-row style="margin-bottom:30px;">
+                    <el-col :span="6">
+                        <div class="block">
+                            <el-date-picker
+                                    v-model="value4"
+                                    type="month"
+                                    placeholder="选择月">
+                            </el-date-picker>
+                        </div>
+                    </el-col>
+                    <el-col :span="6" style="margin-left:15px;">
+                        <el-button type="primary">按钮</el-button>
+                    </el-col>
+                </el-row>
+                <el-table
+                        ref="multipleTable"
+                        :data="tableData3"
+                        style="width: 100%">
+                    <el-table-column
+                            prop="post_num"
+                            label="本地货号"
+                            min-width="100">
+                    </el-table-column>
+                    <el-table-column
+                            prop="post_name"
+                            label="面辅料名称"
+                            min-width="100">
+                    </el-table-column>
+                    <el-table-column
+                            prop="post_select"
+                            label="选择">
+                    </el-table-column>
+                </el-table>
+            </el-col>
+        </el-row>
         </div>
-        <!--<el-button type="primary" class="wNo" style="" @click="dialogFormVisible = true">选择本地货号</el-button>-->
-        <!--<el-dialog style="color:#fff" title="选择面辅料" :visible.sync="dialogFormVisible" :modal-append-to-body='false'-->
-                   <!--size="small" @open="handleOpen">-->
-            <!--<el-cascader-->
-                    <!--:options="form.options"-->
-                    <!--v-model="form.selectedOptions"-->
-                    <!--@change="handleChange"-->
-                    <!--placeholder="请选择分类"-->
-                    <!--changeOnSelect-->
-                    <!--size="small"-->
-                    <!--style="width:400px;">-->
-            <!--</el-cascader>-->
-        <!--</el-dialog>-->
-
-        <el-cascader
-                :options="form.options"
-                placeholder="请选择分类"
-                v-model="form.selectedOptions"
-                @change="handleChange">
-        </el-cascader>
     </div>
 </template>
 
 <script>
+    import ElCol from "element-ui/packages/col/src/col";
     export default {
+        components: {ElCol},
         data() {
             return {
                 dialogFormVisible: false,
@@ -44,7 +71,6 @@
         methods:{
             handleChange () {
                 this.categoryid = this.form.selectedOptions[this.form.selectedOptions.length-1];
-                //this.gettableData3();
             },
             getform () {
                 const self = this;
