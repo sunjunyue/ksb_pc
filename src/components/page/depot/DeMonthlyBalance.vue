@@ -42,6 +42,10 @@
             handleOpen() {
                 this.getform();
             },
+            handleChange () {
+                this.categoryid = this.form.selectedOptions[this.form.selectedOptions.length-1];
+                this.gettableData3();
+            },
         }
     }
 </script>
