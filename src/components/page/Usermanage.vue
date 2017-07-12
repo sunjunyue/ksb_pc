@@ -59,7 +59,7 @@
             return {
                 tableData: [],
                 cur_page: 1,
-                page_size: 1,
+                page_size: 10,
                 total: 0,
                 loading: false,
             }
