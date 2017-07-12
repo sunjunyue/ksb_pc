@@ -24,7 +24,7 @@
                         </div>
                     </el-col>
                     <el-col :span="6" style="margin-left:15px;">
-                        <el-button type="primary">按钮</el-button>
+                        <el-button type="primary">面辅料月度结存</el-button>
                     </el-col>
                 </el-row>
                 <el-table

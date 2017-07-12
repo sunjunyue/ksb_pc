@@ -233,7 +233,7 @@
 
                     }
                 }).catch(function (error) {
-                    conosle.log(error);
+                    console.log(error);
                 })
             }
         },
