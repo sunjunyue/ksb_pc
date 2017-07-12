@@ -82,4 +82,6 @@ const RouterConfigs = {
     ],
 };
 
-export default new VueRouter(RouterConfigs);
+const router = new VueRouter(RouterConfigs);
+
+export default router;
