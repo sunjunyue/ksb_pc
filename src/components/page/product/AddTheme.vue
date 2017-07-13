@@ -2,6 +2,10 @@
     <div class="win fr" id="win">
         <div class="wm">
             <p class="wTit">|&nbsp;&nbsp;主题添加</p>
+            <el-dialog style="color:#fff" title="款式参考" :visible.sync="dialogFormVisible" :modal-append-to-body='false'
+                       size="small" >
+
+            </el-dialog>
             <el-form :model="theme_edit" label-width="170px">
                 <el-row>
                     <el-col :span="12">
@@ -39,19 +43,9 @@
                             <el-dialog v-model="dialogVisible" size="tiny">
                                 <img width="100%" :src="dialogImageUrl" alt>
                             </el-dialog>
+                            <br/>
+                            <el-button type="primary" class="wNo" style="" @click="dialogFormVisible = true">选择款式参考</el-button>
                         </el-form-item>
-                        <!--<el-form-item label="波段搭配:" required>-->
-                        <!--<el-upload-->
-                        <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-                        <!--list-type="picture-card"-->
-                        <!--:on-preview="handlePictureCardPreview"-->
-                        <!--:on-remove="handleRemove">-->
-                        <!--<i class="el-icon-plus"></i>-->
-                        <!--</el-upload>-->
-                        <!--<el-dialog v-model="theme_edit.themem_band_matching" size="tiny">-->
-                        <!--<img width="100%" :src="dialogImageUrl" alt="">-->
-                        <!--</el-dialog>-->
-                        <!--</el-form-item>-->
                     </el-col>
                     <el-col :span="12">
                         <!--波段搭配-->
@@ -62,24 +56,6 @@
                         <el-form-item label="元素/风格/工艺版 :" required>
                             <el-input v-model="theme_edit.themem_elemental"></el-input>
                         </el-form-item>
-                        <!--<el-form-item label="元素/风格/工艺版:" required>-->
-                        <!--<el-upload-->
-                        <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-                        <!--list-type="picture-card"-->
-                        <!--:on-preview="handlePictureCardPreview"-->
-                        <!--:on-remove="handleRemove">-->
-                        <!--<i class="el-icon-plus"></i>-->
-                        <!--</el-upload>-->
-                        <!--<el-dialog v-model="theme_edit.themem_elemental" size="tiny">-->
-                        <!--<img width="100%" :src="dialogImageUrl" alt="">-->
-                        <!--</el-dialog>-->
-                        <!--<div style="margin:30px 0;">-->
-                        <!--<el-checkbox label="元素"></el-checkbox>-->
-                        <!--<el-checkbox label="风格"></el-checkbox>-->
-                        <!--<el-checkbox label="工艺版"></el-checkbox>-->
-                        <!--</div>-->
-                        <!--<el-input type="textarea" v-model="theme_edit.desc" rows="3" style="width:75%;"></el-input>-->
-                        <!--</el-form-item>-->
                         <!--创建人-->
                         <el-form-item label="备注:" required>
                             <el-input type="textarea" v-model="theme_edit.themem_remarks" rows="6"></el-input>
@@ -116,6 +92,7 @@
                     token: this.userphoto_token,
                 },
                 dialogVisible: false,
+                dialogFormVisible: false,
             }
         },
         methods: {
