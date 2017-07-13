@@ -49,7 +49,7 @@
                 items: [
                     {
                         icon: 'el-icon-setting',
-                        index: '1',
+                        index: 'productplan',
                         title: '产品企划'
                     },
                     {
@@ -107,5 +107,7 @@
 </script>
 
 <style>
-
+    .el-menu-item, .el-submenu__title{
+        font-size:16px;
+    }
 </style>
