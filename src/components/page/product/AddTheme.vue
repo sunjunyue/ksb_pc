@@ -42,8 +42,6 @@
                         </el-form-item>
                         <!--款式参考-->
                         <el-form-item label="款式参考:" required>
-
-                            <br/>
                             <el-button type="primary" class="wNo" style="" @click="dialogFormVisible = true">选择款式参考</el-button>
                         </el-form-item>
                     </el-col>
@@ -201,6 +199,9 @@
         width:80px;
         height:80px;
         line-height:86px;
+    }
+    .el-dialog{
+        height:500px;
     }
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
