@@ -28,10 +28,11 @@
                                     action="http://upload.qiniu.com/"
                                     list-type="picture-card"
                                     :on-preview="handlePictureCardPreview"
+                                    :on-success="handleAvatarSuccess"
                                     :on-remove="handleRemove"
+                                    :on-error="handleError"
                                     :before-upload="beforeAvatarUpload"
                                     :data="postData">
-                                <img v-if="imageUrl" :src="imageUrl" class="avatar">
                                 <i class="el-icon-plus"></i>
                                 <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
                             </el-upload>
@@ -105,12 +106,12 @@
                     themem_founder: '',
                     themem_main_color: '',
                     themem_secondary_color: '',
-//                    themem_reference: '',
+                    themem_reference: '',
                     themem_band_matching: '',
                     themem_elemental: '',
                     themem_remarks: ''
                 },
-                imageUrl: '',
+                /*imageUrl: '',*/
                 dialogImageUrl:'',
                 postData: {
                     token: this.userphoto_token,
@@ -154,30 +155,52 @@
                 });
             },
             handlePictureCardPreview(res, file) {
-                this.dialogImageUrl ='http://osyuuevsn.bkt.clouddn.com/'+ res.key;
+                this.dialogImageUrl = this.userphotebaseurl + res.key;
                 this.dialogVisible = true;
             },
             handleRemove(file, fileList) {
-                console.log(file, fileList);
+                console.log(file.response.key);
+                var tt = this.theme_edit.themem_reference.split('|');
+                //alert(tt.length);
+                if (tt.length == 1) {
+                    this.theme_edit.themem_reference = '';
+                } else {
+                    for (var i = 0; i<tt.length; i++) {
+                        //alert(tt[i]);
+                        if (tt[i].indexOf(file.response.key) >= 0){
+                            tt.splice(i,1);
+                        }
+                    }
+                    this.theme_edit.themem_reference = tt.join('|');
+                }
+
+                /*alert(this.theme_edit.themem_reference);*/
             },
-//            handleAvatarSuccess(res, file) {
-//                //alert(res.key);
-//                this.imageUrl ='http://osyuuevsn.bkt.clouddn.com/'+ res.key
-//                console.log(res)
-//            },
-//            handleError(res) {
-//                console.log(res)
-//            },
+            handleAvatarSuccess(res, file) {
+                //alert(res.key);
+                //this.imageUrl =
+                /*console.log(res)*/
+                if(this.theme_edit.themem_reference == '') {
+                    this.theme_edit.themem_reference = this.userphotebaseurl+ res.key
+                } else {
+                    this.theme_edit.themem_reference = this.theme_edit.themem_reference + ' | ' + this.userphotebaseurl + res.key
+                }
+            },
+            handleError(res) {
+                console.log(res)
+            },
             beforeAvatarUpload(file) {
                 const isJPG = file.type === 'image/jpeg'
                 const isPNG = file.type === 'image/png'
                 const isLt2M = file.size / 1024 / 1024 < 2
 
-                if (!isJPG&&!isPNG) {
+                if (!isJPG &&!isPNG) {
                     this.$message.error('上传头像图片只能是 JPG/PNG 格式!')
+                    return false;
                 }
                 if (!isLt2M) {
                     this.$message.error('上传头像图片大小不能超过 2MB!')
+                    return false;
                 }
                 return true;
             },

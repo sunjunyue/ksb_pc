@@ -60,6 +60,31 @@
                         icon: 'el-icon-menu',
                         index: '2',
                         title: '款式研发',
+                        subs: [{
+                            index: '2-1',
+                            title: '研发任务管理'
+                        },{
+                            index: '2-2',
+                            title: '原发初稿'
+                        },{
+                            index: '2-3',
+                            title: '初稿审核'
+                        },{
+                            index: '2-4',
+                            title: '面辅料准备'
+                        },{
+                            index: '2-5',
+                            title: '版师制版'
+                        },{
+                            index: '2-6',
+                            title: '裁剪'
+                        },{
+                            index: '2-7',
+                            title: '样衣制作'
+                        },{
+                            index: '2-8',
+                            title: '样衣审核'
+                        }]
                     },
                     {
                         icon: 'el-icon-date',
