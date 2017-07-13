@@ -9,7 +9,7 @@
                         <el-button type="primary" icon="plus" @click="handleCommand('addprothe')">添加商品主题</el-button>
                     </div>
                     <el-table
-                            :data="tableData"
+                            :data="tableData1"
                             style="width: 100%">
                         <el-table-column
                                 prop="themem_id"
@@ -55,7 +55,11 @@
     export default {
         data() {
             return {
-                tableData:[],
+                tableData1: [],
+                cur_page: 1,
+                page_size: 10,
+                total: 0,
+                loading: false,
                 activeName2: 'theme'
             };
         },
@@ -87,6 +91,34 @@
                     }
                 }).catch(function (error) {
                     conosle.log(error);
+                })
+            },
+            tableData1 () {
+                const self = this;
+                self.loading = true;
+                this.$ajax({
+                    method: 'post',
+                    url: this.apiurl + 'producttheme/index',
+                    params: {
+                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
+                    },
+                    data: {
+                        curr_page: self.cur_page,
+                        page_size: self.page_size,
+                    }
+                }).then(function (response) {
+                    self.tableData = response.data.data.depos;
+                    for (var o in self.tableData) {
+                        //alert(self.tableData33[o].indate.substr(0,10));
+                        self.tableData[o].indate = self.tableData[o].indate.substr(0,10);
+                        self.tableData[o].pricestr = self.$formatCurrency(self.tableData33[o].price, 2);
+                        self.tableData[o].zpricestr = self.$formatCurrency(self.tableData33[o].zprice, 2);
+                    }
+                    self.total = response.data.data.depos_count;
+                    self.loading = false;
+                }).catch(function (error) {
+                    alert(error);
+                    self.loading = false;
                 })
             },
         },
