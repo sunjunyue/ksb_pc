@@ -37,7 +37,7 @@
                                 <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
                             </el-upload>
                             <el-dialog v-model="dialogVisible" size="tiny">
-                                <img width="100%" alt="">
+                                <img width="100%" :src="dialogImageUrl" alt>
                             </el-dialog>
                         </el-form-item>
                         <!--<el-form-item label="波段搭配:" required>-->
@@ -111,12 +111,11 @@
                     themem_elemental: '',
                     themem_remarks: ''
                 },
-                /*imageUrl: '',*/
                 dialogImageUrl:'',
                 postData: {
                     token: this.userphoto_token,
                 },
-                dialogVisible: false
+                dialogVisible: false,
             }
         },
         methods: {
@@ -155,6 +154,8 @@
                 });
             },
             handlePictureCardPreview(res, file) {
+
+                //this.dialogImageUrl = file.userphotebaseurl + res.key;
                 this.dialogImageUrl = this.userphotebaseurl + res.key;
                 this.dialogVisible = true;
             },
