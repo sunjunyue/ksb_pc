@@ -4,7 +4,22 @@
             <p class="wTit">|&nbsp;&nbsp;主题添加</p>
             <el-dialog style="color:#fff" title="款式参考" :visible.sync="dialogFormVisible" :modal-append-to-body='false'
                        size="small" >
-
+                <el-upload
+                        class="avatar-uploader"
+                        action="http://upload.qiniu.com/"
+                        list-type="picture-card"
+                        :on-preview="handlePictureCardPreview"
+                        :on-success="handleAvatarSuccess"
+                        :on-remove="handleRemove"
+                        :on-error="handleError"
+                        :before-upload="beforeAvatarUpload"
+                        :data="postData">
+                    <i class="el-icon-plus"></i>
+                    <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                </el-upload>
+                <el-dialog v-model="dialogVisible" size="tiny">
+                    <img width="100%" :src="dialogImageUrl" alt>
+                </el-dialog>
             </el-dialog>
             <el-form :model="theme_edit" label-width="170px">
                 <el-row>
@@ -27,22 +42,7 @@
                         </el-form-item>
                         <!--款式参考-->
                         <el-form-item label="款式参考:" required>
-                            <el-upload
-                                    class="avatar-uploader"
-                                    action="http://upload.qiniu.com/"
-                                    list-type="picture-card"
-                                    :on-preview="handlePictureCardPreview"
-                                    :on-success="handleAvatarSuccess"
-                                    :on-remove="handleRemove"
-                                    :on-error="handleError"
-                                    :before-upload="beforeAvatarUpload"
-                                    :data="postData">
-                                <i class="el-icon-plus"></i>
-                                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-                            </el-upload>
-                            <el-dialog v-model="dialogVisible" size="tiny">
-                                <img width="100%" :src="dialogImageUrl" alt>
-                            </el-dialog>
+
                             <br/>
                             <el-button type="primary" class="wNo" style="" @click="dialogFormVisible = true">选择款式参考</el-button>
                         </el-form-item>
