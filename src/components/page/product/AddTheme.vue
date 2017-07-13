@@ -23,23 +23,21 @@
                         </el-form-item>
                         <!--款式参考-->
                         <el-form-item label="款式参考:" required>
-                            <el-input v-model="theme_edit.themem_reference"></el-input>
-                        </el-form-item>
-                        <!--<el-form-item label="款式参考:" required>-->
-                        <!--<el-upload-->
-                        <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-                        <!--list-type="picture-card"-->
-                        <!--:on-preview="handlePictureCardPreview"-->
-                        <!--:on-remove="handleRemove">-->
-                        <!--<i class="el-icon-plus"></i>-->
-                        <!--</el-upload>-->
-                        <!--<el-dialog v-model="theme_edit.themem_reference" size="tiny">-->
-                        <!--<img width="100%" :src="dialogImageUrl" alt="">-->
-                        <!--</el-dialog>-->
-                        <!--</el-form-item>-->
-                        <!--波段搭配-->
-                        <el-form-item label="波段搭配:" required>
-                            <el-input v-model="theme_edit.themem_band_matching"></el-input>
+                            <el-upload
+                                    class="avatar-uploader"
+                                    action="http://upload.qiniu.com/"
+                                    list-type="picture-card"
+                                    :on-preview="handlePictureCardPreview"
+                                    :on-remove="handleRemove"
+                                    :before-upload="beforeAvatarUpload"
+                                    :data="postData">
+                                <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                                <i class="el-icon-plus"></i>
+                                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                            </el-upload>
+                            <el-dialog v-model="dialogVisible" size="tiny">
+                                <img width="100%" alt="">
+                            </el-dialog>
                         </el-form-item>
                         <!--<el-form-item label="波段搭配:" required>-->
                         <!--<el-upload-->
@@ -55,6 +53,10 @@
                         <!--</el-form-item>-->
                     </el-col>
                     <el-col :span="12">
+                        <!--波段搭配-->
+                        <el-form-item label="波段搭配:" required>
+                            <el-input v-model="theme_edit.themem_band_matching"></el-input>
+                        </el-form-item>
                         <!--元素/风格/工艺版 -->
                         <el-form-item label="元素/风格/工艺版 :" required>
                             <el-input v-model="theme_edit.themem_elemental"></el-input>
@@ -83,7 +85,7 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
-                <div class="wSub">
+                <div class="wSub" style="margin-top:0px;">
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit('theme_edit')">保存</el-button>
                         <el-button>取消</el-button>
@@ -103,11 +105,17 @@
                     themem_founder: '',
                     themem_main_color: '',
                     themem_secondary_color: '',
-                    themem_reference: '',
+//                    themem_reference: '',
                     themem_band_matching: '',
                     themem_elemental: '',
                     themem_remarks: ''
-                }
+                },
+                imageUrl: '',
+                dialogImageUrl:'',
+                postData: {
+                    token: this.userphoto_token,
+                },
+                dialogVisible: false
             }
         },
         methods: {
@@ -138,13 +146,41 @@
                         });
                         self.$router.push('/productplan');
                     } else {
+                        alert(response.data.flag);
                         self.$message.error("添加失败");
                     }
                 }).catch(function (error) {
                     self.$message.error("添加失败" + error);
                 });
             },
+            handlePictureCardPreview(res, file) {
+                this.dialogImageUrl ='http://osyuuevsn.bkt.clouddn.com/'+ res.key;
+                this.dialogVisible = true;
+            },
+            handleRemove(file, fileList) {
+                console.log(file, fileList);
+            },
+//            handleAvatarSuccess(res, file) {
+//                //alert(res.key);
+//                this.imageUrl ='http://osyuuevsn.bkt.clouddn.com/'+ res.key
+//                console.log(res)
+//            },
+//            handleError(res) {
+//                console.log(res)
+//            },
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg'
+                const isPNG = file.type === 'image/png'
+                const isLt2M = file.size / 1024 / 1024 < 2
 
+                if (!isJPG&&!isPNG) {
+                    this.$message.error('上传头像图片只能是 JPG/PNG 格式!')
+                }
+                if (!isLt2M) {
+                    this.$message.error('上传头像图片大小不能超过 2MB!')
+                }
+                return true;
+            },
         }
     }
 </script>
@@ -154,54 +190,18 @@
 </style>
 
 <style>
-    .avatar-uploader .el-upload {
-        border: 1px dashed #00B38B;
-        border-radius: 100px;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
+    .el-upload-list--picture-card .el-upload-list__item{
+        width:80px;
+        height:80px;
     }
-
-    .avatar-uploader .el-upload:hover {
-        border-color: #00B38B;
+    .el-upload-list--picture-card .el-upload-list__item-status-label{
+        background:rgba(0, 179, 139, 0.98);
     }
-
-    .avatar-uploader-icon {
-        font-size: 28px;
-        color: #8c939d;
-        width: 100px;
-        height: 100px;
-        border-radius: 100px;
-        line-height: 100px;
-        text-align: center;
+    .el-upload--picture-card{
+        width:80px;
+        height:80px;
+        line-height:86px;
     }
-
-    .avatar {
-        width: 100px;
-        height: 100px;
-        display: block;
-    }
-
-    .el-upload--picture-card {
-        width: 75%;
-        height: 40px;
-        border: none;
-        vertical-align: bottom;
-        position: relative;
-    }
-
-    .el-upload--picture-card i {
-        position: absolute;
-        right: 20px;
-        top: 10px;
-        font-size: 20px;
-    }
-
-    .el-upload-list--picture-card .el-upload-list__item {
-        width: 100px;
-        height: 100px;
-    }
-
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 </style>

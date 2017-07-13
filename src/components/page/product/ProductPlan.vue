@@ -87,24 +87,6 @@
             handleClick(tab, event) {
                 console.log(tab, event);
             },
-            /*tableData () {
-                const self = this;
-                this.$ajax({
-                    method: 'post',
-                    url: self.apiurl + 'rmc/getrmcjson',
-                    params: {
-                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
-                    },
-                }).then(function (response) {
-                    if (response.data.flag == 'get_raw_meterial_category_json_success') {
-                        self.data2 = eval(response.data.data);
-                    } else {
-
-                    }
-                }).catch(function (error) {
-                    conosle.log(error);
-                })
-            },*/
             getTableData1 () {
                 const self = this;
                 self.loading = true;
@@ -125,7 +107,6 @@
                     } else {
                         alert(response.data.flag);
                     }
-
                     self.loading = false;
                 }).catch(function (error) {
                     alert(error);
