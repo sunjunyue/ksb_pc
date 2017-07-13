@@ -9,6 +9,8 @@
                         <el-button type="primary" icon="plus" @click="handleCommand('addprothe')">添加商品主题</el-button>
                     </div>
                     <el-table
+                            v-loading="loading"
+                            element-loading-text="拼命加载中..."
                             :data="tableData1"
                             style="width: 100%">
                         <el-table-column
@@ -43,6 +45,12 @@
                             <el-button type="primary" icon="view" size="small"></el-button>
                         </el-table-column>
                     </el-table>
+                    <el-pagination
+                            @current-change ="handleCurrentChange"
+                            layout="prev, pager, next"
+                            :pageSize="page_size"
+                            :total="total">
+                    </el-pagination>
                 </el-tab-pane>
                 <el-tab-pane label="商品波段" name="second">商品波段</el-tab-pane>
                 <el-tab-pane label="商品品类" name="third">商品品类</el-tab-pane>
@@ -57,14 +65,14 @@
             return {
                 tableData1: [],
                 cur_page: 1,
-                page_size: 10,
+                page_size: 1,
                 total: 0,
                 loading: false,
                 activeName2: 'theme'
             };
         },
         mounted: function () {
-            this.tableData();
+            this.getTableData1();
         },
         methods: {
             handleCommand(command) {
@@ -72,10 +80,14 @@
                     this.$router.push('addtheme');
                 }
             },
+            handleCurrentChange(val){
+                this.cur_page = val;
+                this.getTableData1();
+            },
             handleClick(tab, event) {
                 console.log(tab, event);
             },
-            tableData () {
+            /*tableData () {
                 const self = this;
                 this.$ajax({
                     method: 'post',
@@ -92,8 +104,8 @@
                 }).catch(function (error) {
                     conosle.log(error);
                 })
-            },
-            tableData1 () {
+            },*/
+            getTableData1 () {
                 const self = this;
                 self.loading = true;
                 this.$ajax({
@@ -107,14 +119,13 @@
                         page_size: self.page_size,
                     }
                 }).then(function (response) {
-                    self.tableData = response.data.data.depos;
-                    for (var o in self.tableData) {
-                        //alert(self.tableData33[o].indate.substr(0,10));
-                        self.tableData[o].indate = self.tableData[o].indate.substr(0,10);
-                        self.tableData[o].pricestr = self.$formatCurrency(self.tableData33[o].price, 2);
-                        self.tableData[o].zpricestr = self.$formatCurrency(self.tableData33[o].zprice, 2);
+                    if (response.data.flag == 'get_producttheme_list_success'){
+                        self.tableData1 = response.data.data.producttheme;
+                        self.total = response.data.data.producttheme_count;
+                    } else {
+                        alert(response.data.flag);
                     }
-                    self.total = response.data.data.depos_count;
+
                     self.loading = false;
                 }).catch(function (error) {
                     alert(error);

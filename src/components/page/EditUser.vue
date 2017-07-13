@@ -130,6 +130,7 @@
                     userstatus2: '',
                 },
                 radio3: '-1',
+                imageUrl: '',
                 rules: {
                     accountname: [
                         {required: true, message: '请填写用户名', trigger: 'blur'},
@@ -158,6 +159,7 @@
             getData(){
                 this.formAccount = JSON.parse(localStorage.getItem('ksb_ceu'));
                 this.formAccount.sex = parseInt(JSON.parse(localStorage.getItem('ksb_ceu')).sex);
+                this.imageUrl = JSON.parse(localStorage.getItem('ksb_ceu')).photourl;
                 /*if (JSON.parse(localStorage.getItem('ksb_ceu')).userstatus == "-1"){
                  this.value3 = '0';
                  } else {
