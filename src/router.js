@@ -70,7 +70,17 @@ const RouterConfigs = {
                 components: {
                     default: require('./components/page/depot/DeMonthlyBalance.vue'),
                 }
-            }]
+            },{
+                path: '/productplan',
+                components: {
+                    default: require('./components/page/product/ProductPlan.vue'),
+                }
+            },{
+                path: '/addtheme',
+                components: {
+                    default: require('./components/page/product/AddTheme.vue'),
+                }
+            }],
         },
         {
             path: '/login',
