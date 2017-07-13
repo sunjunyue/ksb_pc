@@ -153,10 +153,9 @@
                     self.$message.error("添加失败" + error);
                 });
             },
-            handlePictureCardPreview(res, file) {
-
-                //this.dialogImageUrl = file.userphotebaseurl + res.key;
-                this.dialogImageUrl = this.userphotebaseurl + res.key;
+            handlePictureCardPreview(file) {
+                //console.log(file.url);
+                this.dialogImageUrl = file.url;
                 this.dialogVisible = true;
             },
             handleRemove(file, fileList) {
