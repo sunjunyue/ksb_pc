@@ -4,6 +4,10 @@
         <div class="wm">
             <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
                 <el-tab-pane label="商品主题" name="theme">
+                    <!--button-->
+                    <div class="wBtn">
+                        <el-button type="primary" icon="plus" @click="handleCommand('addprothe')">添加商品主题</el-button>
+                    </div>
                     <el-table
                             :data="tableData"
                             style="width: 100%">
@@ -59,6 +63,11 @@
             this.tableData();
         },
         methods: {
+            handleCommand(command) {
+                if (command == 'addprothe'){
+                    this.$router.push('addtheme');
+                }
+            },
             handleClick(tab, event) {
                 console.log(tab, event);
             },

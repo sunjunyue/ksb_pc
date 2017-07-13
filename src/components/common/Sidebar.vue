@@ -49,8 +49,12 @@
                 items: [
                     {
                         icon: 'el-icon-setting',
-                        index: 'productplan',
-                        title: '产品企划'
+                        index: '1',
+                        title: '产品企划',
+                        subs: [{
+                            index: 'productplan',
+                            title: '企划管理'
+                        }]
                     },
                     {
                         icon: 'el-icon-menu',

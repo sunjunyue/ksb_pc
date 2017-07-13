@@ -9,21 +9,20 @@
                      label-width="100px">
                 <el-row>
                     <el-col :span="9">
-                        <el-upload
-                                action="http://upload.qiniu.com/"
-                                :drag="true"
-                                :on-success="handleAvatarSuccess"
-                                :on-error="handleError"
-                                :before-upload="beforeAvatarUpload"
-                                :data="postData">
-                            <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                            <i class="el-icon-upload"></i>
-                            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em>      </div>
-                            <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不      超过500kb</div>
-                        </el-upload>
                         <!--头像-->
                         <el-form-item label="头像:">
-
+                            <el-upload
+                                    class="avatar-uploader"
+                                    action="http://upload.qiniu.com/"
+                                    :show-file-list="false"
+                                    :on-success="handleAvatarSuccess"
+                                    :on-error="handleError"
+                                    :before-upload="beforeAvatarUpload"
+                                    :data="postData">
+                                <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                                <i v-else class="fa fa-user-circle fa-5x avatar-uploader-icon" style="font-size:100px;"></i>
+                                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                            </el-upload>
                         </el-form-item>
                         <el-form-item label="用户名" prop="accountname" required>
                             <el-input v-model="formAccount.accountname"></el-input>
@@ -97,7 +96,7 @@
                 },
                 imageUrl: '',
                 postData: {
-                    token: 'cC_r55D0VmEpqE9eZxLLW8vRaJ1kZA0L_ynyTpEW:aqDGxB_tvzVT-p-BfhQVJ9RDTiU=:eyJzY29wZSI6ImtzYi11c2VyLXBob3RvIiwiZGVhZGxpbmUiOjE0OTk4NjEyOTZ9',
+                    token: this.userphoto_token,
                 },
                 rules: {
                     accountname: [
@@ -121,7 +120,7 @@
         },
         methods: {
             handleAvatarSuccess(res, file) {
-                alert(res.key);
+                //alert(res.key);
                 this.imageUrl ='http://osyuuevsn.bkt.clouddn.com/'+ res.key
                 console.log(res)
             },
@@ -160,6 +159,7 @@
                                 email: this.formAccount.email,
                                 wechart: this.formAccount.wechart,
                                 remarks: this.formAccount.remarks,
+                                photourl: this.imageUrl,
                             }
                         }).then(function (response) {
                             //alert(response.data.flag);
