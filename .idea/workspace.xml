@@ -7,8 +7,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a3e7581d-d53c-475e-8fe4-a5ce747f4c31" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/page/depot/ClassManage.vue" afterPath="$PROJECT_DIR$/src/components/page/depot/ClassManage.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/page/depot/DeMonthlyBalance.vue" afterPath="$PROJECT_DIR$/src/components/page/depot/DeMonthlyBalance.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/page/AddUser.vue" afterPath="$PROJECT_DIR$/src/components/page/AddUser.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ksbconfig.js" afterPath="$PROJECT_DIR$/src/ksbconfig.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,86 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="DeMonthlyBalance.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/page/depot/DeMonthlyBalance.vue">
+      <file leaf-file-name="AddUser.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/page/AddUser.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="26" column="57" lean-forward="false" selection-start-line="26" selection-start-column="57" selection-end-line="26" selection-end-column="57" />
-              <folding>
-                <element signature="n#style#0;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <marker date="1499768575000" expanded="true" signature="5397:5406" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="20" column="22" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="router.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/router.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1012">
-              <caret line="86" column="21" lean-forward="false" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DepotStorage.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/page/depot/DepotStorage.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3942">
-              <caret line="146" column="34" lean-forward="false" selection-start-line="146" selection-start-column="34" selection-end-line="146" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DepotOutbound.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/page/depot/DepotOutbound.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2997">
-              <caret line="111" column="82" lean-forward="false" selection-start-line="111" selection-start-column="82" selection-end-line="111" selection-end-column="82" />
-              <folding>
-                <marker date="1499738000000" expanded="false" signature="1300:1334" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassManage.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/page/depot/ClassManage.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6345">
-              <caret line="235" column="39" lean-forward="false" selection-start-line="235" selection-start-column="39" selection-end-line="235" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FabricAndAccessories.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/page/depot/FabricAndAccessories.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1890">
-              <caret line="70" column="89" lean-forward="false" selection-start-line="70" selection-start-column="89" selection-end-line="70" selection-end-column="89" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddNewStorage.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/page/depot/AddNewStorage.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4617">
-              <caret line="171" column="29" lean-forward="false" selection-start-line="171" selection-start-column="17" selection-end-line="171" selection-end-column="29" />
+            <state relative-caret-position="474">
+              <caret line="99" column="162" lean-forward="false" selection-start-line="99" selection-start-column="162" selection-end-line="99" selection-end-column="162" />
               <folding />
             </state>
           </provider>
@@ -134,6 +59,8 @@
       <find>rows</find>
       <find>input__icon</find>
       <find>.el-dialog</find>
+      <find>lablePosition</find>
+      <find>handleError</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -166,21 +93,21 @@
         <option value="$PROJECT_DIR$/src/components/page/Login.vue" />
         <option value="$PROJECT_DIR$/src/assets/css/behind_cont.less" />
         <option value="$PROJECT_DIR$/src/assets/css/behind_cont.css" />
-        <option value="$PROJECT_DIR$/src/components/page/AddUser.vue" />
         <option value="$PROJECT_DIR$/src/components/common/Sidebar.vue" />
         <option value="$PROJECT_DIR$/src/components/page/depot/FabricAndAccessories.vue" />
         <option value="$PROJECT_DIR$/src/components/page/depot/Addoutbound.vue" />
         <option value="$PROJECT_DIR$/src/components/page/depot/AddNewStorage.vue" />
         <option value="$PROJECT_DIR$/src/components/common/Home.vue" />
-        <option value="$PROJECT_DIR$/src/ksbconfig.js" />
         <option value="$PROJECT_DIR$/src/components/page/depot/AddOutbound.vue" />
-        <option value="$PROJECT_DIR$/src/components/page/Usermanage.vue" />
         <option value="$PROJECT_DIR$/src/components/common/Header.vue" />
         <option value="$PROJECT_DIR$/src/components/page/depot/DepotStorage.vue" />
         <option value="$PROJECT_DIR$/src/components/page/depot/DepotOutbound.vue" />
         <option value="$PROJECT_DIR$/src/components/page/depot/ClassManage.vue" />
         <option value="$PROJECT_DIR$/src/components/page/depot/DeMonthlyBalance.vue" />
         <option value="$PROJECT_DIR$/src/router.js" />
+        <option value="$PROJECT_DIR$/src/ksbconfig.js" />
+        <option value="$PROJECT_DIR$/src/components/page/Usermanage.vue" />
+        <option value="$PROJECT_DIR$/src/components/page/AddUser.vue" />
       </list>
     </option>
   </component>
@@ -217,6 +144,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -243,9 +171,48 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ksb-demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ksb-demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="page" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ksb-demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ksb-demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -398,7 +365,11 @@
       <workItem from="1499761792122" duration="110000" />
       <workItem from="1499768492537" duration="213000" />
       <workItem from="1499829621562" duration="1115000" />
-      <workItem from="1499836411724" duration="26000" />
+      <workItem from="1499836411724" duration="5409000" />
+      <workItem from="1499856031882" duration="1355000" />
+      <workItem from="1499861778563" duration="20000" />
+      <workItem from="1499908588002" duration="75000" />
+      <workItem from="1499909366541" duration="78000" />
     </task>
     <task id="LOCAL-00001" summary="微调">
       <created>1498898936323</created>
@@ -547,11 +518,25 @@
       <option name="project" value="LOCAL" />
       <updated>1499830743731</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="细微调整">
+      <created>1499836459912</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1499836459912</updated>
+    </task>
+    <task id="LOCAL-00023" summary="细微调整">
+      <created>1499838485181</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1499838485181</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="188382000" />
+    <option name="totallyTimeSpent" value="195293000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -565,14 +550,14 @@
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1337" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22072785" sideWeight="0.49710983" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22072785" sideWeight="0.49710983" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919767" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2828784" sideWeight="0.50158226" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32837054" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23378165" sideWeight="0.49050373" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28370553" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2828784" sideWeight="0.49841774" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1641614" sideWeight="0.5094963" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -602,7 +587,8 @@
     <MESSAGE value="微调页面错误" />
     <MESSAGE value="Merge branch 'master' of https://github.com/CGCS/ksb-demo&#10;&#10;# Conflicts:&#10;#&#9;src/components/page/depot/DeMonthlyBalance.vue" />
     <MESSAGE value="router.js 细微调整" />
-    <option name="LAST_COMMIT_MESSAGE" value="router.js 细微调整" />
+    <MESSAGE value="细微调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="细微调整" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -821,17 +807,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/AddUser.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="723">
-          <caret line="48" column="46" lean-forward="false" selection-start-line="48" selection-start-column="46" selection-end-line="48" selection-end-column="46" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#el-upload#0;n#el-form-item#0;n#el-col#0;n#el-row#0;n#el-form#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-input#0;n#el-form-item#3;n#el-col#1;n#el-row#0;n#el-form#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/css/behind_cont.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -857,21 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
           <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/Usermanage.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="59" column="27" lean-forward="true" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ksbconfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -921,7 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4617">
           <caret line="171" column="29" lean-forward="false" selection-start-line="171" selection-start-column="17" selection-end-line="171" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -929,7 +888,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3942">
           <caret line="146" column="34" lean-forward="false" selection-start-line="146" selection-start-column="34" selection-end-line="146" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -937,9 +895,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2997">
           <caret line="111" column="82" lean-forward="false" selection-start-line="111" selection-start-column="82" selection-end-line="111" selection-end-column="82" />
-          <folding>
-            <marker date="1499738000000" expanded="false" signature="1300:1334" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -947,7 +902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1890">
           <caret line="70" column="89" lean-forward="false" selection-start-line="70" selection-start-column="89" selection-end-line="70" selection-end-column="89" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -955,7 +909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6345">
           <caret line="235" column="39" lean-forward="false" selection-start-line="235" selection-start-column="39" selection-end-line="235" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -963,10 +916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="702">
           <caret line="26" column="57" lean-forward="false" selection-start-line="26" selection-start-column="57" selection-end-line="26" selection-end-column="57" />
-          <folding>
-            <element signature="n#style#0;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <marker date="1499768575000" expanded="true" signature="5397:5406" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -981,7 +930,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="20" column="22" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -989,6 +937,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1012">
           <caret line="86" column="21" lean-forward="false" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ksbconfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/Usermanage.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/AddUser.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="99" column="162" lean-forward="false" selection-start-line="99" selection-start-column="162" selection-end-line="99" selection-end-column="162" />
           <folding />
         </state>
       </provider>

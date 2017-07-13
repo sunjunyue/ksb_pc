@@ -5,22 +5,25 @@
             <!--button-->
 
             <!--用户添加-->
-            <el-form :label-position="labelPosition" :model="formAccount" :rules="rules" ref="formAccount"
+            <el-form :model="formAccount" :rules="rules" ref="formAccount"
                      label-width="100px">
                 <el-row>
                     <el-col :span="9">
+                        <el-upload
+                                action="http://upload.qiniu.com/"
+                                :drag="true"
+                                :on-success="handleAvatarSuccess"
+                                :on-error="handleError"
+                                :before-upload="beforeAvatarUpload"
+                                :data="postData">
+                            <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                            <i class="el-icon-upload"></i>
+                            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em>      </div>
+                            <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不      超过500kb</div>
+                        </el-upload>
                         <!--头像-->
                         <el-form-item label="头像:">
-                            <el-upload
-                                    class="avatar-uploader"
-                                    action="https://jsonplaceholder.typicode.com/posts/"
-                                    :show-file-list="false"
-                                    :on-success="handleAvatarSuccess"
-                                    :before-upload="beforeAvatarUpload">
-                                <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                                <i v-else class="fa fa-user-circle fa-5x avatar-uploader-icon" style="font-size:100px;"></i>
-                                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-                            </el-upload>
+
                         </el-form-item>
                         <el-form-item label="用户名" prop="accountname" required>
                             <el-input v-model="formAccount.accountname"></el-input>
@@ -41,8 +44,7 @@
                                     v-model="formAccount.birthday"
                                     type="date"
                                     format="yyyy年MM月dd日"
-                                    placeholder="选择日期"
-                                    :picker-options="pickerOptions0">
+                                    placeholder="选择日期">
                             </el-date-picker>
                         </el-form-item>
                     </el-col>
@@ -61,7 +63,7 @@
                         </el-form-item>
                         <!--备注说明-->
                         <el-form-item prop="remarks" label="备注说明:">
-                            <el-input type="textarea" v-model="formAccount.remarks" rows="8"></el-input>
+                            <el-input type="textarea" v-model="formAccount.remarks" :rows="8"></el-input>
                         </el-form-item>
 
                     </el-col>
@@ -93,6 +95,10 @@
                     wechart: '',
                     remarks: '',
                 },
+                imageUrl: '',
+                postData: {
+                    token: 'cC_r55D0VmEpqE9eZxLLW8vRaJ1kZA0L_ynyTpEW:aqDGxB_tvzVT-p-BfhQVJ9RDTiU=:eyJzY29wZSI6ImtzYi11c2VyLXBob3RvIiwiZGVhZGxpbmUiOjE0OTk4NjEyOTZ9',
+                },
                 rules: {
                     accountname: [
                         {required: true, message: '请填写用户名', trigger: 'blur'},
@@ -114,6 +120,27 @@
             };
         },
         methods: {
+            handleAvatarSuccess(res, file) {
+                alert(res.key);
+                this.imageUrl ='http://osyuuevsn.bkt.clouddn.com/'+ res.key
+                console.log(res)
+            },
+            handleError(res) {
+                console.log(res)
+            },
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg'
+                const isPNG = file.type === 'image/png'
+                const isLt2M = file.size / 1024 / 1024 < 2
+
+                if (!isJPG&&!isPNG) {
+                    this.$message.error('上传头像图片只能是 JPG/PNG 格式!')
+                }
+                if (!isLt2M) {
+                    this.$message.error('上传头像图片大小不能超过 2MB!')
+                }
+                return true;
+            },
             submitForm(formName) {
                 const self = this;
                 this.$refs[formName].validate((valid) => {
