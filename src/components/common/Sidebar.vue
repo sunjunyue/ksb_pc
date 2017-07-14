@@ -61,7 +61,7 @@
                         index: '2',
                         title: '款式研发',
                         subs: [{
-                            index: '2-1',
+                            index: 'taskcenter',
                             title: '研发任务管理'
                         },{
                             index: '2-2',
