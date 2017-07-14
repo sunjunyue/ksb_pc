@@ -44,7 +44,8 @@
                                                :on-error="handleError"
                                                :before-upload="beforeAvatarUpload"
                                                :data="postData"
-                                               :file-list="fileList">
+                                               :file-list="fileList"
+                                               :show-file-list="false">
                                         <el-button size="small" type="primary" style="font-size:14px;">点击上传</el-button>
                                     </el-upload>
                                 </el-col>
