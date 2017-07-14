@@ -6,8 +6,9 @@
                        size="small">
                 <el-carousel arrow="always" height="500px" :autoplay="false">
                     <el-carousel-item v-for="item in items" :key="item">
+                        <a target="_blank" :href="item">查看原图</a>
                         <div class="img_item">
-                            <img :src='item' height="100" width="100">
+                            <img :src='item' height="600" width="450">
                         </div>
                     </el-carousel-item>
                 </el-carousel>
@@ -97,7 +98,7 @@
                     themem_elemental: '',
                     themem_remarks: ''
                 },
-                items: ['http://osyuuevsn.bkt.clouddn.com/FizAu1GQF6cGHOHiikoxvK5vipo8', 'http://osyuuevsn.bkt.clouddn.com/FipSnXPrBhcXYNPYTP3YaKB5H5o5', 'http://osyuuevsn.bkt.clouddn.com/Flh_7fTFWSGesNFTCtxblpGYE4UV', 'http://osyuuevsn.bkt.clouddn.com/FqwnbVHiMvcp0hQYE-LFyvkiTqtF', 'http://osyuuevsn.bkt.clouddn.com/FrIFOLlXooN9JCDz-YjW-TKEce5J'],
+                items: [],
                 fileList: [],
                 postData: {
                     token: this.userphoto_token,
@@ -148,9 +149,11 @@
             },
             handleAvatarSuccess(res, file) {
                 if (this.theme_edit.themem_reference == '') {
-                    this.theme_edit.themem_reference = this.userphotebaseurl + res.key
+                    this.theme_edit.themem_reference = this.userphotebaseurl + res.key;
+                    this.items.push(this.userphotebaseurl + res.key);
                 } else {
-                    this.theme_edit.themem_reference = this.theme_edit.themem_reference + ' | ' + this.userphotebaseurl + res.key
+                    this.theme_edit.themem_reference = this.theme_edit.themem_reference + ' | ' + this.userphotebaseurl + res.key;
+                    this.items.push(this.userphotebaseurl + res.key);
                 }
             },
             handleError(res) {
