@@ -4,9 +4,9 @@
             <p class="wTit">|&nbsp;&nbsp;主题添加</p>
             <el-dialog style="color:#fff" title="款式参考" :visible.sync="dialogFormVisible" :modal-append-to-body='false'
                        size="small" >
-                <el-carousel arrow="always" height="1000px" :autoplay="false">
+                <el-carousel arrow="always" height="500px" :autoplay="false">
                     <el-carousel-item v-for="item in items" :key="item">
-                        <div style="margin: 0 auto">
+                        <div class="img_item">
                             <img :src='item'>
                         </div>
                     </el-carousel-item>
@@ -206,6 +206,13 @@
 
     .el-carousel__item:nth-child(2n+1) {
         background-color: #d3dce6;
+    }
+    .img_item{
+        text-align:center;
+        line-height:500px;
+    }
+    .img_item img{
+        vertical-align: middle;
     }
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
