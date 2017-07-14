@@ -10,6 +10,12 @@ Vue.use(VueRouter);
 const RouterConfigs = {
     routes: [
         {
+            path: '/test',
+            components: {
+                default: require('./components/page/test.vue'),
+            }
+        },
+        {
             path: '/',
             redirect: '/login'
         },
@@ -79,6 +85,11 @@ const RouterConfigs = {
                 path: '/addtheme',
                 components: {
                     default: require('./components/page/product/AddTheme.vue'),
+                }
+            },{
+                path: '/taskcenter',
+                components: {
+                    default: require('./components/page/developmenttask/taskcenter.vue'),
                 }
             }],
         },
