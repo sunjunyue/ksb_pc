@@ -46,32 +46,32 @@
                 <el-table-column
                         prop="dpsnumber"
                         label="单号"
-                        min-width="150">
+                        min-width="140">
                 </el-table-column>
                 <el-table-column
                         prop="indate"
                         label="入库时间"
-                        min-width="100">
+                        min-width="120">
                 </el-table-column>
                 <el-table-column
                         prop="articlename"
                         label="面辅料名称"
-                        min-width="100">
+                        min-width="120">
                 </el-table-column>
                 <el-table-column
                         prop="supplierarticlenumber"
                         label="供应商货号"
-                        min-width="100">
+                        min-width="120">
                 </el-table-column>
                 <el-table-column
                         prop="measureunit"
                         label="计量单位"
-                        min-width="80">
+                        min-width="100">
                 </el-table-column>
                 <el-table-column
                         prop="quantity"
                         label="入库数量"
-                        min-width="80">
+                        min-width="100">
                 </el-table-column>
                 <el-table-column
                         prop="pricestr"
@@ -225,30 +225,25 @@
 </style>
 
 <style scoped>
-    .win {
-        width: calc(100% - 328px);
-    }
+    /*.win {*/
+        /*width: calc(100% - 328px);*/
+    /*}*/
 
-    .wm {
-        width: calc(100% - 100px)
-    }
-
-    .el-checkbox__label {
-        font-size: 16px;
-    }
+    /*.wm {*/
+        /*width: calc(100% - 100px)*/
+    /*}*/
 
     .wm .el-input .el-input__inner{
         width:100%
     }
-
     .el-input__icon {
         right: 4%!important;
     }
-    .el-dialog {
-        background-color:#324057
-    }
-    .el-dialog__title{
-        color:#ffffff;
-    }
+    /*.el-dialog {*/
+        /*background-color:#324057*/
+    /*}*/
+    /*.el-dialog__title{*/
+        /*color:#ffffff;*/
+    /*}*/
 
 </style>

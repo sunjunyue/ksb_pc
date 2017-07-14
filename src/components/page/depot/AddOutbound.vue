@@ -18,6 +18,7 @@
                 </el-cascader>
                 <!--table-->
                 <el-table
+                        ref="multipleTable"
                         v-loading="loading"
                         element-loading-text="拼命加载中..."
                         :data="tableData3"
@@ -83,7 +84,7 @@
                         <el-form-item label="本地货号:">
                             <el-input v-model="outbound.localarticlenumber" :disabled="true"></el-input>
                             <br/>
-                            <el-button type="primary" class="wNo" style="" @click="dialogFormVisible = true">选择本地货号
+                            <el-button type="primary" class="wNo" style="margin-top:10px;" @click="dialogFormVisible = true">选择本地货号
                             </el-button>
                         </el-form-item>
                     </el-col>
@@ -339,18 +340,13 @@
 </script>
 
 <style>
-    .win {
-        width: calc(100% - 328px);
-    }
-
-    .wm {
-        width: calc(100% - 100px)
-    }
 
     .el-checkbox__label {
         font-size: 16px;
     }
-
+    .el-input__icon {
+        right: 30%
+    }
     .wm .el-form-item {
         width: 100%;
     }
@@ -358,11 +354,9 @@
     .el-form-item__content {
         width: 100%
     }
-
     .wm .el-input .el-input__inner {
         width: 72%;
     }
-
     .demonstration {
         color: #fff;
     }

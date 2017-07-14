@@ -79,7 +79,7 @@
                         <el-form-item label="本地货号:">
                             <el-input v-model="deportstorage.localarticlenumber" :disabled="true"></el-input>
                             <br/>
-                            <el-button type="primary" class="wNo" style="" @click="dialogFormVisible = true">选择本地货号
+                            <el-button type="primary" class="wNo" style="margin-top:10px;" @click="dialogFormVisible = true">选择本地货号
                             </el-button>
                         </el-form-item>
                         <el-form-item label="供应商货号:" required>
@@ -108,13 +108,14 @@
                         <el-form-item label="是否是红单:">
                             <el-switch
                                     v-model="deportstorage.isred"
-                                    width="75"
-                                    on-color="#13ce66"
-                                    off-color="#ff4949"
+                                    width="80"
+                                    on-color="rgba(0, 179, 139, 0.98)"
+                                    off-color="#f00"
                                     on-value="非红单"
                                     off-value="红单"
                                     on-text="非红单"
                                     off-text="红单"
+                                    style="margin-top:5px;"
                                     @change="isred_change">
                             </el-switch>
                         </el-form-item>

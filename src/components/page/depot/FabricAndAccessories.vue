@@ -76,26 +76,25 @@
                     <el-button type="primary" @click="submintForm">提 交</el-button>
                 </div>
             </el-dialog>
-
-
             <el-row :gutter="20">
                 <el-col :span="6">
                     <el-input
                             placeholder="输入分类名称进行过滤"
                             v-model="filterText">
                     </el-input>
-
-                    <el-tree
-                            class="filter-tree"
-                            :data="data2"
-                            :props="defaultProps"
-                            :filter-node-method="filterNode"
-                            showCheckbox
-                            check-strictly
-                            highlightCurrent
-                            @check-change="handleCheckChange"
-                            ref="tree2">
-                    </el-tree>
+                    <div class="wTree">
+                        <el-tree
+                                class="filter-tree"
+                                :data="data2"
+                                :props="defaultProps"
+                                :filter-node-method="filterNode"
+                                showCheckbox
+                                check-strictly
+                                highlightCurrent
+                                @check-change="handleCheckChange"
+                                ref="tree2">
+                        </el-tree>
+                    </div>
                 </el-col>
                 <el-col :span="18">
                     <!--button-->
@@ -115,7 +114,7 @@
                         <el-table-column
                                 prop="faname"
                                 label="面辅料名称"
-                                min-width="100">
+                                min-width="120">
                         </el-table-column>
                         <el-table-column
                                 prop="categoryname"
@@ -130,12 +129,12 @@
                         <el-table-column
                                 prop="curr_zprice"
                                 label="当前库存金额"
-                                min-width="100">
+                                min-width="120">
                         </el-table-column>
                         <el-table-column
                                 prop="curr_price"
                                 label="当前库存单价"
-                                min-width="100">
+                                >
                         </el-table-column>
                     </el-table>
                     <el-pagination
@@ -326,3 +325,22 @@
     };
 </script>
 
+<style>
+    ::-webkit-scrollbar {
+        width: 12px;
+    }/* 滚动槽 */
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+    }/* 滚动条滑块 */
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: rgba(0,0,0,0.1);
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+    ::-webkit-scrollbar-thumb:window-inactive {
+        background: rgba(255,0,0,0.4);
+    }
+</style>

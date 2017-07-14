@@ -126,7 +126,7 @@ span {
   top: 95px;
   left: 215px;
   padding: 30px;
-  height: calc(80%);
+  height: 100%;
   background: rgba(49, 53, 65, 0.68);
 }
 .wm {

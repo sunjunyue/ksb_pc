@@ -25,17 +25,17 @@
                                 icon="search">
                         </el-input>
                     </el-col>
-                    <!--<el-col :span="6" :push="2">
+                    <el-col :span="6" :push="2">
                         <el-form-item>
-                            &lt;!&ndash;是否显示红单&ndash;&gt;
+                            <!--是否显示红单-->
                             <el-checkbox style="margin-left:15px;line-height:37px;">是否显示红单</el-checkbox>
                         </el-form-item>
-                    </el-col>-->
+                    </el-col>
                 </el-row>
             </el-form>
             <el-button type="primary" class="fr" @click="handleCommand('addnewoutbound')" :disabled="addisdis">新增出库单</el-button>
-            <div class="clear"></div>
             <el-table
+                    ref="multipleTable"
                     v-loading="loading"
                     element-loading-text="拼命加载中..."
                     :data="tableData33"
@@ -210,30 +210,19 @@
 </style>
 
 <style scoped>
-    .win {
-        width: calc(100% - 328px);
-    }
-
-    .wm {
-        width: calc(100% - 100px)
-    }
-
-    .el-checkbox__label {
-        font-size: 16px;
-    }
-
+    /*.el-checkbox__label {*/
+        /*font-size: 16px;*/
+    /*}*/
     .wm .el-input .el-input__inner{
         width:100%
     }
-
     .el-input__icon {
-        right: 4%!important;
+        right: 4%;
     }
-    .el-dialog {
-        background-color:#324057
-    }
-    .el-dialog__title{
-        color:#ffffff;
-    }
-
+    /*.el-dialog {*/
+        /*background-color:#324057*/
+    /*}*/
+    /*.el-dialog__title{*/
+        /*color:#ffffff;*/
+    /*}*/
 </style>

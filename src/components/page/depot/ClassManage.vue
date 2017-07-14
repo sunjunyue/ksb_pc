@@ -9,7 +9,7 @@
                             placeholder="输入分类名称进行过滤"
                             v-model="filterText">
                     </el-input>
-
+                    <div class="wTree">
                     <el-tree
                             class="filter-tree"
                             :data="data2"
@@ -17,11 +17,12 @@
                             :filter-node-method="filterNode"
                             ref="tree2">
                     </el-tree>
+                    </div>
                 </el-col>
                 <el-col :span="18">
                     <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
                         <el-tab-pane label="新增分类" name="add">
-                            <el-form :label-position="labelPosition" :model="formdata2" label-width="140px">
+                            <el-form :label-position="labelPosition" :model="formdata2" label-width="140px" style="margin-top:20px">
                                 <!--分类名称 -->
                                 <el-form-item label="分类名称:" required>
                                     <el-row>
@@ -89,7 +90,7 @@
                                 <el-form-item label="分类描述:">
                                     <el-row>
                                         <el-col :span="21">
-                                            <el-input type="textarea" v-model="formdata2.description"></el-input>
+                                            <el-input type="textarea" v-model="formdata2.description" :rows="3"></el-input>
                                         </el-col>
                                         <el-col :span="2" :push="1">
                                         </el-col>
@@ -262,24 +263,37 @@
 </script>
 
 <style scoped>
-    .sort {
-        width: 160px;
-    }
+    /*.sort {*/
+        /*width: 160px;*/
+    /*}*/
 
     .wm .el-input .el-input__inner {
         width: 100%;
     }
-
     .wm .el-form-item {
         width: 65%;
     }
-
     .el-select {
         display: block;
     }
-
     .el-input__icon {
         right: 2%;
+    }
+    ::-webkit-scrollbar {
+        width: 12px;
+    }/* 滚动槽 */
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+    }/* 滚动条滑块 */
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: rgba(0,0,0,0.1);
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+    ::-webkit-scrollbar-thumb:window-inactive {
+        background: rgba(255,0,0,0.4);
     }
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';

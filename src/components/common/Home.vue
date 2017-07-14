@@ -20,10 +20,16 @@
 
 <style>
     .win{
-        width: calc(100% - 300px);
+        width: calc(100% - 250px);
     }
     .wm{
         width: calc(100% - 100px)
+    }
+    .wTree{
+        overflow-y:scroll;height:400px;margin-top:30px;
+    }
+    .el-checkbox__label {
+        font-size: 16px;
     }
     .tab_check{
         width:12px;
@@ -36,4 +42,6 @@
     .el-dialog__title{
         color:#ffffff;
     }
+
+
 </style>
