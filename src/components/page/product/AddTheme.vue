@@ -4,9 +4,11 @@
             <p class="wTit">|&nbsp;&nbsp;主题添加</p>
             <el-dialog style="color:#fff" title="款式参考" :visible.sync="dialogFormVisible" :modal-append-to-body='false'
                        size="small" >
-                <el-carousel :interval="4000" type="card" height="200px">
-                    <el-carousel-item v-for="item in 6" :key="item">
-                        <h3>{{ item }}</h3>
+                <el-carousel arrow="always" height="1000px" :autoplay="false">
+                    <el-carousel-item v-for="item in items" :key="item">
+                        <div style="margin: 0 auto">
+                            <img :src='item'>
+                        </div>
                     </el-carousel-item>
                 </el-carousel>
             </el-dialog>
@@ -93,7 +95,7 @@
                     themem_elemental: '',
                     themem_remarks: ''
                 },
-                item:[],
+                items:['http://osyuuevsn.bkt.clouddn.com/FipSnXPrBhcXYNPYTP3YaKB5H5o5','http://osyuuevsn.bkt.clouddn.com/Flh_7fTFWSGesNFTCtxblpGYE4UV','http://osyuuevsn.bkt.clouddn.com/FqwnbVHiMvcp0hQYE-LFyvkiTqtF','http://osyuuevsn.bkt.clouddn.com/FrIFOLlXooN9JCDz-YjW-TKEce5J'],
                 fileList: [],
                 postData: {
                     token: this.userphoto_token,
@@ -190,7 +192,7 @@
         line-height:86px;
     }
 
-    .el-carousel__item h3 {
+    .el-carousel__item h1 {
         color: #475669;
         font-size: 14px;
         opacity: 0.75;
