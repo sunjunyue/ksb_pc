@@ -139,7 +139,18 @@
                 console.log(file, fileList);
             },
             handlePreview(file) {
+
                 console.log(file);
+            },
+            handleAvatarSuccess(res, file) {
+                if(this.theme_edit.themem_reference == '') {
+                    this.theme_edit.themem_reference = this.userphotebaseurl+ res.key
+                } else {
+                    this.theme_edit.themem_reference = this.theme_edit.themem_reference + ' | ' + this.userphotebaseurl + res.key
+                }
+            },
+            handleError(res) {
+                console.log(res)
             },
             beforeAvatarUpload(file) {
                 const isJPG = file.type === 'image/jpeg'
