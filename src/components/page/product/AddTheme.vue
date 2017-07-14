@@ -3,11 +3,11 @@
         <div class="wm">
             <p class="wTit">|&nbsp;&nbsp;主题添加</p>
             <el-dialog style="color:#fff" title="款式参考" :visible.sync="dialogFormVisible" :modal-append-to-body='false'
-                       size="small" >
+                       size="small">
                 <el-carousel arrow="always" height="500px" :autoplay="false">
                     <el-carousel-item v-for="item in items" :key="item">
                         <div class="img_item">
-                            <img :src='item'>
+                            <img :src='item' height="100" width="100">
                         </div>
                     </el-carousel-item>
                 </el-carousel>
@@ -33,25 +33,27 @@
                         </el-form-item>
                         <!--款式参考-->
                         <el-form-item label="款式参考:" required>
-                                <el-row>
-                                    <el-col :span="8">
-                                        <el-upload class="upload-demo"
-                                                   action="http://upload.qiniu.com/"
-                                                   :on-preview="handlePreview"
-                                                   :on-remove="handleRemove"
-                                                   :on-success="handleAvatarSuccess"
-                                                   :on-error="handleError"
-                                                   :before-upload="beforeAvatarUpload"
-                                                   :data="postData"
-                                                   :file-list="fileList">
-                                            <el-button size="small" type="primary" style="font-size:14px;">点击上传</el-button>
-                                        </el-upload>
-                                    </el-col>
-                                    <el-col :span="8" :push="8">
-                                        <el-button size="small" type="primary" style="font-size:14px;" @click="dialogFormVisible = true">查看款式参考</el-button>
-                                    </el-col>
-                                </el-row>
-                            </el-form-item>
+                            <el-row>
+                                <el-col :span="8">
+                                    <el-upload class="upload-demo"
+                                               action="http://upload.qiniu.com/"
+                                               :on-preview="handlePreview"
+                                               :on-remove="handleRemove"
+                                               :on-success="handleAvatarSuccess"
+                                               :on-error="handleError"
+                                               :before-upload="beforeAvatarUpload"
+                                               :data="postData"
+                                               :file-list="fileList">
+                                        <el-button size="small" type="primary" style="font-size:14px;">点击上传</el-button>
+                                    </el-upload>
+                                </el-col>
+                                <el-col :span="8" :push="8">
+                                    <el-button size="small" type="primary" style="font-size:14px;"
+                                               @click="dialogFormVisible = true">查看款式参考
+                                    </el-button>
+                                </el-col>
+                            </el-row>
+                        </el-form-item>
                     </el-col>
                     <el-col :span="12">
                         <!--波段搭配-->
@@ -95,7 +97,7 @@
                     themem_elemental: '',
                     themem_remarks: ''
                 },
-                items:['http://osyuuevsn.bkt.clouddn.com/FipSnXPrBhcXYNPYTP3YaKB5H5o5','http://osyuuevsn.bkt.clouddn.com/Flh_7fTFWSGesNFTCtxblpGYE4UV','http://osyuuevsn.bkt.clouddn.com/FqwnbVHiMvcp0hQYE-LFyvkiTqtF','http://osyuuevsn.bkt.clouddn.com/FrIFOLlXooN9JCDz-YjW-TKEce5J'],
+                items: ['http://osyuuevsn.bkt.clouddn.com/FizAu1GQF6cGHOHiikoxvK5vipo8', 'http://osyuuevsn.bkt.clouddn.com/FipSnXPrBhcXYNPYTP3YaKB5H5o5', 'http://osyuuevsn.bkt.clouddn.com/Flh_7fTFWSGesNFTCtxblpGYE4UV', 'http://osyuuevsn.bkt.clouddn.com/FqwnbVHiMvcp0hQYE-LFyvkiTqtF', 'http://osyuuevsn.bkt.clouddn.com/FrIFOLlXooN9JCDz-YjW-TKEce5J'],
                 fileList: [],
                 postData: {
                     token: this.userphoto_token,
@@ -145,8 +147,8 @@
                 console.log(file);
             },
             handleAvatarSuccess(res, file) {
-                if(this.theme_edit.themem_reference == '') {
-                    this.theme_edit.themem_reference = this.userphotebaseurl+ res.key
+                if (this.theme_edit.themem_reference == '') {
+                    this.theme_edit.themem_reference = this.userphotebaseurl + res.key
                 } else {
                     this.theme_edit.themem_reference = this.theme_edit.themem_reference + ' | ' + this.userphotebaseurl + res.key
                 }
@@ -159,7 +161,7 @@
                 const isPNG = file.type === 'image/png'
                 const isLt2M = file.size / 1024 / 1024 < 2
 
-                if (!isJPG &&!isPNG) {
+                if (!isJPG && !isPNG) {
                     this.$message.error('上传头像图片只能是 JPG/PNG 格式!')
                     return false;
                 }
@@ -169,7 +171,30 @@
                 }
                 return true;
             },
-
+            drawImage(ImgD, iwidth, iheight) {
+                //参数(图片,允许的宽度,允许的高度)
+                var image = new Image();
+                image.src = ImgD.src;
+                if (image.width > 0 && image.height > 0) {
+                    if (image.width / image.height >= iwidth / iheight) {
+                        if (image.width > iwidth) {
+                            ImgD.width = iwidth;
+                            ImgD.height = (image.height * iwidth) / image.width;
+                        } else {
+                            ImgD.width = image.width;
+                            ImgD.height = image.height;
+                        }
+                    } else {
+                        if (image.height > iheight) {
+                            ImgD.height = iheight;
+                            ImgD.width = (image.width * iheight) / image.height;
+                        } else {
+                            ImgD.width = image.width;
+                            ImgD.height = image.height;
+                        }
+                    }
+                }
+            },
         }
     }
 </script>
@@ -179,17 +204,19 @@
 </style>
 
 <style>
-    .el-upload-list--picture-card .el-upload-list__item{
-        width:80px;
-        height:80px;
+    .el-upload-list--picture-card .el-upload-list__item {
+        width: 80px;
+        height: 80px;
     }
-    .el-upload-list--picture-card .el-upload-list__item-status-label{
-        background:rgba(0, 179, 139, 0.98);
+
+    .el-upload-list--picture-card .el-upload-list__item-status-label {
+        background: rgba(0, 179, 139, 0.98);
     }
-    .el-upload--picture-card{
-        width:80px;
-        height:80px;
-        line-height:86px;
+
+    .el-upload--picture-card {
+        width: 80px;
+        height: 80px;
+        line-height: 86px;
     }
 
     .el-carousel__item h1 {
@@ -207,13 +234,16 @@
     .el-carousel__item:nth-child(2n+1) {
         background-color: #d3dce6;
     }
-    .img_item{
-        text-align:center;
-        line-height:500px;
+
+    .img_item {
+        text-align: center;
+        line-height: 500px;
     }
-    .img_item img{
+
+    .img_item img {
         vertical-align: middle;
     }
+
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 </style>
