@@ -4,22 +4,11 @@
             <p class="wTit">|&nbsp;&nbsp;主题添加</p>
             <el-dialog style="color:#fff" title="款式参考" :visible.sync="dialogFormVisible" :modal-append-to-body='false'
                        size="small" >
-                <el-upload
-                        class="avatar-uploader"
-                        action="http://upload.qiniu.com/"
-                        list-type="picture-card"
-                        :on-preview="handlePictureCardPreview"
-                        :on-success="handleAvatarSuccess"
-                        :on-remove="handleRemove"
-                        :on-error="handleError"
-                        :before-upload="beforeAvatarUpload"
-                        :data="postData">
-                    <i class="el-icon-plus"></i>
-                    <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-                </el-upload>
-                <el-dialog v-model="dialogVisible" size="tiny">
-                    <img width="100%" :src="dialogImageUrl" alt>
-                </el-dialog>
+                <el-carousel :interval="4000" type="card" height="200px">
+                    <el-carousel-item v-for="item in 6" :key="item">
+                        <h3>{{ item }}</h3>
+                    </el-carousel-item>
+                </el-carousel>
             </el-dialog>
             <el-form :model="theme_edit" label-width="170px">
                 <el-row>
@@ -42,8 +31,25 @@
                         </el-form-item>
                         <!--款式参考-->
                         <el-form-item label="款式参考:" required>
-                            <el-button type="primary" class="wNo" style="" @click="dialogFormVisible = true">选择款式参考</el-button>
-                        </el-form-item>
+                                <el-row>
+                                    <el-col :span="8">
+                                        <el-upload class="upload-demo"
+                                                   action="http://upload.qiniu.com/"
+                                                   :on-preview="handlePreview"
+                                                   :on-remove="handleRemove"
+                                                   :on-success="handleAvatarSuccess"
+                                                   :on-error="handleError"
+                                                   :before-upload="beforeAvatarUpload"
+                                                   :data="postData"
+                                                   :file-list="fileList">
+                                            <el-button size="small" type="primary" style="font-size:14px;">点击上传</el-button>
+                                        </el-upload>
+                                    </el-col>
+                                    <el-col :span="8" :push="8">
+                                        <el-button size="small" type="primary" style="font-size:14px;" @click="dialogFormVisible = true">查看款式参考</el-button>
+                                    </el-col>
+                                </el-row>
+                            </el-form-item>
                     </el-col>
                     <el-col :span="12">
                         <!--波段搭配-->
@@ -72,7 +78,9 @@
 </template>
 
 <script>
+    import ElCol from "element-ui/packages/col/src/col";
     export default{
+        components: {ElCol},
         data(){
             return {
                 theme_edit: {
@@ -85,11 +93,11 @@
                     themem_elemental: '',
                     themem_remarks: ''
                 },
-                dialogImageUrl:'',
+                item:[],
+                fileList: [],
                 postData: {
                     token: this.userphoto_token,
                 },
-                dialogVisible: false,
                 dialogFormVisible: false,
             }
         },
@@ -113,7 +121,6 @@
                         themem_remarks: this.theme_edit.themem_remarks,
                     }
                 }).then(function (response) {
-                    //alert(response.data.flag);
                     if (response.data.flag == "producttheme_add_success") {
                         self.$message({
                             message: '添加成功！',
@@ -128,41 +135,11 @@
                     self.$message.error("添加失败" + error);
                 });
             },
-            handlePictureCardPreview(file) {
-                //console.log(file.url);
-                this.dialogImageUrl = file.url;
-                this.dialogVisible = true;
-            },
             handleRemove(file, fileList) {
-                console.log(file.response.key);
-                var tt = this.theme_edit.themem_reference.split('|');
-                //alert(tt.length);
-                if (tt.length == 1) {
-                    this.theme_edit.themem_reference = '';
-                } else {
-                    for (var i = 0; i<tt.length; i++) {
-                        //alert(tt[i]);
-                        if (tt[i].indexOf(file.response.key) >= 0){
-                            tt.splice(i,1);
-                        }
-                    }
-                    this.theme_edit.themem_reference = tt.join('|');
-                }
-
-                /*alert(this.theme_edit.themem_reference);*/
+                console.log(file, fileList);
             },
-            handleAvatarSuccess(res, file) {
-                //alert(res.key);
-                //this.imageUrl =
-                /*console.log(res)*/
-                if(this.theme_edit.themem_reference == '') {
-                    this.theme_edit.themem_reference = this.userphotebaseurl+ res.key
-                } else {
-                    this.theme_edit.themem_reference = this.theme_edit.themem_reference + ' | ' + this.userphotebaseurl + res.key
-                }
-            },
-            handleError(res) {
-                console.log(res)
+            handlePreview(file) {
+                console.log(file);
             },
             beforeAvatarUpload(file) {
                 const isJPG = file.type === 'image/jpeg'
@@ -179,6 +156,7 @@
                 }
                 return true;
             },
+
         }
     }
 </script>
@@ -200,8 +178,21 @@
         height:80px;
         line-height:86px;
     }
-    .el-dialog{
-        height:500px;
+
+    .el-carousel__item h3 {
+        color: #475669;
+        font-size: 14px;
+        opacity: 0.75;
+        line-height: 200px;
+        margin: 0;
+    }
+
+    .el-carousel__item:nth-child(2n) {
+        background-color: #99a9bf;
+    }
+
+    .el-carousel__item:nth-child(2n+1) {
+        background-color: #d3dce6;
     }
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
