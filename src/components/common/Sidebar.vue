@@ -65,7 +65,7 @@
                             title: '研发任务管理'
                         },{
                             index: '2-2',
-                            title: '原发初稿'
+                            title: '研发初稿'
                         },{
                             index: '2-3',
                             title: '初稿审核'
