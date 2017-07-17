@@ -2,8 +2,6 @@
     <!--主题区域-->
     <div class="win fr" id="win">
         <div class="wm">
-            <!--button-->
-
             <!--用户添加-->
             <el-form :model="formAccount" :rules="rules" ref="formAccount"
                      label-width="100px">

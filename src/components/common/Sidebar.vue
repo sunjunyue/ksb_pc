@@ -122,6 +122,9 @@
                         }, {
                             index: 'adduser',
                             title: '角色权限'
+                        },{
+                            index: 'carousel',
+                            title: '轮播图'
                         }]
                     }
                 ]
@@ -139,4 +142,6 @@
     .el-menu-item, .el-submenu__title{
         font-size:16px;
     }
+    .el-menu--horizontal>.el-menu-item:hover, .el-menu--horizontal>.el-submenu.is-active .el-submenu__title, .el-menu--horizontal>.el-submenu:hover .el-submenu__title {
+        border-bottom: 3px solid #fff;}
 </style>

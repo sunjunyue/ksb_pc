@@ -7,7 +7,7 @@
                     <!-- 进行中的研发任务 -->
                     <el-carousel arrow="always" height="500px" :autoplay="false">
                         <el-carousel-item v-for="item in items" :key="item">
-                            <el-card :body-style="{ padding: '0px' }" class="wm">
+                            <el-card :body-style="{ padding: '0px' }">
                                 <img :src="item.taskphotourl" width="300" height="400" class="image">
                                 <div style="padding: 14px;">
                                     <span>{{ item.taskname }}</span>
@@ -20,8 +20,59 @@
                         </el-carousel-item>
                     </el-carousel>
                 </el-tab-pane>
-                <el-tab-pane><span slot="label"><i class="el-icon-check"></i> 已完成的研发任务</span></el-tab-pane>
-                <el-tab-pane><span slot="label"><i class="el-icon-edit"></i> 新增研发任务</span></el-tab-pane>
+                <el-tab-pane>
+                    <span slot="label">
+                        <i class="el-icon-check"></i> 已完成的研发任务
+                    </span>
+                </el-tab-pane>
+                <el-tab-pane>
+                    <span slot="label">
+                        <i class="el-icon-edit"></i> 新增研发任务
+                    </span>
+                    <el-row :gutter="10">
+                        <el-col :span="6">
+                            <p style="color:#fff;">任务封面图</p>
+                        </el-col>
+                        <el-col :span="18">
+                            <el-form ref="form" :model="form" label-width="120px">
+                                <el-col :span="12">
+                                    <el-form-item label="任务发起人:">
+                                        <el-input v-model="form.name"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="任务名称:">
+                                        <el-input v-model="form.name"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="任务来源:">
+                                        <el-input v-model="form.name"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="参考图:">
+                                        <el-input v-model="form.name"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="截止时间:">
+                                        <el-input v-model="form.name"></el-input>
+                                    </el-form-item>
+                                </el-col>
+                                <el-col :span="12">
+                                    <el-form-item label="设计师:">
+                                        <el-input v-model="form.name"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="裁剪师:">
+                                        <el-input v-model="form.name"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="样衣工:">
+                                        <el-input v-model="form.name"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="具体要求">
+                                        <el-input type="textarea"
+                                                  v-model="form.name"
+                                                  rows="4">
+                                        </el-input>
+                                    </el-form-item>
+                                </el-col>
+                            </el-form>
+                        </el-col>
+                    </el-row>
+                </el-tab-pane>
                 <el-tab-pane><span slot="label"><i class="el-icon-caret-right"></i> 规划任务分派</span></el-tab-pane>
             </el-tabs>
         </div>
@@ -29,8 +80,10 @@
 </template>
 
 <script>
+    import ElCol from "element-ui/packages/col/src/col";
 
     export default {
+        components: {ElCol},
         data() {
             return {
                 items: [{
@@ -45,7 +98,17 @@
                     filter: 'color'
                 },
                 currentDate: new Date(),
-                downloadButton: false
+                downloadButton: false,
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                }
             };
         },
 
@@ -62,35 +125,50 @@
 </style>
 
 <style>
-    .time {
-        font-size: 13px;
-        color: #999;
-    }
+    /*.time {*/
+        /*font-size: 13px;*/
+        /*color: #999;*/
+    /*}*/
 
-    .bottom {
-        margin-top: 13px;
-        line-height: 12px;
-    }
+    /*.bottom {*/
+        /*margin-top: 13px;*/
+        /*line-height: 12px;*/
+    /*}*/
 
-    .button {
-        padding: 0;
-        float: right;
-    }
+    /*.button {*/
+        /*padding: 0;*/
+        /*float: right;*/
+    /*}*/
 
-    .clearfix:before,
-    .clearfix:after {
-        display: table;
-        content: "";
-    }
+    /*.clearfix:before,*/
+    /*.clearfix:after {*/
+        /*display: table;*/
+        /*content: "";*/
+    /*}*/
 
-    .clearfix:after {
-        clear: both
+    /*.clearfix:after {*/
+        /*clear: both*/
+    /*}*/
+    .el-card{
+        border:none;
+        background:none;
     }
     .el-tabs__item.is-active{
         color:rgba(0, 179, 139, 0.98);
     }
     .el-tabs__item:hover{
         color:rgba(0, 179, 139, 0.98);
+    }
+
+    .el-tabs--border-card{
+        background:none;
+        border:none;
+    }
+    .el-tabs--border-card>.el-tabs__content{
+        padding:30px 15px;
+    }
+    .el-popover, .el-tabs--border-card{
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,.62), 0 0 6px 0 rgba(0,0,0,.04);
     }
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';

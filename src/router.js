@@ -91,6 +91,11 @@ const RouterConfigs = {
                 components: {
                     default: require('./components/page/developmenttask/taskcenter.vue'),
                 }
+            },{
+                path: '/carousel',
+                components: {
+                    default: require('./components/page/Carousel.vue'),
+                }
             }],
         },
         {
