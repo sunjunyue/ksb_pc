@@ -5,7 +5,7 @@
             <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
                 <el-tab-pane label="商品主题" name="theme">
                     <!--button-->
-                    <div class="wBtn">
+                    <div class="wBtn fr" style="margin-bottom:10px;">
                         <el-button type="primary" icon="plus" @click="handleCommand('addprothe')">添加商品主题</el-button>
                     </div>
                     <el-table
@@ -128,6 +128,9 @@
     }
     .el-tabs__item:hover{
         color:rgba(0, 179, 139, 0.98);
+    }
+    .el-tabs__item{
+        font-size:16px;
     }
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';

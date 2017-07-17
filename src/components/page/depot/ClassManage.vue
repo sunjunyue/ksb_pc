@@ -263,10 +263,6 @@
 </script>
 
 <style scoped>
-    /*.sort {*/
-        /*width: 160px;*/
-    /*}*/
-
     .wm .el-input .el-input__inner {
         width: 100%;
     }
