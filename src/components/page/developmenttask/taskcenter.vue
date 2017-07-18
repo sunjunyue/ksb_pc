@@ -46,7 +46,27 @@
                                         <el-input v-model="form.name"></el-input>
                                     </el-form-item>
                                     <el-form-item label="参考图:">
-                                        <el-input v-model="form.name"></el-input>
+                                        <el-row>
+                                            <el-col :span="8">
+                                                <el-upload class="upload-demo"
+                                                           action="http://upload.qiniu.com/"
+                                                           :on-preview="handlePreview"
+                                                           :on-remove="handleRemove"
+                                                           :on-success="handleAvatarSuccess"
+                                                           :on-error="handleError"
+                                                           :before-upload="beforeAvatarUpload"
+                                                           :data="postData"
+                                                           :file-list="fileList"
+                                                           :show-file-list="false">
+                                                    <el-button size="small" type="primary" style="font-size:14px;">点击上传</el-button>
+                                                </el-upload>
+                                            </el-col>
+                                            <el-col :span="8">
+                                                <el-button size="small" type="primary" style="font-size:14px;"
+                                                           @click="dialogFormVisible = true">查看款式参考
+                                                </el-button>
+                                            </el-col>
+                                        </el-row>
                                     </el-form-item>
                                     <el-form-item label="截止时间:">
                                         <el-input v-model="form.name"></el-input>
@@ -69,21 +89,24 @@
                                         </el-input>
                                     </el-form-item>
                                 </el-col>
+                                <el-form-item>
+                                    <el-button type="primary" @click="submitForm('formAccount')">立即创建</el-button>
+                                    <el-button @click="resetForm('formAccount')">重置</el-button>
+                                </el-form-item>
                             </el-form>
                         </el-col>
                     </el-row>
                 </el-tab-pane>
-                <el-tab-pane><span slot="label"><i class="el-icon-caret-right"></i> 规划任务分派</span></el-tab-pane>
+                <el-tab-pane>
+                        <span slot="label"><i class="el-icon-caret-right"></i> 规划任务分派</span>
+                </el-tab-pane>
             </el-tabs>
         </div>
     </div>
 </template>
 
 <script>
-    import ElCol from "element-ui/packages/col/src/col";
-
     export default {
-        components: {ElCol},
         data() {
             return {
                 items: [{
@@ -108,14 +131,21 @@
                     type: [],
                     resource: '',
                     desc: ''
-                }
+                },
             };
         },
 
         mounted: function () {
 
         },
-        methods: {}
+        methods: {
+            handleRemove(file, fileList) {
+                console.log(file, fileList);
+            },
+            handlePreview(file) {
+                console.log(file);
+            }
+        }
 
     };
 </script>

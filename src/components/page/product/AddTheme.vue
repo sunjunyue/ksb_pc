@@ -6,9 +6,13 @@
                        size="small">
                 <el-carousel arrow="always" height="500px" :autoplay="false">
                     <el-carousel-item v-for="item in items" :key="item">
-                        <a target="_blank" :href="item">查看原图</a>
+                        <!--<a target="_blank" :href="item">查看原图</a>-->
                         <div class="img_item">
-                            <img :src='item' height="600" width="450">
+                            <a href=""><img :src='item' height="600" width="450"></a>
+                            <div class="img_ico">
+                                <el-button type="primary" icon="view"></el-button>
+                                <el-button type="primary" icon="delete2 "></el-button>
+                            </div>
                         </div>
                     </el-carousel-item>
                 </el-carousel>
@@ -84,9 +88,7 @@
 </template>
 
 <script>
-    import ElCol from "element-ui/packages/col/src/col";
     export default{
-        components: {ElCol},
         data(){
             return {
                 theme_edit: {
@@ -242,10 +244,20 @@
     .img_item {
         text-align: center;
         line-height: 500px;
+        position:relative;
+    }
+    .img_item:hover .img_ico{
+        display: block;
     }
 
     .img_item img {
         vertical-align: middle;
+    }
+    .img_ico{
+        top:0;
+        left:40%;
+        display: none;
+        position:absolute;
     }
 
     @import '../../../assets/css/behind_cont.css';
