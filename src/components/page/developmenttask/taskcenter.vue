@@ -102,6 +102,16 @@
                         <el-col :span="6">
                             <p style="color:#fff;margin-bottom:20px;">任务封面图</p>
                             <img :src="items.taskphotourl" width="250" height="250">
+                            <el-upload
+                                    class="upload-demo"
+                                    action="http://upload.qiniu.com/"
+                                    :on-preview="handlePreview"
+                                    :on-remove="handleRemove"
+                                    :file-list="fileList"
+                                    :show-file-list="false">
+                                <el-button size="small" type="primary" style="font-size:14px;">点击上传</el-button>
+                                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                            </el-upload>
                         </el-col>
                         <!--form-->
                         <el-col :span="18">
