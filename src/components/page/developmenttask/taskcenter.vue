@@ -17,7 +17,7 @@
                                 <a :href='item' target="_blank">
                                     <el-button type="primary" icon="view"></el-button>
                                 </a>
-                                <el-button type="primary" icon="delete2 "></el-button>
+                                <el-button type="primary" icon="delete2" @click="handleRemove2({item})"></el-button>
                             </div>
                         </div>
                     </el-carousel-item>
@@ -158,7 +158,7 @@
                                                 </el-col>
                                                 <el-col :span="8">
                                                     <el-button size="small" type="primary" style="font-size:14px;"
-                                                               @click="dialogFormVisible = true">查看款式参考
+                                                               @click="dialogFormVisible = true" :disabled="uploadbtn2enable">查看款式参考
                                                     </el-button>
                                                 </el-col>
                                             </el-row>
@@ -169,6 +169,7 @@
                                                     v-model="task_item.devtask_deadline"
                                                     type="date"
                                                     placeholder="选择日期"
+                                                    @change="dateChange"
                                                     style="width:100%">
                                             </el-date-picker>
                                         </el-form-item>
@@ -196,7 +197,7 @@
                                     </el-col>
                                 </el-row>
                                 <el-form-item>
-                                    <el-button type="primary" @click="submitForm('formAccount')">立即创建</el-button>
+                                    <el-button type="primary" @click="submitItems()">立即创建</el-button>
                                     <el-button @click="resetForm('formAccount')">重置</el-button>
                                 </el-form-item>
                             </el-form>
@@ -236,6 +237,7 @@
 
                 fileList1: [],
                 uploadbtn1enable: false,
+                uploadbtn2enable: true,
                 config: {
                     value: 'https://www.baidu.com',
                     imagePath: '',
@@ -268,17 +270,52 @@
         mounted: function () {
         },
         methods: {
+            dateChange (val) {
+                this.task_item.devtask_deadline = val;
+            },
             submitItems () {
-                console.log(this.items.taskphotourl);
-                console.log(this.items.devtask_builder);
-                console.log(this.items.devtask_name);
-                console.log(this.items.devtask_source);
-                console.log();
-                console.log(this.items.devtask_deadline);
-                console.log(this.items.devtask_designer);
-                console.log(this.items.devtask_cutter);
-                console.log(this.items.devtask_yyg);
-                console.log(this.items.devtask_text);
+                /*console.log(this.task_item.taskphotourl);
+                console.log(this.task_item.devtask_builder);
+                console.log(this.task_item.devtask_name);
+                console.log(this.task_item.devtask_source);
+                console.log(this.task_item.devtask_referencephoto);
+                console.log(this.task_item.devtask_deadline);
+                console.log(this.task_item.devtask_designer);
+                console.log(this.task_item.devtask_cutter);
+                console.log(this.task_item.devtask_yyg);
+                console.log(this.task_item.devtask_text);*/
+                const self = this;
+                self.$ajax({
+                    method: 'post',
+                    url: this.apiurl + 'devtask/createdevtask',
+                    params: {
+                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
+                    },
+                    data: {
+                        taskphotourl: this.task_item.taskphotourl,
+                        devtask_builder: this.task_item.devtask_builder,
+                        devtask_name: this.task_item.devtask_name,
+                        devtask_source: this.task_item.devtask_source,
+                        devtask_referencephoto: this.task_item.devtask_referencephoto,
+                        devtask_deadline: this.task_item.devtask_deadline,
+                        devtask_designer: this.task_item.devtask_designer,
+                        devtask_cutter: this.task_item.devtask_cutter,
+                        devtask_yyg: this.task_item.devtask_yyg,
+                        devtask_text: this.task_item.devtask_text,
+                    }
+                }).then(function (response) {
+                    //alert(response.data.flag);
+                    if (response.data.flag == "create_devtask_success") {
+                        self.$message({
+                            message: '新增任务成功',
+                            type: 'success'
+                        });
+                    } else {
+                        self.$message.error("新增任务失败");
+                    }
+                }).catch(function (error) {
+                    self.$message.error("新增任务失败" + error);
+                })
             },
             handleCurrentChange(val){
                 this.cur_page = val;
@@ -288,8 +325,33 @@
                 this.task_item.taskphotourl = '';
                 this.uploadbtn1enable = false;
             },
-            handleRemove2(file, fileList) {
-                console.log(file, fileList);
+            handleRemove2(photourl) {
+                //alert(photourl.item);
+                var tpu = this.task_item.devtask_referencephoto.split('|');
+                for (var t = 0; t <= tpu.length; t++) {
+                    if (tpu[t] == photourl.item) {
+                        tpu.splice(t,1);
+                        break;
+                    }
+                }
+                if (tpu.length == 0) {
+                    this.task_item.devtask_referencephoto = '';
+                } else if (tpu.length == 1) {
+                    this.task_item.devtask_referencephoto = tpu[0];
+                } else {
+                    this.task_item.devtask_referencephoto = tpu.join('|');
+                }
+                //alert(this.task_item.devtask_referencephoto);
+                for (var i = 0; i <= this.referencephoto_items.length; i++) {
+                    if (this.referencephoto_items[i] == photourl.item) {
+                        this.referencephoto_items.splice(i,1);
+                        break;
+                    }
+                }
+                if (this.referencephoto_items.length == 0) {
+                    this.dialogFormVisible = false;
+                    this.uploadbtn2enable = true;
+                }
             },
             handlePreview1(file) {
                 console.log(file);
@@ -314,12 +376,22 @@
             handleAvatarSuccess2(res, file) {
                 if (this.task_item.devtask_referencephoto == '') {
                     this.task_item.devtask_referencephoto = this.userphotebaseurl + res.key;
-
+                    this.referencephoto_items.push(this.userphotebaseurl + res.key);
+                    this.uploadbtn2enable = false;
                 } else {
-                    this.task_item.devtask_referencephoto = this.task_item.devtask_referencephoto + ' | ' + this.userphotebaseurl + res.key;
-
+                    for (var i = 0; i <= this.referencephoto_items.length; i++) {
+                        if (this.referencephoto_items[i] == this.userphotebaseurl + res.key) {
+                            this.$message({
+                                message: '请勿上传相同的图片',
+                                type: 'warning'
+                            });
+                            return;
+                        }
+                    }
+                    this.task_item.devtask_referencephoto = this.task_item.devtask_referencephoto + '|' + this.userphotebaseurl + res.key;
+                    this.referencephoto_items.push(this.userphotebaseurl + res.key);
                 }
-                this.referencephoto_items.push(this.userphotebaseurl + res.key);
+                console.log(this.task_item.devtask_referencephoto);
             },
             handleError1(res) {
                 console.log(res)
