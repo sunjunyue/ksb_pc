@@ -5,14 +5,46 @@
             <el-dialog title="选择商品主题" :visible.sync="dialogForm">
                 <el-form :label-position="form" :model="form" label-width="140px">
                     <el-cascader
-                            :options="form.options"
-                            v-model="form.selectedOptions"
-                            @change="handleChange"
-                            placeholder="请选择分类"
-                            changeOnSelect
-                            size="small"
-                            style="width:400px;">
+                        :options="form.options"
+                        v-model="form.selectedOptions"
+                        @change="handleChange"
+                        placeholder="请选择分类"
+                        changeOnSelect
+                        size="small"
+                        style="width:400px;margin-bottom:20px;">
                     </el-cascader>
+                    <el-table
+                            v-loading="loading"
+                            element-loading-text="拼命加载中..."
+                            :data="tableData1"
+                            style="width: 100%">
+                        <el-table-column
+                                prop="themem_id"
+                                label="主题编号"
+                                min-width="90">
+                        </el-table-column>
+                        <el-table-column
+                                prop="themem_name"
+                                label="主题名称"
+                                min-width="90">
+                        </el-table-column>
+                        <el-table-column
+                                prop="themem_main_color"
+                                label="流行主色"
+                                min-width="90">
+                        </el-table-column>
+                        <el-table-column
+                                prop="themem_secondary_color"
+                                label="流行辅色"
+                                min-width="90">
+                        </el-table-column>
+                        <el-table-column
+                                prop="temem_status"
+                                label="状态">
+                            <el-button type="primary" icon="edit" size="small" @click="handleEdit(scope.$index,scope.row)"></el-button>
+                            <el-button type="primary" icon="view" size="small"></el-button>
+                        </el-table-column>
+                    </el-table>
                 </el-form>
             </el-dialog>
             <el-form :label-position="form" :model="form" label-width="140px">

@@ -5,11 +5,11 @@
             <div class="wTit">|&nbsp;&nbsp;新增出库单</div>
             <!--弹出框-->
             <el-dialog
-                    title="选择面辅料"
-                    :visible.sync="dialogFormVisible"
-                    :modal-append-to-body='false'
-                    size="small"
-                    @open="handleOpen">
+                title="选择面辅料"
+                :visible.sync="dialogFormVisible"
+                :modal-append-to-body='false'
+                size="small"
+                @open="handleOpen">
                 <!--级联选择器-->
                 <el-cascader
                     :options="form.options"

@@ -40,47 +40,56 @@
                     element-loading-text="拼命加载中..."
                     :data="tableData33"
                     style="width: 100%">
+                <!--出库单号-->
                 <el-table-column
                         prop="obnumber"
                         label="出库单号"
                         min-width="150">
                 </el-table-column>
+                <!--出库时间-->
                 <el-table-column
                         prop="outdate"
                         label="出库时间"
                         min-width="100">
                 </el-table-column>
+                <!--面辅料名称-->
                 <el-table-column
                         prop="articlename"
                         label="面辅料名称"
                         min-width="100">
                 </el-table-column>
+                <!--本地货号-->
                 <el-table-column
                         prop="localarticlenumber"
                         label="本地货号"
                         min-width="100">
                 </el-table-column>
+                <!--计量单位-->
                 <el-table-column
                         prop="measureunit"
                         label="计量单位"
                         min-width="50">
                 </el-table-column>
+                <!--出库数量-->
                 <el-table-column
                         prop="quantity"
                         label="出库数量"
                         min-width="80">
                 </el-table-column>
+                <!--出库单价-->
                 <el-table-column
                         prop="pricestr"
                         label="出库单价"
                         min-width="50">
                 </el-table-column>
+                <!--出库总价-->
                 <el-table-column
                         prop="zpricestr"
                         label="出库总价"
                         min-width="100">
                 </el-table-column>
             </el-table>
+            <!--page-->
             <el-pagination
                     @current-change ="handleCurrentChange"
                     layout="prev, pager, next"
@@ -210,19 +219,10 @@
 </style>
 
 <style scoped>
-    /*.el-checkbox__label {*/
-        /*font-size: 16px;*/
-    /*}*/
     .wm .el-input .el-input__inner{
         width:100%
     }
     .el-input__icon {
         right: 4%;
     }
-    /*.el-dialog {*/
-        /*background-color:#324057*/
-    /*}*/
-    /*.el-dialog__title{*/
-        /*color:#ffffff;*/
-    /*}*/
 </style>

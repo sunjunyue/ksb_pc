@@ -43,52 +43,61 @@
                     element-loading-text="拼命加载中..."
                     :data="tableData33"
                     style="width: 100%">
+                <!--单号-->
                 <el-table-column
-                        prop="dpsnumber"
-                        label="单号"
-                        min-width="140">
+                    prop="dpsnumber"
+                    label="单号"
+                    min-width="140">
                 </el-table-column>
+                <!--入库时间-->
                 <el-table-column
-                        prop="indate"
-                        label="入库时间"
-                        min-width="120">
+                    prop="indate"
+                    label="入库时间"
+                    min-width="120">
                 </el-table-column>
+                <!--面辅料名称-->
                 <el-table-column
-                        prop="articlename"
-                        label="面辅料名称"
-                        min-width="120">
+                    prop="articlename"
+                    label="面辅料名称"
+                    min-width="120">
                 </el-table-column>
+                <!--供应商货号-->
                 <el-table-column
-                        prop="supplierarticlenumber"
-                        label="供应商货号"
-                        min-width="120">
+                    prop="supplierarticlenumber"
+                    label="供应商货号"
+                    min-width="120">
                 </el-table-column>
+                <!--计量单位-->
                 <el-table-column
-                        prop="measureunit"
-                        label="计量单位"
-                        min-width="100">
+                    prop="measureunit"
+                    label="计量单位"
+                    min-width="100">
                 </el-table-column>
+                <!--入库数量-->
                 <el-table-column
-                        prop="quantity"
-                        label="入库数量"
-                        min-width="100">
+                    prop="quantity"
+                    label="入库数量"
+                    min-width="100">
                 </el-table-column>
+                <!--单价-->
                 <el-table-column
-                        prop="pricestr"
-                        label="单价"
-                        min-width="100">
+                    prop="pricestr"
+                    label="单价"
+                    min-width="100">
                 </el-table-column>
+                <!--总价-->
                 <el-table-column
-                        prop="zpricestr"
-                        label="总价"
-                        min-width="100">
+                    prop="zpricestr"
+                    label="总价"
+                    min-width="100">
                 </el-table-column>
             </el-table>
+            <!--page-->
             <el-pagination
-                    @current-change ="handleCurrentChange"
-                    layout="prev, pager, next"
-                    :pageSize="page_size"
-                    :total="total">
+                @current-change ="handleCurrentChange"
+                layout="prev, pager, next"
+                :pageSize="page_size"
+                :total="total">
             </el-pagination>
         </div>
     </div>
@@ -225,25 +234,10 @@
 </style>
 
 <style scoped>
-    /*.win {*/
-        /*width: calc(100% - 328px);*/
-    /*}*/
-
-    /*.wm {*/
-        /*width: calc(100% - 100px)*/
-    /*}*/
-
     .wm .el-input .el-input__inner{
         width:100%
     }
     .el-input__icon {
         right: 4%!important;
     }
-    /*.el-dialog {*/
-        /*background-color:#324057*/
-    /*}*/
-    /*.el-dialog__title{*/
-        /*color:#ffffff;*/
-    /*}*/
-
 </style>

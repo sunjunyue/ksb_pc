@@ -1,40 +1,4 @@
-<style scoped>
-    .sort {
-        width: 160px;
-    }
-    .el-select-dropdown{
-        wideh:24%;
-    }
 
-
-    .wm .el-form-item {
-        width: 65%;
-    }
-
-    .el-select {
-        display: block;
-    }
-
-    .el-input__icon {
-        right: 2%;
-    }
-
-    /*.wm .el-form-item__label{
-        color:rgba(49, 53, 65, 0.68)!important;
-    }*/
-    .wm .el-input{
-        border:1px rgba(49, 53, 65, 0.68) solid;
-        border-radius:4px
-    }
-    .el-dialog {
-        background-color:#324057!important;
-    }
-    .el-dialog__title{
-        color:#324057;
-    }
-    @import '../../../assets/css/behind_cont.css';
-    @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
-</style>
 <template>
     <div class="win fr" id="win">
         <!--主题区域-->
@@ -326,6 +290,18 @@
 </script>
 
 <style>
+    .el-select-dropdown{
+        wideh:24%;
+    }
+    .wm .el-form-item {
+        width: 65%;
+    }
+    .el-select {
+        display: block;
+    }
+    .el-input__icon {
+        right: 2%;
+    }
     ::-webkit-scrollbar {
         width: 12px;
     }/* 滚动槽 */
@@ -343,4 +319,25 @@
     ::-webkit-scrollbar-thumb:window-inactive {
         background: rgba(255,0,0,0.4);
     }
+</style>
+<style scoped>
+    /*.sort {*/
+        /*width: 160px;*/
+    /*}*/
+
+    /*.wm .el-form-item__label{
+        color:rgba(49, 53, 65, 0.68)!important;
+    }*/
+    /*.wm .el-input{*/
+        /*border:1px rgba(49, 53, 65, 0.68) solid;*/
+        /*border-radius:4px*/
+    /*}*/
+    /*.el-dialog {*/
+        /*background-color:#324057!important;*/
+    /*}*/
+    /*.el-dialog__title{*/
+        /*color:#324057;*/
+    /*}*/
+    @import '../../../assets/css/behind_cont.css';
+    @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 </style>

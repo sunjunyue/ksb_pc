@@ -13,13 +13,11 @@
                         <el-col :span="8">
                             <img :src="items.taskphotourl" width="300" height="300">
                             <p class="items_pro">
-                                完成情况：
-                                <el-progress :percentage="100" status="success"></el-progress>
+                               任务名称：{{items.taskname}}
                             </p>
-                            <el-button size="small" type="primary" style="font-size:14px;">查看详情</el-button>
-                        </el-col>
-                        <el-col :span="8">
-                            <img :src="items.taskphotourl" width="300" height="300">
+                            <p class="items_pro">
+                               截止时间：{{items.taskdeadline}}
+                            </p>
                             <p class="items_pro">
                                 完成情况：
                                 <el-progress :percentage="100" status="success"></el-progress>
@@ -28,6 +26,26 @@
                         </el-col>
                         <el-col :span="8">
                             <img :src="items.taskphotourl" width="300" height="300">
+                            <p class="items_pro">
+                                任务名称：{{items.taskname}}
+                            </p>
+                            <p class="items_pro">
+                                截止时间：{{items.taskdeadline}}
+                            </p>
+                            <p class="items_pro">
+                                完成情况：
+                                <el-progress :percentage="100" status="success"></el-progress>
+                            </p>
+                            <el-button size="small" type="primary" style="font-size:14px;">查看详情</el-button>
+                        </el-col>
+                        <el-col :span="8">
+                            <img :src="items.taskphotourl" width="300" height="300">
+                            <p class="items_pro">
+                                任务名称：{{items.taskname}}
+                            </p>
+                            <p class="items_pro">
+                                截止时间：{{items.taskdeadline}}
+                            </p>
                             <p class="items_pro">
                                 完成情况：
                                 <el-progress :percentage="100" status="success"></el-progress>
@@ -57,80 +75,82 @@
                     <el-row :gutter="10">
                         <!--左侧内容-->
                         <el-col :span="6">
-                            <p style="color:#fff;">任务封面图</p>
+                            <p style="color:#fff;margin-bottom:20px;">任务封面图</p>
+                            <img :src="items.taskphotourl" width="250" height="250">
                         </el-col>
                         <!--form-->
                         <el-col :span="18">
-                            <el-form :model="form" label-width="120px">
-                                <el-col :span="12">
-                                    <!--任务发起人-->
-                                    <el-form-item label="任务发起人:">
-                                        <el-input v-model="form.name"></el-input>
-                                    </el-form-item>
-                                    <!--任务名称-->
-                                    <el-form-item label="任务名称:">
-                                        <el-input v-model="form.name"></el-input>
-                                    </el-form-item>
-                                    <!--任务来源-->
-                                    <el-form-item label="任务来源:">
-                                        <el-input v-model="form.name"></el-input>
-                                    </el-form-item>
-                                    <!--参考图-->
-                                    <el-form-item label="参考图:">
-                                        <el-row>
-                                            <el-col :span="8">
-                                                <el-upload class="upload-demo"
-                                                           action="http://upload.qiniu.com/"
-                                                           :on-preview="handlePreview"
-                                                           :on-remove="handleRemove"
-                                                           :on-success="handleAvatarSuccess"
-                                                           :on-error="handleError"
-                                                           :before-upload="beforeAvatarUpload"
-                                                           :data="postData"
-                                                           :file-list="fileList"
-                                                           :show-file-list="false">
-                                                    <el-button size="small" type="primary" style="font-size:14px;">点击上传</el-button>
-                                                </el-upload>
-                                            </el-col>
-                                            <el-col :span="8">
-                                                <el-button size="small" type="primary" style="font-size:14px;"
-                                                           @click="dialogFormVisible = true">查看款式参考
-                                                </el-button>
-                                            </el-col>
-                                        </el-row>
-                                    </el-form-item>
-                                    <!--截止时间-->
-                                    <el-form-item label="截止时间:">
-                                        <el-date-picker
-                                            v-model="value1"
-                                            type="date"
-                                            placeholder="选择日期"
-                                            :picker-options="pickerOptions0"
-                                            style="width:100%">
-                                        </el-date-picker>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :span="12">
-                                    <!--设计师-->
-                                    <el-form-item label="设计师:">
-                                        <el-input v-model="form.name"></el-input>
-                                    </el-form-item>
-                                    <!--裁剪师-->
-                                    <el-form-item label="裁剪师:">
-                                        <el-input v-model="form.name"></el-input>
-                                    </el-form-item>
-                                    <!--样衣工-->
-                                    <el-form-item label="样衣工:">
-                                        <el-input v-model="form.name"></el-input>
-                                    </el-form-item>
-                                    <!--具体要求-->
-                                    <el-form-item label="具体要求">
-                                        <el-input type="textarea"
-                                                  v-model="form.name"
-                                                  rows="4">
-                                        </el-input>
-                                    </el-form-item>
-                                </el-col>
+                            <el-form :model="form" label-width="100px">
+                                <el-row :gutter="5">
+                                    <el-col :span="12">
+                                        <!--任务发起人-->
+                                        <el-form-item label="任务发起人:">
+                                            <el-input v-model="form.name"></el-input>
+                                        </el-form-item>
+                                        <!--任务名称-->
+                                        <el-form-item label="任务名称:">
+                                            <el-input v-model="form.name"></el-input>
+                                        </el-form-item>
+                                        <!--任务来源-->
+                                        <el-form-item label="任务来源:">
+                                            <el-input v-model="form.name"></el-input>
+                                        </el-form-item>
+                                        <!--参考图-->
+                                        <el-form-item label="参考图:">
+                                            <el-row>
+                                                <el-col :span="8">
+                                                    <el-upload class="upload-demo"
+                                                       action="http://upload.qiniu.com/"
+                                                       :on-preview="handlePreview"
+                                                       :on-remove="handleRemove"
+                                                       :on-success="handleAvatarSuccess"
+                                                       :on-error="handleError"
+                                                       :before-upload="beforeAvatarUpload"
+                                                       :data="postData"
+                                                       :file-list="fileList"
+                                                       :show-file-list="false">
+                                                        <el-button size="small" type="primary" style="font-size:14px;">点击上传</el-button>
+                                                    </el-upload>
+                                                </el-col>
+                                                <el-col :span="8">
+                                                    <el-button size="small" type="primary" style="font-size:14px;"
+                                                               @click="dialogFormVisible = true">查看款式参考
+                                                    </el-button>
+                                                </el-col>
+                                            </el-row>
+                                        </el-form-item>
+                                        <!--截止时间-->
+                                        <el-form-item label="截止时间:">
+                                            <el-date-picker
+                                                    v-model="value1"
+                                                    type="date"
+                                                    placeholder="选择日期"
+                                                    style="width:100%">
+                                            </el-date-picker>
+                                        </el-form-item>
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <!--设计师-->
+                                        <el-form-item label="设计师:">
+                                            <el-input v-model="form.name"></el-input>
+                                        </el-form-item>
+                                        <!--裁剪师-->
+                                        <el-form-item label="裁剪师:">
+                                            <el-input v-model="form.name"></el-input>
+                                        </el-form-item>
+                                        <!--样衣工-->
+                                        <el-form-item label="样衣工:">
+                                            <el-input v-model="form.name"></el-input>
+                                        </el-form-item>
+                                        <!--具体要求-->
+                                        <el-form-item label="具体要求">
+                                            <el-input type="textarea"
+                                                      v-model="form.name"
+                                                      rows="4">
+                                            </el-input>
+                                        </el-form-item>
+                                    </el-col>
+                                </el-row>
                                 <el-form-item>
                                     <el-button type="primary" @click="submitForm('formAccount')">立即创建</el-button>
                                     <el-button @click="resetForm('formAccount')">重置</el-button>
@@ -194,11 +214,14 @@
 
         },
         methods: {
+            handleCurrentChange(val){
+                this.cur_page = val;
+                this.getTableData1();
+            },
             handleRemove(file, fileList) {
                 console.log(file, fileList);
             },
             handlePreview(file) {
-
                 console.log(file);
             },
             handleAvatarSuccess(res, file) {
@@ -254,7 +277,6 @@
             },
 
         }
-
     };
 </script>
 
