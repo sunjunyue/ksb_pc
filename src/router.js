@@ -96,6 +96,11 @@ const RouterConfigs = {
                 components: {
                     default: require('./components/page/Carousel.vue'),
                 }
+            },{
+                path: '/addband',
+                components: {
+                    default: require('./components/page/product/AddBand.vue'),
+                }
             }],
         },
         {

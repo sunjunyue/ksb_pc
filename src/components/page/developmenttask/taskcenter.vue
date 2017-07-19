@@ -3,87 +3,176 @@
         <div class="wm">
             <div class="wTit">| 研发任务管理</div>
             <el-tabs type="border-card">
-                <el-tab-pane><span slot="label"><i class="el-icon-loading"></i> 进行中的研发任务</span>
-                    <!-- 进行中的研发任务 -->
-                    <el-carousel arrow="always" height="500px" :autoplay="false">
-                        <el-carousel-item v-for="item in items" :key="item">
-                            <el-card :body-style="{ padding: '0px' }">
-                                <img :src="item.taskphotourl" width="300" height="400" class="image">
-                                <div style="padding: 14px;">
-                                    <span>{{ item.taskname }}</span>
-                                    <div class="bottom clearfix">
-                                        <time class="time">{{ item.taskdeadline }}</time>
-                                        <el-button type="text" class="button">查看详细</el-button>
-                                    </div>
-                                </div>
-                            </el-card>
-                        </el-carousel-item>
-                    </el-carousel>
+                <!-- 进行中的研发任务 -->
+                <el-tab-pane>
+                    <span slot="label">
+                        <i class="el-icon-loading"></i>
+                        进行中的研发任务
+                    </span>
+                    <el-row :gutter="10">
+                        <el-col :span="8">
+                            <img :src="items.taskphotourl" width="300" height="300">
+                            <p class="items_pro">
+                               任务名称：{{items.taskname}}
+                            </p>
+                            <p class="items_pro">
+                               截止时间：{{items.taskdeadline}}
+                            </p>
+                            <p class="items_pro">
+                                完成情况：
+                                <el-progress :percentage="100" status="success"></el-progress>
+                            </p>
+                            <el-button size="small" type="primary" style="font-size:14px;">查看详情</el-button>
+                        </el-col>
+                        <el-col :span="8">
+                            <img :src="items.taskphotourl" width="300" height="300">
+                            <p class="items_pro">
+                                任务名称：{{items.taskname}}
+                            </p>
+                            <p class="items_pro">
+                                截止时间：{{items.taskdeadline}}
+                            </p>
+                            <p class="items_pro">
+                                完成情况：
+                                <el-progress :percentage="100" status="success"></el-progress>
+                            </p>
+                            <el-button size="small" type="primary" style="font-size:14px;">查看详情</el-button>
+                        </el-col>
+                        <el-col :span="8">
+                            <img :src="items.taskphotourl" width="300" height="300">
+                            <p class="items_pro">
+                                任务名称：{{items.taskname}}
+                            </p>
+                            <p class="items_pro">
+                                截止时间：{{items.taskdeadline}}
+                            </p>
+                            <p class="items_pro">
+                                完成情况：
+                                <el-progress :percentage="100" status="success"></el-progress>
+                            </p>
+                            <el-button size="small" type="primary" style="font-size:14px;">查看详情</el-button>
+                        </el-col>
+                    </el-row>
+                    <!--page-->
+                    <el-pagination
+                        @current-change ="handleCurrentChange"
+                        layout="prev, pager, next"
+                        :pageSize="page_size"
+                        :total="total">
+                    </el-pagination>
                 </el-tab-pane>
+                <!--已完成的研发任务-->
                 <el-tab-pane>
                     <span slot="label">
                         <i class="el-icon-check"></i> 已完成的研发任务
                     </span>
                 </el-tab-pane>
+                <!--新增研发任务-->
                 <el-tab-pane>
                     <span slot="label">
                         <i class="el-icon-edit"></i> 新增研发任务
                     </span>
                     <el-row :gutter="10">
+                        <!--左侧内容-->
                         <el-col :span="6">
-                            <p style="color:#fff;">任务封面图</p>
+                            <p style="color:#fff;margin-bottom:20px;">任务封面图</p>
+                            <img :src="items.taskphotourl" width="250" height="250">
                         </el-col>
+                        <!--form-->
                         <el-col :span="18">
-                            <el-form ref="form" :model="form" label-width="120px">
-                                <el-col :span="12">
-                                    <el-form-item label="任务发起人:">
-                                        <el-input v-model="form.name"></el-input>
-                                    </el-form-item>
-                                    <el-form-item label="任务名称:">
-                                        <el-input v-model="form.name"></el-input>
-                                    </el-form-item>
-                                    <el-form-item label="任务来源:">
-                                        <el-input v-model="form.name"></el-input>
-                                    </el-form-item>
-                                    <el-form-item label="参考图:">
-                                        <el-input v-model="form.name"></el-input>
-                                    </el-form-item>
-                                    <el-form-item label="截止时间:">
-                                        <el-input v-model="form.name"></el-input>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :span="12">
-                                    <el-form-item label="设计师:">
-                                        <el-input v-model="form.name"></el-input>
-                                    </el-form-item>
-                                    <el-form-item label="裁剪师:">
-                                        <el-input v-model="form.name"></el-input>
-                                    </el-form-item>
-                                    <el-form-item label="样衣工:">
-                                        <el-input v-model="form.name"></el-input>
-                                    </el-form-item>
-                                    <el-form-item label="具体要求">
-                                        <el-input type="textarea"
-                                                  v-model="form.name"
-                                                  rows="4">
-                                        </el-input>
-                                    </el-form-item>
-                                </el-col>
+                            <el-form :model="form" label-width="100px">
+                                <el-row :gutter="5">
+                                    <el-col :span="12">
+                                        <!--任务发起人-->
+                                        <el-form-item label="任务发起人:">
+                                            <el-input v-model="form.name"></el-input>
+                                        </el-form-item>
+                                        <!--任务名称-->
+                                        <el-form-item label="任务名称:">
+                                            <el-input v-model="form.name"></el-input>
+                                        </el-form-item>
+                                        <!--任务来源-->
+                                        <el-form-item label="任务来源:">
+                                            <el-input v-model="form.name"></el-input>
+                                        </el-form-item>
+                                        <!--参考图-->
+                                        <el-form-item label="参考图:">
+                                            <el-row>
+                                                <el-col :span="8">
+                                                    <el-upload class="upload-demo"
+                                                       action="http://upload.qiniu.com/"
+                                                       :on-preview="handlePreview"
+                                                       :on-remove="handleRemove"
+                                                       :on-success="handleAvatarSuccess"
+                                                       :on-error="handleError"
+                                                       :before-upload="beforeAvatarUpload"
+                                                       :data="postData"
+                                                       :file-list="fileList"
+                                                       :show-file-list="false">
+                                                        <el-button size="small" type="primary" style="font-size:14px;">点击上传</el-button>
+                                                    </el-upload>
+                                                </el-col>
+                                                <el-col :span="8">
+                                                    <el-button size="small" type="primary" style="font-size:14px;"
+                                                               @click="dialogFormVisible = true">查看款式参考
+                                                    </el-button>
+                                                </el-col>
+                                            </el-row>
+                                        </el-form-item>
+                                        <!--截止时间-->
+                                        <el-form-item label="截止时间:">
+                                            <el-date-picker
+                                                    v-model="value1"
+                                                    type="date"
+                                                    placeholder="选择日期"
+                                                    style="width:100%">
+                                            </el-date-picker>
+                                        </el-form-item>
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <!--设计师-->
+                                        <el-form-item label="设计师:">
+                                            <el-input v-model="form.name"></el-input>
+                                        </el-form-item>
+                                        <!--裁剪师-->
+                                        <el-form-item label="裁剪师:">
+                                            <el-input v-model="form.name"></el-input>
+                                        </el-form-item>
+                                        <!--样衣工-->
+                                        <el-form-item label="样衣工:">
+                                            <el-input v-model="form.name"></el-input>
+                                        </el-form-item>
+                                        <!--具体要求-->
+                                        <el-form-item label="具体要求">
+                                            <el-input type="textarea"
+                                                      v-model="form.name"
+                                                      rows="4">
+                                            </el-input>
+                                        </el-form-item>
+                                    </el-col>
+                                </el-row>
+                                <el-form-item>
+                                    <el-button type="primary" @click="submitForm('formAccount')">立即创建</el-button>
+                                    <el-button @click="resetForm('formAccount')">重置</el-button>
+                                </el-form-item>
                             </el-form>
                         </el-col>
                     </el-row>
                 </el-tab-pane>
-                <el-tab-pane><span slot="label"><i class="el-icon-caret-right"></i> 规划任务分派</span></el-tab-pane>
+                <!--规划任务分配-->
+                <el-tab-pane>
+                    <span slot="label">
+                        <i class="el-icon-caret-right"></i>
+                        规划任务分配
+                    </span>
+                </el-tab-pane>
             </el-tabs>
         </div>
     </div>
 </template>
 
 <script>
-    import ElCol from "element-ui/packages/col/src/col";
-
     export default {
-        components: {ElCol},
         data() {
             return {
                 items: [{
@@ -108,15 +197,86 @@
                     type: [],
                     resource: '',
                     desc: ''
-                }
+                },
+                cur_page: 1,
+                page_size: 5,
+                total: 0,
+                value1:'',
+                fileList: [],
+                postData: {
+                    token: this.userphoto_token,
+                },
+                dialogFormVisible: false,
             };
         },
 
         mounted: function () {
 
         },
-        methods: {}
+        methods: {
+            handleCurrentChange(val){
+                this.cur_page = val;
+                this.getTableData1();
+            },
+            handleRemove(file, fileList) {
+                console.log(file, fileList);
+            },
+            handlePreview(file) {
+                console.log(file);
+            },
+            handleAvatarSuccess(res, file) {
+                if (this.theme_edit.themem_reference == '') {
+                    this.theme_edit.themem_reference = this.userphotebaseurl + res.key;
+                    this.items.push(this.userphotebaseurl + res.key);
+                } else {
+                    this.theme_edit.themem_reference = this.theme_edit.themem_reference + ' | ' + this.userphotebaseurl + res.key;
+                    this.items.push(this.userphotebaseurl + res.key);
+                }
+            },
+            handleError(res) {
+                console.log(res)
+            },
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg'
+                const isPNG = file.type === 'image/png'
+                const isLt2M = file.size / 1024 / 1024 < 2
 
+                if (!isJPG && !isPNG) {
+                    this.$message.error('上传头像图片只能是 JPG/PNG 格式!')
+                    return false;
+                }
+                if (!isLt2M) {
+                    this.$message.error('上传头像图片大小不能超过 2MB!')
+                    return false;
+                }
+                return true;
+            },
+            drawImage(ImgD, iwidth, iheight) {
+                //参数(图片,允许的宽度,允许的高度)
+                var image = new Image();
+                image.src = ImgD.src;
+                if (image.width > 0 && image.height > 0) {
+                    if (image.width / image.height >= iwidth / iheight) {
+                        if (image.width > iwidth) {
+                            ImgD.width = iwidth;
+                            ImgD.height = (image.height * iwidth) / image.width;
+                        } else {
+                            ImgD.width = image.width;
+                            ImgD.height = image.height;
+                        }
+                    } else {
+                        if (image.height > iheight) {
+                            ImgD.height = iheight;
+                            ImgD.width = (image.width * iheight) / image.height;
+                        } else {
+                            ImgD.width = image.width;
+                            ImgD.height = image.height;
+                        }
+                    }
+                }
+            },
+
+        }
     };
 </script>
 
@@ -125,30 +285,11 @@
 </style>
 
 <style>
-    /*.time {*/
-        /*font-size: 13px;*/
-        /*color: #999;*/
-    /*}*/
-
-    /*.bottom {*/
-        /*margin-top: 13px;*/
-        /*line-height: 12px;*/
-    /*}*/
-
-    /*.button {*/
-        /*padding: 0;*/
-        /*float: right;*/
-    /*}*/
-
-    /*.clearfix:before,*/
-    /*.clearfix:after {*/
-        /*display: table;*/
-        /*content: "";*/
-    /*}*/
-
-    /*.clearfix:after {*/
-        /*clear: both*/
-    /*}*/
+    .items_pro{
+        margin:10px 0;
+        color:#fff;
+        font-size:16px;
+    }
     .el-card{
         border:none;
         background:none;

@@ -2,18 +2,26 @@
     <div class="win fr" id="win">
         <div class="wm">
             <p class="wTit">|&nbsp;&nbsp;主题添加</p>
-            <el-dialog style="color:#fff" title="款式参考" :visible.sync="dialogFormVisible" :modal-append-to-body='false'
-                       size="small">
+            <!--弹出框-->
+            <el-dialog
+                title="款式参考"
+                :visible.sync="dialogFormVisible"
+                :modal-append-to-body='false'
+                size="small">
+                <!--轮播图-->
                 <el-carousel arrow="always" height="500px" :autoplay="false">
                     <el-carousel-item v-for="item in items" :key="item">
-                        <a target="_blank" :href="item">查看原图</a>
                         <div class="img_item">
-                            <img :src='item' height="600" width="450">
+                            <a href=""><img :src='item' height="600" width="450"></a>
+                            <div class="img_ico">
+                                <el-button type="primary" icon="view" :href="item"></el-button>
+                                <el-button type="primary" icon="delete2 "></el-button>
+                            </div>
                         </div>
                     </el-carousel-item>
                 </el-carousel>
             </el-dialog>
-            <el-form :model="theme_edit" label-width="170px">
+            <el-form :model="theme_edit" label-width="165px">
                 <el-row>
                     <el-col :span="12">
                         <!--主题名称 -->
@@ -35,7 +43,33 @@
                         <!--款式参考-->
                         <el-form-item label="款式参考:" required>
                             <el-row>
+                                <el-col :span="6">
+                                    <el-upload class="upload-demo"
+                                       action="http://upload.qiniu.com/"
+                                       :on-preview="handlePreview"
+                                       :on-remove="handleRemove"
+                                       :on-success="handleAvatarSuccess"
+                                       :on-error="handleError"
+                                       :before-upload="beforeAvatarUpload"
+                                       :data="postData"
+                                       :file-list="fileList"
+                                       :show-file-list="false">
+                                    <el-button size="small" type="primary" style="font-size:14px;">点击上传</el-button>
+                                    </el-upload>
+                                </el-col>
                                 <el-col :span="8">
+                                    <el-button size="small" type="primary" style="font-size:14px;"
+                                               @click="dialogFormVisible = true">查看款式参考
+                                    </el-button>
+                                </el-col>
+                            </el-row>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <!--波段搭配-->
+                        <el-form-item label="波段搭配:" required>
+                            <el-row>
+                                <el-col :span="6">
                                     <el-upload class="upload-demo"
                                                action="http://upload.qiniu.com/"
                                                :on-preview="handlePreview"
@@ -49,22 +83,36 @@
                                         <el-button size="small" type="primary" style="font-size:14px;">点击上传</el-button>
                                     </el-upload>
                                 </el-col>
-                                <el-col :span="8" :push="8">
+                                <el-col :span="8">
                                     <el-button size="small" type="primary" style="font-size:14px;"
                                                @click="dialogFormVisible = true">查看款式参考
                                     </el-button>
                                 </el-col>
                             </el-row>
                         </el-form-item>
-                    </el-col>
-                    <el-col :span="12">
-                        <!--波段搭配-->
-                        <el-form-item label="波段搭配:" required>
-                            <el-input v-model="theme_edit.themem_band_matching"></el-input>
-                        </el-form-item>
                         <!--元素/风格/工艺版 -->
                         <el-form-item label="元素/风格/工艺版 :" required>
-                            <el-input v-model="theme_edit.themem_elemental"></el-input>
+                            <el-row>
+                                <el-col :span="6">
+                                    <el-upload class="upload-demo"
+                                               action="http://upload.qiniu.com/"
+                                               :on-preview="handlePreview"
+                                               :on-remove="handleRemove"
+                                               :on-success="handleAvatarSuccess"
+                                               :on-error="handleError"
+                                               :before-upload="beforeAvatarUpload"
+                                               :data="postData"
+                                               :file-list="fileList"
+                                               :show-file-list="false">
+                                        <el-button size="small" type="primary" style="font-size:14px;">点击上传</el-button>
+                                    </el-upload>
+                                </el-col>
+                                <el-col :span="8">
+                                    <el-button size="small" type="primary" style="font-size:14px;"
+                                               @click="dialogFormVisible = true">查看款式参考
+                                    </el-button>
+                                </el-col>
+                            </el-row>
                         </el-form-item>
                         <!--创建人-->
                         <el-form-item label="备注:" required>
@@ -72,7 +120,7 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
-                <div class="wSub" style="margin-top:0px;">
+                <div class="wSub">
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit('theme_edit')">保存</el-button>
                         <el-button>取消</el-button>
@@ -84,9 +132,7 @@
 </template>
 
 <script>
-    import ElCol from "element-ui/packages/col/src/col";
     export default{
-        components: {ElCol},
         data(){
             return {
                 theme_edit: {
@@ -208,20 +254,20 @@
 </style>
 
 <style>
-    .el-upload-list--picture-card .el-upload-list__item {
-        width: 80px;
-        height: 80px;
-    }
+    /*.el-upload-list--picture-card .el-upload-list__item {*/
+        /*width: 80px;*/
+        /*height: 80px;*/
+    /*}*/
 
-    .el-upload-list--picture-card .el-upload-list__item-status-label {
-        background: rgba(0, 179, 139, 0.98);
-    }
+    /*.el-upload-list--picture-card .el-upload-list__item-status-label {*/
+        /*background: rgba(0, 179, 139, 0.98);*/
+    /*}*/
 
-    .el-upload--picture-card {
-        width: 80px;
-        height: 80px;
-        line-height: 86px;
-    }
+    /*.el-upload--picture-card {*/
+        /*width: 80px;*/
+        /*height: 80px;*/
+        /*line-height: 86px;*/
+    /*}*/
 
     .el-carousel__item h1 {
         color: #475669;
@@ -242,12 +288,21 @@
     .img_item {
         text-align: center;
         line-height: 500px;
+        position:relative;
+    }
+    .img_item:hover .img_ico{
+        display: block;
     }
 
     .img_item img {
         vertical-align: middle;
     }
-
+    .img_ico{
+        top:0;
+        left:40%;
+        display: none;
+        position:absolute;
+    }
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 </style>

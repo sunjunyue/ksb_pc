@@ -52,7 +52,65 @@
                             :total="total">
                     </el-pagination>
                 </el-tab-pane>
-                <el-tab-pane label="商品波段" name="second">商品波段</el-tab-pane>
+                <el-tab-pane label="商品波段" name="second">
+                    <!--button-->
+                    <div class="wBtn fr" style="margin-bottom:10px;">
+                        <el-button type="primary" icon="plus" @click="handleBand('addproband')">添加商品波段</el-button>
+                    </div>
+                    <!--table-->
+                    <el-table
+                            v-loading="loading"
+                            element-loading-text="拼命加载中..."
+                            ref="multipleTable"
+                            :data="tableData3"
+                            style="width: 100%"
+                            >
+                        <el-table-column
+                                prop="band_num"
+                                label="波段编号"
+                                min-width="100">
+                        </el-table-column>
+                        <el-table-column
+                                prop="band_data"
+                                label="年度季节"
+                                min-width="100">
+                        </el-table-column>
+                        <el-table-column
+                                prop="band_theme"
+                                label="商品主题"
+                                min-width="100">
+                        </el-table-column>
+                        <el-table-column
+                                prop="band_name"
+                                label="波段名称"
+                                min-width="100">
+                        </el-table-column>
+                        <el-table-column
+                                prop="band_date"
+                                label="波段起止日期"
+                                min-width="150">
+                        </el-table-column>
+                        <el-table-column
+                                prop="band_design"
+                                label="设计完成日期"
+                                min-width="100">
+                        </el-table-column>
+                        <el-table-column
+                                prop=""
+                                label="纸样完成日期"
+                                min-width="100">
+                        </el-table-column>
+                        <el-table-column
+                                prop="band_shop"
+                                label="上货日"
+                                min-width="100">
+                        </el-table-column>
+                        <el-table-column
+                                prop="band_account"
+                                label="状态">
+                        </el-table-column>
+                    </el-table>
+                </el-tab-pane>
                 <el-tab-pane label="商品品类" name="third">商品品类</el-tab-pane>
             </el-tabs>
         </div>
@@ -64,6 +122,7 @@
         data() {
             return {
                 tableData1: [],
+                tableData3:[],
                 cur_page: 1,
                 page_size: 1,
                 total: 0,
@@ -113,6 +172,9 @@
                     self.loading = false;
                 })
             },
+            handleBand(band){
+                this.$router.push('addband');
+            }
         },
 
     };
