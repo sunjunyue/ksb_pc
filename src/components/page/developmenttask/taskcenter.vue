@@ -2,6 +2,25 @@
     <div class="win fr" id="win">
         <div class="wm">
             <div class="wTit">| 研发任务管理</div>
+            <!--弹出框-->
+            <el-dialog
+                title="款式参考"
+                :visible.sync="dialogFormVisible"
+                :modal-append-to-body='false'
+                size="small">
+                <!--轮播图-->
+                <el-carousel arrow="always" height="500px" :autoplay="false">
+                    <el-carousel-item v-for="item in items" :key="item">
+                        <div class="img_item">
+                            <a href=""><img :src='item' height="600" width="450"></a>
+                            <div class="img_ico">
+                                <el-button type="primary" icon="view" :href="item"></el-button>
+                                <el-button type="primary" icon="delete2 "></el-button>
+                            </div>
+                        </div>
+                    </el-carousel-item>
+                </el-carousel>
+            </el-dialog>
             <el-tabs type="border-card">
                 <!-- 进行中的研发任务 -->
                 <el-tab-pane>
@@ -22,7 +41,9 @@
                                 完成情况：
                                 <el-progress :percentage="100" status="success"></el-progress>
                             </p>
-                            <el-button size="small" type="primary" style="font-size:14px;">查看详情</el-button>
+                            <el-button size="small" type="primary" style="font-size:14px;"
+                                       @click="dialogFormVisible = true">查看详情
+                            </el-button>
                         </el-col>
                         <el-col :span="8">
                             <img :src="items.taskphotourl" width="300" height="300">
@@ -36,7 +57,9 @@
                                 完成情况：
                                 <el-progress :percentage="100" status="success"></el-progress>
                             </p>
-                            <el-button size="small" type="primary" style="font-size:14px;">查看详情</el-button>
+                            <el-button size="small" type="primary" style="font-size:14px;"
+                                       @click="dialogFormVisible = true">查看详情
+                            </el-button>
                         </el-col>
                         <el-col :span="8">
                             <img :src="items.taskphotourl" width="300" height="300">
@@ -50,7 +73,9 @@
                                 完成情况：
                                 <el-progress :percentage="100" status="success"></el-progress>
                             </p>
-                            <el-button size="small" type="primary" style="font-size:14px;">查看详情</el-button>
+                            <el-button size="small" type="primary" style="font-size:14px;"
+                                       @click="dialogFormVisible = true">查看详情
+                            </el-button>
                         </el-col>
                     </el-row>
                     <!--page-->
@@ -170,7 +195,6 @@
         </div>
     </div>
 </template>
-
 <script>
     export default {
         data() {
@@ -211,7 +235,6 @@
         },
 
         mounted: function () {
-
         },
         methods: {
             handleCurrentChange(val){
@@ -302,7 +325,6 @@
     .el-tabs__item:hover{
         color:rgba(0, 179, 139, 0.98);
     }
-
     .el-tabs--border-card{
         background:none;
         border:none;
@@ -312,6 +334,24 @@
     }
     .el-popover, .el-tabs--border-card{
       box-shadow: 0 2px 4px 0 rgba(0,0,0,.62), 0 0 6px 0 rgba(0,0,0,.04);
+    }
+    .img_item {
+        text-align: center;
+        line-height: 500px;
+        position:relative;
+    }
+    .img_item:hover .img_ico{
+        display: block;
+    }
+
+    .img_item img {
+        vertical-align: middle;
+    }
+    .img_ico{
+        top:0;
+        left:40%;
+        display: none;
+        position:absolute;
     }
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
