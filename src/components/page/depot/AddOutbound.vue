@@ -3,26 +3,30 @@
         <!--主题区域-->
         <div class="wm">
             <div class="wTit">|&nbsp;&nbsp;新增出库单</div>
-
-            <el-dialog style="color:#fff" title="选择面辅料" :visible.sync="dialogFormVisible" :modal-append-to-body='false'
-                       size="small" @open="handleOpen">
-
+            <!--弹出框-->
+            <el-dialog
+                title="选择面辅料"
+                :visible.sync="dialogFormVisible"
+                :modal-append-to-body='false'
+                size="small"
+                @open="handleOpen">
+                <!--级联选择器-->
                 <el-cascader
-                        :options="form.options"
-                        v-model="form.selectedOptions"
-                        @change="handleChange"
-                        placeholder="请选择分类"
-                        changeOnSelect
-                        size="small"
-                        style="width:400px;">
+                    :options="form.options"
+                    v-model="form.selectedOptions"
+                    @change="handleChange"
+                    placeholder="请选择分类"
+                    changeOnSelect
+                    size="small"
+                    style="width:400px;margin-bottom:20px;">
                 </el-cascader>
                 <!--table-->
                 <el-table
-                        ref="multipleTable"
-                        v-loading="loading"
-                        element-loading-text="拼命加载中..."
-                        :data="tableData3"
-                        style="width: 100%">
+                    ref="multipleTable"
+                    v-loading="loading"
+                    element-loading-text="拼命加载中..."
+                    :data="tableData3"
+                    style="width: 100%">
                     <el-table-column
                             prop="localarticlenumber"
                             label="本地货号"
@@ -46,77 +50,105 @@
                     <el-table-column
                             prop="post_select"
                             label="选择">
-                        <template scope="scope">
-                            <el-button type="primary" icon="check" size="small" @click="handleSelect(scope.$index,scope.row)"></el-button>
-                        </template>
+                            <template scope="scope">
+                                <el-button type="primary" icon="check" size="small" @click="handleSelect(scope.$index,scope.row)"></el-button>
+                            </template>
                     </el-table-column>
                 </el-table>
+                <!--page-->
                 <el-pagination
-                        @current-change ="handleCurrentChange"
-                        layout="prev, pager, next"
-                        :pageSize="page_size"
-                        :total="total">
+                    @current-change ="handleCurrentChange"
+                    layout="prev, pager, next"
+                    :pageSize="page_size"
+                    :total="total">
                 </el-pagination>
             </el-dialog>
-
-            <el-form :label-position="labelPosition" :model="outbound" label-width="170px">
+            <!--form-->
+            <el-form
+                :label-position="labelPosition"
+                :model="outbound"
+                label-width="120px">
                 <el-row>
                     <el-col :span="12">
                         <!-- 入库单单号，自动生成 -->
                         <el-form-item label="出库单单号：">
-                            <el-input v-model="outbound.obnumber" :disabled="true"></el-input>
+                            <el-input
+                                v-model="outbound.obnumber"
+                                :disabled="true">
+                            </el-input>
                         </el-form-item>
                         <!--入库日期 -->
                         <el-form-item label="出库日期:" required>
                             <el-date-picker
-                                    v-model="outbound.outdate"
-                                    :editable="false"
-                                    :align="right"
-                                    :type="date"
-                                    placeholder="选择日期"
-                                    @change="dateChange">
+                                v-model="outbound.outdate"
+                                :editable="false"
+                                :align="right"
+                                :type="date"
+                                placeholder="选择日期"
+                                @change="dateChange">
                             </el-date-picker>
                         </el-form-item>
                         <!--领用人 -->
                         <el-form-item label="领用人:">
-                            <el-input v-model="outbound.consignee" :disabled="true"></el-input>
+                            <el-input
+                                v-model="outbound.consignee"
+                                :disabled="true">
+                            </el-input>
                         </el-form-item>
+                        <!--本地货号-->
                         <el-form-item label="本地货号:">
-                            <el-input v-model="outbound.localarticlenumber" :disabled="true"></el-input>
-                            <br/>
-                            <el-button type="primary" class="wNo" style="margin-top:10px;" @click="dialogFormVisible = true">选择本地货号
-                            </el-button>
+                            <el-input
+                                v-model="outbound.localarticlenumber"
+                                :disabled="true">
+                            </el-input>
+                            <el-button type="primary" style="margin-top:10px;" @click="dialogFormVisible = true">选择本地货号</el-button>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
                         <!--面辅料名称 -->
                         <el-form-item label="面辅料名称:">
-                            <el-input v-model="outbound.articlename" :disabled="true"></el-input>
+                            <el-input
+                                v-model="outbound.articlename"
+                                :disabled="true">
+                            </el-input>
                         </el-form-item>
                         <!--计量单位 -->
                         <el-form-item label="计量单位:">
-                            <el-input v-model="outbound.measureunit" :disabled="true"></el-input>
+                            <el-input
+                                v-model="outbound.measureunit"
+                                :disabled="true">
+                            </el-input>
                         </el-form-item>
+                        <!--出库单价-->
                         <el-form-item label="出库单价:">
-                            <el-input v-model="outbound.curr_pricestr" :disabled="true"></el-input>
+                            <el-input
+                                v-model="outbound.curr_pricestr"
+                                :disabled="true">
+                            </el-input>
                         </el-form-item>
+                        <!--出库数量-->
                         <el-form-item label="出库数量:">
-                            <el-input v-model="outbound.quantity" @blur="changeQuantity"></el-input>
+                            <el-input
+                                v-model="outbound.quantity"
+                                @blur="changeQuantity">
+                            </el-input>
                         </el-form-item>
+                        <!--出库金额-->
                         <el-form-item label="出库金额:">
-                            <el-input v-model="outbound.zpricestr" :disabled="true"></el-input>
+                            <el-input
+                                v-model="outbound.zpricestr"
+                                :disabled="true">
+                            </el-input>
                         </el-form-item>
-
                     </el-col>
                 </el-row>
-                <div class="edit_bottom" style="text-align:center;width:100%;margin-left:-50px;margin-top:50px;">
+                <div class="wSub">
                     <el-form-item>
                         <el-button type="primary" @click="submit_outbound">提交</el-button>
                         <el-button>取消</el-button>
                     </el-form-item>
                 </div>
             </el-form>
-
             <div class="clear"></div>
         </div>
     </div>
@@ -341,33 +373,33 @@
 
 <style>
 
-    .el-checkbox__label {
-        font-size: 16px;
-    }
-    .el-input__icon {
-        right: 30%
-    }
-    .wm .el-form-item {
-        width: 100%;
-    }
+    /*.el-checkbox__label {*/
+        /*font-size: 16px;*/
+    /*}*/
+    /*.el-input__icon {*/
+        /*right: 30%*/
+    /*}*/
+    /*.wm .el-form-item {*/
+        /*width: 100%;*/
+    /*}*/
 
-    .el-form-item__content {
-        width: 100%
-    }
-    .wm .el-input .el-input__inner {
-        width: 72%;
-    }
-    .demonstration {
-        color: #fff;
-    }
+    /*.el-form-item__content {*/
+        /*width: 100%*/
+    /*}*/
+    /*.wm .el-input .el-input__inner {*/
+        /*width: 72%;*/
+    /*}*/
+    /*.demonstration {*/
+        /*color: #fff;*/
+    /*}*/
 
 
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
-    .el-dialog {
-        background-color:#324057
-    }
-    .el-dialog__title{
-        color:#ffffff;
-    }
+    /*.el-dialog {*/
+        /*background-color:#324057*/
+    /*}*/
+    /*.el-dialog__title{*/
+        /*color:#ffffff;*/
+    /*}*/
 </style>

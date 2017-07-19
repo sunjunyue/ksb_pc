@@ -6,17 +6,18 @@
             <el-row :gutter="20">
                 <el-col :span="6">
                     <el-input
-                            placeholder="输入分类名称进行过滤"
-                            v-model="filterText">
+                        placeholder="输入分类名称进行过滤"
+                        v-model="filterText">
                     </el-input>
+                    <!--分类管理左侧-->
                     <div class="wTree">
-                    <el-tree
+                        <el-tree
                             class="filter-tree"
                             :data="data2"
                             :props="defaultProps"
                             :filter-node-method="filterNode"
                             ref="tree2">
-                    </el-tree>
+                        </el-tree>
                     </div>
                 </el-col>
                 <el-col :span="18">
@@ -96,7 +97,7 @@
                                         </el-col>
                                     </el-row>
                                 </el-form-item>
-                                <div class="wSub" style="margin-top:-10px">
+                                <div class="wSub">
                                     <el-form-item>
                                         <el-button type="primary" @click="submitformdata2">保存</el-button>
                                         <el-button>取消</el-button>

@@ -3,48 +3,53 @@
         <!--主题区域-->
         <div class="wm">
             <div class="wTit">|&nbsp;&nbsp;新增入库单</div>
-
-            <el-dialog style="color:#fff" title="选择面辅料" :visible.sync="dialogFormVisible" :modal-append-to-body='false'
-                       size="small" @open="handleOpen">
-
+            <!--弹出框-->
+            <el-dialog
+                    title="选择面辅料"
+                    :visible.sync="dialogFormVisible"
+                    :modal-append-to-body='false'
+                    size="small"
+                    @open="handleOpen">
+                <!--级联选择器-->
                 <el-cascader
-                        :options="form.options"
-                        v-model="form.selectedOptions"
-                        @change="handleChange"
-                        placeholder="请选择分类"
-                        changeOnSelect
-                        size="small"
-                        style="width:400px;">
+                    :options="form.options"
+                    v-model="form.selectedOptions"
+                    @change="handleChange"
+                    placeholder="请选择分类"
+                    changeOnSelect
+                    size="small"
+                    style="width:400px;margin-bottom:20px;">
                 </el-cascader>
                 <!--table-->
                 <el-table
-                        v-loading="loading"
-                        element-loading-text="拼命加载中..."
-                        :data="tableData3"
-                        style="width: 100%">
+                    v-loading="loading"
+                    element-loading-text="拼命加载中..."
+                    :data="tableData3"
+                    style="width: 100%">
                     <el-table-column
-                            prop="localarticlenumber"
-                            label="本地货号"
-                            min-width="100">
+                        prop="localarticlenumber"
+                        label="本地货号"
+                        min-width="100">
                     </el-table-column>
                     <el-table-column
-                            prop="faname"
-                            label="面辅料名称"
-                            min-width="100">
+                        prop="faname"
+                        label="面辅料名称"
+                        min-width="100">
                     </el-table-column>
                     <el-table-column
-                            prop="categoryname"
-                            label="所属分类"
-                            min-width="100">
+                        prop="categoryname"
+                        label="所属分类"
+                        min-width="100">
                     </el-table-column>
                     <el-table-column
-                            prop="post_select"
-                            label="选择">
+                        prop="post_select"
+                        label="选择">
                         <template scope="scope">
                             <el-button type="primary" icon="check" size="small" @click="handleSelect(scope.$index,scope.row)"></el-button>
                         </template>
                     </el-table-column>
                 </el-table>
+                <!--page-->
                 <el-pagination
                         @current-change ="handleCurrentChange"
                         layout="prev, pager, next"
@@ -52,83 +57,115 @@
                         :total="total">
                 </el-pagination>
             </el-dialog>
-
-            <el-form :label-position="labelPosition" :model="deportstorage" label-width="170px">
+            <!--form-->
+            <el-form :label-position="labelPosition" :model="deportstorage" label-width="120px">
                 <el-row>
                     <el-col :span="12">
                         <!-- 入库单单号，自动生成 -->
                         <el-form-item label="入库单单号：">
-                            <el-input v-model="deportstorage.dpsnumber" :disabled="true"></el-input>
+                            <el-input
+                                    v-model="deportstorage.dpsnumber"
+                                    :disabled="true">
+                            </el-input>
                         </el-form-item>
                         <!--入库日期 -->
                         <el-form-item label="入库日期:" required>
                             <el-date-picker
-                                    v-model="deportstorage.indate"
-                                    :editable="false"
-                                    :align="right"
-                                    :type="date"
-                                    placeholder="选择日期"
-                                    @change="dateChange">
+                                v-model="deportstorage.indate"
+                                :editable="false"
+                                :align="right"
+                                :type="date"
+                                placeholder="选择日期"
+                                @change="dateChange">
                             </el-date-picker>
                         </el-form-item>
                         <!--入库签收人 -->
                         <el-form-item label="入库签收人:">
-                            <el-input v-model="deportstorage.consignee" :disabled="true"></el-input>
+                            <el-input
+                                v-model="deportstorage.consignee"
+                                :disabled="true">
+                            </el-input>
                         </el-form-item>
                         <!--本地货号 -->
                         <el-form-item label="本地货号:">
-                            <el-input v-model="deportstorage.localarticlenumber" :disabled="true"></el-input>
-                            <br/>
-                            <el-button type="primary" class="wNo" style="margin-top:10px;" @click="dialogFormVisible = true">选择本地货号
+                            <el-input
+                                v-model="deportstorage.localarticlenumber"
+                                :disabled="true">
+                            </el-input>
+                            <el-button
+                                    type="primary"
+                                    class="wNo"
+                                    style="margin-top:10px;"
+                                    @click="dialogFormVisible = true">
+                                    选择本地货号
                             </el-button>
                         </el-form-item>
+                        <!--供应商货号-->
                         <el-form-item label="供应商货号:" required>
-                            <el-input v-model="deportstorage.supplierarticlenumber"></el-input>
+                            <el-input
+                                v-model="deportstorage.supplierarticlenumber">
+                            </el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
                         <!--面辅料名称 -->
                         <el-form-item label="面辅料名称:">
-                            <el-input v-model="deportstorage.articlename" :disabled="true"></el-input>
+                            <el-input
+                                v-model="deportstorage.articlename"
+                                :disabled="true">
+                            </el-input>
                         </el-form-item>
                         <!--计量单位 -->
                         <el-form-item label="计量单位:">
-                            <el-input v-model="deportstorage.measureunit" :disabled="true"></el-input>
+                            <el-input
+                                v-model="deportstorage.measureunit"
+                                :disabled="true">
+                            </el-input>
                         </el-form-item>
                         <!--参考单价 -->
                         <el-form-item label="单价:">
-                            <el-input v-model="deportstorage.price"></el-input>
+                            <el-input
+                                v-model="deportstorage.price">
+                            </el-input>
                         </el-form-item>
+                        <!--入库数量-->
                         <el-form-item label="入库数量:">
-                            <el-input v-model="deportstorage.quantity" @blur="changeQuantity"></el-input>
+                            <el-input
+                                v-model="deportstorage.quantity"
+                                @blur="changeQuantity">
+                            </el-input>
                         </el-form-item>
+                        <!--总金额-->
                         <el-form-item label="总金额:">
-                            <el-input v-model="deportstorage.zpricestr" :disabled="true"></el-input>
+                            <el-input
+                                v-model="deportstorage.zpricestr"
+                                :disabled="true">
+                            </el-input>
                         </el-form-item>
+                        <!--是否红单-->
                         <el-form-item label="是否是红单:">
                             <el-switch
-                                    v-model="deportstorage.isred"
-                                    width="80"
-                                    on-color="rgba(0, 179, 139, 0.98)"
-                                    off-color="#f00"
-                                    on-value="非红单"
-                                    off-value="红单"
-                                    on-text="非红单"
-                                    off-text="红单"
-                                    style="margin-top:5px;"
-                                    @change="isred_change">
+                                v-model="deportstorage.isred"
+                                width="80"
+                                on-color="rgba(0, 179, 139, 0.98)"
+                                off-color="#f00"
+                                on-value="非红单"
+                                off-value="红单"
+                                on-text="非红单"
+                                off-text="红单"
+                                style="margin-top:5px;"
+                                @change="isred_change">
                             </el-switch>
                         </el-form-item>
                     </el-col>
                 </el-row>
-                <div class="edit_bottom" style="text-align:center;width:100%;margin-left:-50px;margin-top:50px;">
+                <div class="wSub">
                     <el-form-item>
                         <el-button type="primary" @click="submit_deportstorage">提交</el-button>
                         <el-button>取消</el-button>
                     </el-form-item>
                 </div>
             </el-form>
-
             <div class="clear"></div>
         </div>
     </div>
@@ -336,40 +373,27 @@
 </script>
 
 <style scoped>
-    .win {
-        width: calc(100% - 328px);
-    }
 
-    .wm {
-        width: calc(100% - 100px)
-    }
+    /*.el-checkbox__label {*/
+        /*font-size: 16px;*/
+    /*}*/
 
-    .el-checkbox__label {
-        font-size: 16px;
-    }
+    /*.wm .el-form-item {*/
+        /*width: 100%;*/
+    /*}*/
 
-    .wm .el-form-item {
-        width: 100%;
-    }
+    /*.el-form-item__content {*/
+        /*width: 100%*/
+    /*}*/
 
-    .el-form-item__content {
-        width: 100%
-    }
+    /*.wm .el-input .el-input__inner {*/
+        /*width: 72%;*/
+    /*}*/
 
-    .wm .el-input .el-input__inner {
-        width: 72%;
-    }
+    /*.demonstration {*/
+        /*color: #fff;*/
+    /*}*/
 
-    .demonstration {
-        color: #fff;
-    }
-
-    .el-dialog {
-        background-color:#324057
-    }
-    .el-dialog__title{
-        color:#ffffff;
-    }
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 </style>

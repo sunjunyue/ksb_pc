@@ -5,6 +5,7 @@
             <div class="wTit">| 月度结余</div>
             <el-row :gutter="20">
             <el-col :span="6">
+                <!--级联选择-->
                 <el-cascader
                         :options="form.options"
                         placeholder="请选择分类"
@@ -15,6 +16,7 @@
             <el-col :span="18">
                 <el-row style="margin-bottom:30px;">
                     <el-col :span="6">
+                        <!--选择日期-->
                         <div class="block">
                             <el-date-picker
                                     v-model="value4"
@@ -31,51 +33,61 @@
                         ref="multipleTable"
                         :data="tableData3"
                         style="width: 100%">
+                    <!--本地货号-->
                     <el-table-column
                             prop="post_num"
                             label="本地货号"
                             min-width="100">
                     </el-table-column>
+                    <!--月度-->
                     <el-table-column
                             prop="post_monthly"
                             label="月度"
                             min-width="100">
                     </el-table-column>
+                    <!--上月结余-->
                     <el-table-column
                             prop="post_balance_last"
                             label="上月结余"
                             min-width="100">
                     </el-table-column>
+                    <!--上月金额-->
                     <el-table-column
                             prop="post_amount_last"
                             label="上月金额"
                             min-width="100">
                     </el-table-column>
+                    <!--当月入库-->
                     <el-table-column
                             prop="post_storage_current "
                             label="当月入库"
                             min-width="100">
                     </el-table-column>
+                    <!--入库金额-->
                     <el-table-column
                             prop="post_amount_current "
                             label="入库金额"
                             min-width="100">
                     </el-table-column>
+                    <!--当月出库-->
                     <el-table-column
                             prop="post_outgoing_current"
                             label="当月出库"
                             min-width="100">
                     </el-table-column>
+                    <!--出库金额-->
                     <el-table-column
                             prop="post_amount_current"
                             label="出库金额"
                             min-width="100">
                     </el-table-column>
+                    <!--本月结余-->
                     <el-table-column
                             prop="post_balance"
                             label="本月结余"
                             min-width="100">
                     </el-table-column>
+                    <!--本月金额-->
                     <el-table-column
                             prop="post_amount"
                             label="本月金额"
