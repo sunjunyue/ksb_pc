@@ -84,7 +84,7 @@
                                 <el-row :gutter="5">
                                     <el-col :span="12">
                                         <!--任务发起人-->
-                                        <el-form-item label="任务发起人:">
+                                        <el-form-item label="发起人:">
                                             <el-input v-model="form.name"></el-input>
                                         </el-form-item>
                                         <!--任务名称-->
@@ -175,11 +175,11 @@
     export default {
         data() {
             return {
-                items: [{
+                items: {
                     taskphotourl: 'http://osyuuevsn.bkt.clouddn.com/FrIFOLlXooN9JCDz-YjW-TKEce5J',
                     taskname: '测试任务',
                     taskdeadline: '2017-12-31',
-                }],
+                },
                 msg: 'Welcome to Your Vue.js App',
                 config: {
                     value: 'https://www.baidu.com',
@@ -225,13 +225,15 @@
                 console.log(file);
             },
             handleAvatarSuccess(res, file) {
-                if (this.theme_edit.themem_reference == '') {
+                console.log(this.userphotebaseurl + res.key);
+                /*if (this.theme_edit.themem_reference == '') {
+
                     this.theme_edit.themem_reference = this.userphotebaseurl + res.key;
                     this.items.push(this.userphotebaseurl + res.key);
                 } else {
                     this.theme_edit.themem_reference = this.theme_edit.themem_reference + ' | ' + this.userphotebaseurl + res.key;
                     this.items.push(this.userphotebaseurl + res.key);
-                }
+                }*/
             },
             handleError(res) {
                 console.log(res)
