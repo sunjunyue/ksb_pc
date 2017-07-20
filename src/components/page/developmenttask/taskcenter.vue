@@ -30,24 +30,52 @@
                         <i class="el-icon-loading"></i>
                         进行中的研发任务
                     </span>
+                    <div style="margin-bottom:20px;">
+                        <el-row :gutter="10">
+                            <el-col :span="4">
+                                <!--日期选择-->
+                                <el-row>
+                                    <el-date-picker
+                                            v-model="form.dates"
+                                            type="daterange"
+                                            align="right"
+                                            placeholder="请选择日期范围"
+                                            :picker-options="dateoptions">
+                                    </el-date-picker>
+                                </el-row>
+                            </el-col>
+                            <el-col :span="4">
+                                <!--搜索-->
+                                <el-input
+                                        placeholder="任务名称"
+                                        icon="search"
+                                        v-model="input2"
+                                        :on-icon-click="handleIconClick">
+                                </el-input>
+                            </el-col>
+                        </el-row>
+                    </div>
                     <el-row :gutter="10">
+                        <div v-if="tasking_items[0] != null">
                         <el-col :span="8">
-                            <img :src="items.taskphotourl" width="300" height="300">
+                            <img :src="tasking_items[0].taskphotourl" width="300" height="300">
                             <p class="items_pro">
-                                任务名称：{{items.taskname}}
+                                任务名称：{{tasking_items[0].devtask_name}}
                             </p>
                             <p class="items_pro">
-                                截止时间：{{items.taskdeadline}}
+                                截止时间：{{tasking_items[0].devtask_deadline}}
                             </p>
                             <p class="items_pro">
                                 完成情况：
-                                <el-progress :percentage="100" status="success"></el-progress>
+                                <el-progress :percentage="tasking_items[0].devtask_progress" :text-inside="true" :stroke-width="16"  style="width:300px;margin-top:10px;"></el-progress>
                             </p>
                             <el-button size="small" type="primary" style="font-size:14px;"
                                        @click="dialogFormVisible = true">查看详情
                             </el-button>
                         </el-col>
+                        </div>
                         <el-col :span="8">
+                            <div v-if="tasking_items[1] != null">
                             <img :src="items.taskphotourl" width="300" height="300">
                             <p class="items_pro">
                                 任务名称：{{items.taskname}}
@@ -62,8 +90,10 @@
                             <el-button size="small" type="primary" style="font-size:14px;"
                                        @click="dialogFormVisible = true">查看详情
                             </el-button>
+                            </div>
                         </el-col>
                         <el-col :span="8">
+                            <div v-if="tasking_items[1] != null">
                             <img :src="items.taskphotourl" width="300" height="300">
                             <p class="items_pro">
                                 任务名称：{{items.taskname}}
@@ -73,11 +103,12 @@
                             </p>
                             <p class="items_pro">
                                 完成情况：
-                                <el-progress :percentage="100" status="success"></el-progress>
+                                <el-progress :percentage="100"></el-progress>
                             </p>
                             <el-button size="small" type="primary" style="font-size:14px;"
                                        @click="dialogFormVisible = true">查看详情
                             </el-button>
+                            </div>
                         </el-col>
                     </el-row>
                     <!--page-->
@@ -257,6 +288,12 @@
                 patternmakeroptions: [],
                 yygoptions: [],
                 items: {},
+                tasking_items: [{
+                    taskphotourl: 'http://osyuuevsn.bkt.clouddn.com/Fmf3iyMUtsMKz9MAH5HWtvtZ5MM7',
+                    devtask_name: '测试任务',
+                    devtask_deadline: '2017-07-20',
+                    devtask_progress: '25',
+                }],
                 task_item: {
                     taskphotourl: '',
                     devtask_name: '',
