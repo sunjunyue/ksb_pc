@@ -127,7 +127,7 @@
                                     <el-col :span="12">
                                         <!--任务发起人-->
                                         <el-form-item label="发起人:">
-                                            <el-input v-model="task_item.devtask_builder"></el-input>
+                                            <el-input v-model="task_item.devtask_builder" :disabled="true"></el-input>
                                         </el-form-item>
                                         <!--任务名称-->
                                         <el-form-item label="任务名称:">
@@ -173,25 +173,58 @@
                                                     style="width:100%">
                                             </el-date-picker>
                                         </el-form-item>
-                                    </el-col>
-                                    <el-col :span="12">
                                         <!--设计师-->
                                         <el-form-item label="设计师:">
-                                            <el-input v-model="task_item.devtask_designer"></el-input>
+                                            <el-select v-model="task_item.devtask_designerid" placeholder="请选择" style="width:100%">
+                                                <el-option
+                                                        v-for="item in designeroptions"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value">
+                                                </el-option>
+                                            </el-select>
+                                        </el-form-item>
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <!--制版师-->
+                                        <el-form-item label="制版师:">
+                                            <el-select v-model="task_item.devtask_patternmakerid" placeholder="请选择" style="width:100%">
+                                                <el-option
+                                                        v-for="item in patternmakeroptions"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value"
+                                                >
+                                                </el-option>
+                                            </el-select>
                                         </el-form-item>
                                         <!--裁剪师-->
                                         <el-form-item label="裁剪师:">
-                                            <el-input v-model="task_item.devtask_cutter"></el-input>
+                                            <el-select v-model="task_item.devtask_cutterid" placeholder="请选择" style="width:100%">
+                                                <el-option
+                                                        v-for="item in cutteroptions"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value">
+                                                </el-option>
+                                            </el-select>
                                         </el-form-item>
                                         <!--样衣工-->
                                         <el-form-item label="样衣工:">
-                                            <el-input v-model="task_item.devtask_yyg"></el-input>
+                                            <el-select v-model="task_item.devtask_yygid" placeholder="请选择" style="width:100%">
+                                                <el-option
+                                                        v-for="item in yygoptions"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value">
+                                                </el-option>
+                                            </el-select>
                                         </el-form-item>
                                         <!--具体要求-->
                                         <el-form-item label="具体要求">
                                             <el-input type="textarea"
                                                       v-model="task_item.devtask_text"
-                                                      :rows="4">
+                                                      :rows="7">
                                             </el-input>
                                         </el-form-item>
                                     </el-col>
@@ -219,17 +252,27 @@
     export default {
         data() {
             return {
+                designeroptions: [],
+                cutteroptions: [],
+                patternmakeroptions: [],
+                yygoptions: [],
                 items: {},
                 task_item: {
                     taskphotourl: '',
                     devtask_name: '',
                     devtask_builder: '',
+                    devtask_builderid: '',
                     devtask_source: '',
                     devtask_referencephoto: '',
                     devtask_deadline: '',
                     devtask_designer: '',
+                    devtask_designerid: '',
+                    devtask_patternmaker: '',
+                    devtask_patternmakerid: '',
                     devtask_cutter: '',
+                    devtask_cutterid: '',
                     devtask_yyg: '',
+                    devtask_yygid: '',
                     devtask_text: '',
                 },
                 referencephoto_items: [],
@@ -268,21 +311,62 @@
         },
 
         mounted: function () {
+            this.task_item.devtask_builder = JSON.parse(localStorage.getItem('ksb_user')).data.name;
+            this.task_item.devtask_builderid = JSON.parse(localStorage.getItem('ksb_user')).data.id;
+            this.getoptionsbyroleid(2);
+            this.getoptionsbyroleid(3);
+            this.getoptionsbyroleid(4);
+            this.getoptionsbyroleid(5);
         },
         methods: {
+            getoptionsbyroleid (roleid) {
+                const self = this;
+                this.$ajax({
+                    method: 'post',
+                    url: self.apiurl + 'user/getuserlistbyroleid',
+                    params: {
+                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
+                    },
+                    data: {
+                        role_id: roleid,
+                    }
+                }).then(function (response) {
+                    if (response.data.flag == 'get_userlist_by_roleid_success') {
+                        if(roleid == 2) {
+                            self.designeroptions = eval(response.data.data.users);
+                        }else if(roleid == 3) {
+                            self.cutteroptions = eval(response.data.data.users);
+                        }else if(roleid == 4){
+                            self.patternmakeroptions = eval(response.data.data.users);
+                        }else if(roleid == 5){
+                            self.yygoptions = eval(response.data.data.users);
+                        }
+                    } else {
+
+                    }
+                }).catch(function (error) {
+                    conosle.log(error);
+                })
+            },
             dateChange (val) {
                 this.task_item.devtask_deadline = val;
             },
             submitItems () {
                 /*console.log(this.task_item.taskphotourl);
                 console.log(this.task_item.devtask_builder);
+                console.log(this.task_item.devtask_builderid);
                 console.log(this.task_item.devtask_name);
                 console.log(this.task_item.devtask_source);
                 console.log(this.task_item.devtask_referencephoto);
                 console.log(this.task_item.devtask_deadline);
                 console.log(this.task_item.devtask_designer);
+                console.log(this.task_item.devtask_designerid);
+                console.log(this.task_item.devtask_patternmaker);
+                console.log(this.task_item.devtask_patternmakerid);
                 console.log(this.task_item.devtask_cutter);
+                console.log(this.task_item.devtask_cutterid);
                 console.log(this.task_item.devtask_yyg);
+                console.log(this.task_item.devtask_yygid);
                 console.log(this.task_item.devtask_text);*/
                 const self = this;
                 self.$ajax({
@@ -293,14 +377,15 @@
                     },
                     data: {
                         taskphotourl: this.task_item.taskphotourl,
-                        devtask_builder: this.task_item.devtask_builder,
+                        devtask_builderid: this.task_item.devtask_builderid,
                         devtask_name: this.task_item.devtask_name,
                         devtask_source: this.task_item.devtask_source,
                         devtask_referencephoto: this.task_item.devtask_referencephoto,
                         devtask_deadline: this.task_item.devtask_deadline,
-                        devtask_designer: this.task_item.devtask_designer,
-                        devtask_cutter: this.task_item.devtask_cutter,
-                        devtask_yyg: this.task_item.devtask_yyg,
+                        devtask_designerid: this.task_item.devtask_designerid,
+                        devtask_patternmakerid: this.task_item.devtask_patternmakerid,
+                        devtask_cutterid: this.task_item.devtask_cutterid,
+                        devtask_yygid: this.task_item.devtask_yygid,
                         devtask_text: this.task_item.devtask_text,
                     }
                 }).then(function (response) {
@@ -312,6 +397,7 @@
                         });
                     } else {
                         self.$message.error("新增任务失败");
+                        console.log(response.data.flag + "||" + response.data.message);
                     }
                 }).catch(function (error) {
                     self.$message.error("新增任务失败" + error);
