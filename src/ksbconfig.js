@@ -3,7 +3,7 @@
  */
 
 const apiurl = 'http://192.168.31.242/ksbapi2/api/';
-const userphoto_token = 'uJMnHLqmN08ljjCm548waCIfd1qGgU-eLtM1IXNx:lYTWI7VTVEH7AIiC6epLuuvApR8=:eyJzY29wZSI6ImtzYi11c2VyLXBob3RvIiwiZGVhZGxpbmUiOjE1MDA0NjkyNzZ9';
+const userphoto_token = 'uJMnHLqmN08ljjCm548waCIfd1qGgU-eLtM1IXNx:Cj5Gs21-1PZXs17f0FHFJukJEAU=:eyJzY29wZSI6ImtzYi11ZXNyLXBob3RvIiwiZGVhZGxpbmUiOjE1MDA1NTY2NDJ9';
 const userphotebaseurl = 'http://osyuuevsn.bkt.clouddn.com/';
 
 export default {
