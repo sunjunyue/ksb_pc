@@ -42,6 +42,14 @@
     .el-dialog__title{
         color:#ffffff;
     }
-
+    .el-tabs__item.is-active{
+        color:rgba(0, 179, 139, 0.98);
+    }
+    .el-tabs__item:hover{
+        color:rgba(0, 179, 139, 0.98);
+    }
+    .el-tabs__item{
+        font-size:16px;
+    }
 
 </style>
