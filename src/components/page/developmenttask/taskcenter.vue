@@ -4,18 +4,20 @@
             <div class="wTit">| 研发任务管理</div>
             <!--弹出框-->
             <el-dialog
-                title="款式参考"
-                :visible.sync="dialogFormVisible"
-                :modal-append-to-body='false'
-                size="small">
+                    title="款式参考"
+                    :visible.sync="dialogFormVisible"
+                    :modal-append-to-body='false'
+                    size="small">
                 <!--轮播图-->
                 <el-carousel arrow="always" height="500px" :autoplay="false">
-                    <el-carousel-item v-for="item in items" :key="item">
+                    <el-carousel-item v-for="item in referencephoto_items" :key="item">
                         <div class="img_item">
                             <a href=""><img :src='item' height="600" width="450"></a>
                             <div class="img_ico">
-                                <el-button type="primary" icon="view" :href="item"></el-button>
-                                <el-button type="primary" icon="delete2 "></el-button>
+                                <a :href='item' target="_blank">
+                                    <el-button type="primary" icon="view"></el-button>
+                                </a>
+                                <el-button type="primary" icon="delete2" @click="handleRemove2({item})"></el-button>
                             </div>
                         </div>
                     </el-carousel-item>
@@ -32,10 +34,10 @@
                         <el-col :span="8">
                             <img :src="items.taskphotourl" width="300" height="300">
                             <p class="items_pro">
-                               任务名称：{{items.taskname}}
+                                任务名称：{{items.taskname}}
                             </p>
                             <p class="items_pro">
-                               截止时间：{{items.taskdeadline}}
+                                截止时间：{{items.taskdeadline}}
                             </p>
                             <p class="items_pro">
                                 完成情况：
@@ -80,10 +82,10 @@
                     </el-row>
                     <!--page-->
                     <el-pagination
-                        @current-change ="handleCurrentChange"
-                        layout="prev, pager, next"
-                        :pageSize="page_size"
-                        :total="total">
+                            @current-change="handleCurrentChange"
+                            layout="prev, pager, next"
+                            :pageSize="page_size"
+                            :total="total">
                     </el-pagination>
                 </el-tab-pane>
                 <!--已完成的研发任务-->
@@ -101,55 +103,62 @@
                         <!--左侧内容-->
                         <el-col :span="6">
                             <p style="color:#fff;margin-bottom:20px;">任务封面图</p>
-                            <img :src="items.taskphotourl" width="250" height="250">
-                            <el-upload
-                                    class="upload-demo"
-                                    action="http://upload.qiniu.com/"
-                                    :on-preview="handlePreview"
-                                    :on-remove="handleRemove"
-                                    :file-list="fileList"
-                                    :show-file-list="false">
-                                <el-button size="small" type="primary" style="font-size:14px;">点击上传</el-button>
-                                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                            <img :src="task_item.taskphotourl" width="250" height="250">
+                            <el-upload class="upload-demo"
+                                       action="http://upload.qiniu.com/"
+                                       :on-preview="handlePreview1"
+                                       :on-remove="handleRemove1"
+                                       :on-success="handleAvatarSuccess1"
+                                       :on-error="handleError1"
+                                       :before-upload="beforeAvatarUpload1"
+                                       :data="postData"
+                                       :file-list="fileList"
+                                       :show-file-list="true">
+                                <el-button size="small" :disabled="uploadbtn1enable" type="primary"
+                                           style="font-size:14px;">点击上传
+                                </el-button>
+                                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过2M</div>
                             </el-upload>
                         </el-col>
                         <!--form-->
                         <el-col :span="18">
-                            <el-form :model="form" label-width="100px">
+                            <el-form :model="task_item" label-width="100px">
                                 <el-row :gutter="5">
                                     <el-col :span="12">
                                         <!--任务发起人-->
                                         <el-form-item label="发起人:">
-                                            <el-input v-model="form.name"></el-input>
+                                            <el-input v-model="task_item.devtask_builder"></el-input>
                                         </el-form-item>
                                         <!--任务名称-->
                                         <el-form-item label="任务名称:">
-                                            <el-input v-model="form.name"></el-input>
+                                            <el-input v-model="task_item.devtask_name"></el-input>
                                         </el-form-item>
                                         <!--任务来源-->
                                         <el-form-item label="任务来源:">
-                                            <el-input v-model="form.name"></el-input>
+                                            <el-input v-model="task_item.devtask_source"></el-input>
                                         </el-form-item>
                                         <!--参考图-->
                                         <el-form-item label="参考图:">
                                             <el-row>
                                                 <el-col :span="8">
                                                     <el-upload class="upload-demo"
-                                                       action="http://upload.qiniu.com/"
-                                                       :on-preview="handlePreview"
-                                                       :on-remove="handleRemove"
-                                                       :on-success="handleAvatarSuccess"
-                                                       :on-error="handleError"
-                                                       :before-upload="beforeAvatarUpload"
-                                                       :data="postData"
-                                                       :file-list="fileList"
-                                                       :show-file-list="false">
-                                                        <el-button size="small" type="primary" style="font-size:14px;">点击上传</el-button>
+                                                               action="http://upload.qiniu.com/"
+                                                               :on-preview="handlePreview2"
+                                                               :on-remove="handleRemove2"
+                                                               :on-success="handleAvatarSuccess2"
+                                                               :on-error="handleError2"
+                                                               :before-upload="beforeAvatarUpload2"
+                                                               :data="postData"
+                                                               :file-list="fileList2"
+                                                               :show-file-list="false">
+                                                        <el-button size="small" type="primary" style="font-size:14px;">
+                                                            点击上传
+                                                        </el-button>
                                                     </el-upload>
                                                 </el-col>
                                                 <el-col :span="8">
                                                     <el-button size="small" type="primary" style="font-size:14px;"
-                                                               @click="dialogFormVisible = true">查看款式参考
+                                                               @click="dialogFormVisible = true" :disabled="uploadbtn2enable">查看款式参考
                                                     </el-button>
                                                 </el-col>
                                             </el-row>
@@ -157,9 +166,10 @@
                                         <!--截止时间-->
                                         <el-form-item label="截止时间:">
                                             <el-date-picker
-                                                    v-model="value1"
+                                                    v-model="task_item.devtask_deadline"
                                                     type="date"
                                                     placeholder="选择日期"
+                                                    @change="dateChange"
                                                     style="width:100%">
                                             </el-date-picker>
                                         </el-form-item>
@@ -167,27 +177,27 @@
                                     <el-col :span="12">
                                         <!--设计师-->
                                         <el-form-item label="设计师:">
-                                            <el-input v-model="form.name"></el-input>
+                                            <el-input v-model="task_item.devtask_designer"></el-input>
                                         </el-form-item>
                                         <!--裁剪师-->
                                         <el-form-item label="裁剪师:">
-                                            <el-input v-model="form.name"></el-input>
+                                            <el-input v-model="task_item.devtask_cutter"></el-input>
                                         </el-form-item>
                                         <!--样衣工-->
                                         <el-form-item label="样衣工:">
-                                            <el-input v-model="form.name"></el-input>
+                                            <el-input v-model="task_item.devtask_yyg"></el-input>
                                         </el-form-item>
                                         <!--具体要求-->
                                         <el-form-item label="具体要求">
                                             <el-input type="textarea"
-                                              v-model="form.name"
-                                              rows="4">
+                                                      v-model="task_item.devtask_text"
+                                                      :rows="4">
                                             </el-input>
                                         </el-form-item>
                                     </el-col>
                                 </el-row>
                                 <el-form-item>
-                                    <el-button type="primary" @click="submitForm('formAccount')">立即创建</el-button>
+                                    <el-button type="primary" @click="submitItems()">立即创建</el-button>
                                     <el-button @click="resetForm('formAccount')">重置</el-button>
                                 </el-form-item>
                             </el-form>
@@ -209,12 +219,25 @@
     export default {
         data() {
             return {
-                items: {
-                    taskphotourl: 'http://osyuuevsn.bkt.clouddn.com/FrIFOLlXooN9JCDz-YjW-TKEce5J',
-                    taskname: '测试任务',
-                    taskdeadline: '2017-12-31',
+                items: {},
+                task_item: {
+                    taskphotourl: '',
+                    devtask_name: '',
+                    devtask_builder: '',
+                    devtask_source: '',
+                    devtask_referencephoto: '',
+                    devtask_deadline: '',
+                    devtask_designer: '',
+                    devtask_cutter: '',
+                    devtask_yyg: '',
+                    devtask_text: '',
                 },
-                msg: 'Welcome to Your Vue.js App',
+                referencephoto_items: [],
+                fileList2: [],
+
+                fileList1: [],
+                uploadbtn1enable: false,
+                uploadbtn2enable: true,
                 config: {
                     value: 'https://www.baidu.com',
                     imagePath: '',
@@ -235,7 +258,7 @@
                 cur_page: 1,
                 page_size: 5,
                 total: 0,
-                value1:'',
+                value1: '',
                 fileList: [],
                 postData: {
                     token: this.userphoto_token,
@@ -247,31 +270,151 @@
         mounted: function () {
         },
         methods: {
+            dateChange (val) {
+                this.task_item.devtask_deadline = val;
+            },
+            submitItems () {
+                /*console.log(this.task_item.taskphotourl);
+                console.log(this.task_item.devtask_builder);
+                console.log(this.task_item.devtask_name);
+                console.log(this.task_item.devtask_source);
+                console.log(this.task_item.devtask_referencephoto);
+                console.log(this.task_item.devtask_deadline);
+                console.log(this.task_item.devtask_designer);
+                console.log(this.task_item.devtask_cutter);
+                console.log(this.task_item.devtask_yyg);
+                console.log(this.task_item.devtask_text);*/
+                const self = this;
+                self.$ajax({
+                    method: 'post',
+                    url: this.apiurl + 'devtask/createdevtask',
+                    params: {
+                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
+                    },
+                    data: {
+                        taskphotourl: this.task_item.taskphotourl,
+                        devtask_builder: this.task_item.devtask_builder,
+                        devtask_name: this.task_item.devtask_name,
+                        devtask_source: this.task_item.devtask_source,
+                        devtask_referencephoto: this.task_item.devtask_referencephoto,
+                        devtask_deadline: this.task_item.devtask_deadline,
+                        devtask_designer: this.task_item.devtask_designer,
+                        devtask_cutter: this.task_item.devtask_cutter,
+                        devtask_yyg: this.task_item.devtask_yyg,
+                        devtask_text: this.task_item.devtask_text,
+                    }
+                }).then(function (response) {
+                    //alert(response.data.flag);
+                    if (response.data.flag == "create_devtask_success") {
+                        self.$message({
+                            message: '新增任务成功',
+                            type: 'success'
+                        });
+                    } else {
+                        self.$message.error("新增任务失败");
+                    }
+                }).catch(function (error) {
+                    self.$message.error("新增任务失败" + error);
+                })
+            },
             handleCurrentChange(val){
                 this.cur_page = val;
                 this.getTableData1();
             },
-            handleRemove(file, fileList) {
-                console.log(file, fileList);
+            handleRemove1(file, fileList) {
+                this.task_item.taskphotourl = '';
+                this.uploadbtn1enable = false;
             },
-            handlePreview(file) {
+            handleRemove2(photourl) {
+                //alert(photourl.item);
+                var tpu = this.task_item.devtask_referencephoto.split('|');
+                for (var t = 0; t <= tpu.length; t++) {
+                    if (tpu[t] == photourl.item) {
+                        tpu.splice(t,1);
+                        break;
+                    }
+                }
+                if (tpu.length == 0) {
+                    this.task_item.devtask_referencephoto = '';
+                } else if (tpu.length == 1) {
+                    this.task_item.devtask_referencephoto = tpu[0];
+                } else {
+                    this.task_item.devtask_referencephoto = tpu.join('|');
+                }
+                //alert(this.task_item.devtask_referencephoto);
+                for (var i = 0; i <= this.referencephoto_items.length; i++) {
+                    if (this.referencephoto_items[i] == photourl.item) {
+                        this.referencephoto_items.splice(i,1);
+                        break;
+                    }
+                }
+                if (this.referencephoto_items.length == 0) {
+                    this.dialogFormVisible = false;
+                    this.uploadbtn2enable = true;
+                }
+            },
+            handlePreview1(file) {
                 console.log(file);
             },
-            handleAvatarSuccess(res, file) {
+            handlePreview2(file) {
+                console.log(file);
+            },
+            // 任务封面图片上传成功
+            handleAvatarSuccess1(res, file) {
                 console.log(this.userphotebaseurl + res.key);
+                this.task_item.taskphotourl = this.userphotebaseurl + res.key;
+                this.uploadbtn1enable = true;
                 /*if (this.theme_edit.themem_reference == '') {
 
-                    this.theme_edit.themem_reference = this.userphotebaseurl + res.key;
-                    this.items.push(this.userphotebaseurl + res.key);
-                } else {
-                    this.theme_edit.themem_reference = this.theme_edit.themem_reference + ' | ' + this.userphotebaseurl + res.key;
-                    this.items.push(this.userphotebaseurl + res.key);
-                }*/
+                 this.theme_edit.themem_reference = this.userphotebaseurl + res.key;
+                 this.items.push(this.userphotebaseurl + res.key);
+                 } else {
+                 this.theme_edit.themem_reference = this.theme_edit.themem_reference + ' | ' + this.userphotebaseurl + res.key;
+                 this.items.push(this.userphotebaseurl + res.key);
+                 }*/
             },
-            handleError(res) {
+            handleAvatarSuccess2(res, file) {
+                if (this.task_item.devtask_referencephoto == '') {
+                    this.task_item.devtask_referencephoto = this.userphotebaseurl + res.key;
+                    this.referencephoto_items.push(this.userphotebaseurl + res.key);
+                    this.uploadbtn2enable = false;
+                } else {
+                    for (var i = 0; i <= this.referencephoto_items.length; i++) {
+                        if (this.referencephoto_items[i] == this.userphotebaseurl + res.key) {
+                            this.$message({
+                                message: '请勿上传相同的图片',
+                                type: 'warning'
+                            });
+                            return;
+                        }
+                    }
+                    this.task_item.devtask_referencephoto = this.task_item.devtask_referencephoto + '|' + this.userphotebaseurl + res.key;
+                    this.referencephoto_items.push(this.userphotebaseurl + res.key);
+                }
+                console.log(this.task_item.devtask_referencephoto);
+            },
+            handleError1(res) {
                 console.log(res)
             },
-            beforeAvatarUpload(file) {
+            handleError2(res) {
+                console.log(res)
+            },
+            beforeAvatarUpload1(file) {
+                const isJPG = file.type === 'image/jpeg'
+                const isPNG = file.type === 'image/png'
+                const isLt2M = file.size / 1024 / 1024 < 2
+
+                if (!isJPG && !isPNG) {
+                    this.$message.error('上传头像图片只能是 JPG/PNG 格式!')
+                    return false;
+                }
+                if (!isLt2M) {
+                    this.$message.error('上传头像图片大小不能超过 2MB!')
+                    return false;
+                }
+                return true;
+            },
+            beforeAvatarUpload2(file) {
                 const isJPG = file.type === 'image/jpeg'
                 const isPNG = file.type === 'image/png'
                 const isLt2M = file.size / 1024 / 1024 < 2
@@ -320,49 +463,59 @@
 </style>
 
 <style>
-    .items_pro{
-        margin:10px 0;
-        color:#fff;
-        font-size:16px;
+    .items_pro {
+        margin: 10px 0;
+        color: #fff;
+        font-size: 16px;
     }
-    .el-card{
-        border:none;
-        background:none;
+
+    .el-card {
+        border: none;
+        background: none;
     }
-    .el-tabs__item.is-active{
-        color:rgba(0, 179, 139, 0.98);
+
+    .el-tabs__item.is-active {
+        color: rgba(0, 179, 139, 0.98);
     }
-    .el-tabs__item:hover{
-        color:rgba(0, 179, 139, 0.98);
+
+    .el-tabs__item:hover {
+        color: rgba(0, 179, 139, 0.98);
     }
-    .el-tabs--border-card{
-        background:none;
-        border:none;
+
+    .el-tabs--border-card {
+        background: none;
+        border: none;
     }
-    .el-tabs--border-card>.el-tabs__content{
-        padding:30px 15px;
+
+    .el-tabs--border-card > .el-tabs__content {
+        padding: 30px 15px;
     }
-    .el-popover, .el-tabs--border-card{
-      box-shadow: 0 2px 4px 0 rgba(0,0,0,.62), 0 0 6px 0 rgba(0,0,0,.04);
+
+    .el-popover, .el-tabs--border-card {
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .62), 0 0 6px 0 rgba(0, 0, 0, .04);
     }
+
     .img_item {
         text-align: center;
         line-height: 500px;
-        position:relative;
+        position: relative;
     }
-    .img_item:hover .img_ico{
+
+    .img_item:hover .img_ico {
         display: block;
     }
 
     .img_item img {
         vertical-align: middle;
     }
-    .img_ico{
-        top:0;
-        left:40%;
+
+    .img_ico {
+        top: 0;
+        left: 40%;
         display: none;
-        position:absolute;
+        position: absolute;
     }
+
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 </style>
