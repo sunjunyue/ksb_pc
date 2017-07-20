@@ -3,55 +3,64 @@
     <div class="win fr" id="win">
         <div class="wm">
             <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
+                <!--商品主题-->
                 <el-tab-pane label="商品主题" name="theme">
                     <!--button-->
                     <div class="wBtn fr" style="margin-bottom:10px;">
                         <el-button type="primary" icon="plus" @click="handleCommand('addprothe')">添加商品主题</el-button>
                     </div>
                     <el-table
-                            v-loading="loading"
-                            element-loading-text="拼命加载中..."
-                            :data="tableData1"
-                            style="width: 100%">
+                        v-loading="loading"
+                        element-loading-text="拼命加载中..."
+                        :data="tableData1"
+                        style="width: 100%">
+                        <!--主题编号-->
                         <el-table-column
-                                prop="themem_id"
-                                label="主题编号"
-                                min-width="90">
+                            prop="themem_id"
+                            label="主题编号"
+                            min-width="90">
                         </el-table-column>
+                        <!--主题名称-->
                         <el-table-column
-                                prop="themem_name"
-                                label="主题名称"
-                                min-width="90">
+                            prop="themem_name"
+                            label="主题名称"
+                            min-width="90">
                         </el-table-column>
+                        <!--创建人-->
                         <el-table-column
-                                prop="themem_founder"
-                                label="创建人"
-                                min-width="90">
+                            prop="themem_founder"
+                            label="创建人"
+                            min-width="90">
                         </el-table-column>
+                        <!--流行主色-->
                         <el-table-column
-                                prop="themem_main_color"
-                                label="流行主色"
-                                min-width="90">
+                            prop="themem_main_color"
+                            label="流行主色"
+                            min-width="90">
                         </el-table-column>
+                        <!--流行辅色-->
                         <el-table-column
-                                prop="themem_secondary_color"
-                                label="流行辅色"
-                                min-width="90">
+                            prop="themem_secondary_color"
+                            label="流行辅色"
+                            min-width="90">
                         </el-table-column>
+                        <!--状态-->
                         <el-table-column
-                                prop="temem_status"
-                                label="状态">
+                            prop="temem_status"
+                            label="状态">
                             <el-button type="primary" icon="edit" size="small" @click="handleEdit(scope.$index,scope.row)"></el-button>
                             <el-button type="primary" icon="view" size="small"></el-button>
                         </el-table-column>
                     </el-table>
+                    <!--page-->
                     <el-pagination
-                            @current-change ="handleCurrentChange"
-                            layout="prev, pager, next"
-                            :pageSize="page_size"
-                            :total="total">
+                        @current-change ="handleCurrentChange"
+                        layout="prev, pager, next"
+                        :pageSize="page_size"
+                        :total="total">
                     </el-pagination>
                 </el-tab-pane>
+                <!--商品波段-->
                 <el-tab-pane label="商品波段" name="second">
                     <!--button-->
                     <div class="wBtn fr" style="margin-bottom:10px;">
@@ -59,58 +68,67 @@
                     </div>
                     <!--table-->
                     <el-table
-                            v-loading="loading"
-                            element-loading-text="拼命加载中..."
-                            ref="multipleTable"
-                            :data="tableData3"
-                            style="width: 100%"
-                            >
+                        v-loading="loading"
+                        element-loading-text="拼命加载中..."
+                        ref="multipleTable"
+                        :data="tableData3"
+                        style="width: 100%">
+                        <!--波段编号-->
                         <el-table-column
-                                prop="band_num"
-                                label="波段编号"
-                                min-width="100">
+                            prop="band_num"
+                            label="波段编号"
+                            min-width="100">
                         </el-table-column>
+                        <!--年度季节-->
                         <el-table-column
-                                prop="band_data"
-                                label="年度季节"
-                                min-width="100">
+                            prop="band_data"
+                            label="年度季节"
+                            min-width="100">
                         </el-table-column>
+                        <!--商品主题-->
                         <el-table-column
-                                prop="band_theme"
-                                label="商品主题"
-                                min-width="100">
+                            prop="band_theme"
+                            label="商品主题"
+                            min-width="100">
                         </el-table-column>
+                        <!--波段名称-->
                         <el-table-column
-                                prop="band_name"
-                                label="波段名称"
-                                min-width="100">
+                            prop="band_name"
+                            label="波段名称"
+                            min-width="100">
                         </el-table-column>
+                        <!--波段起止日期-->
                         <el-table-column
-                                prop="band_date"
-                                label="波段起止日期"
-                                min-width="150">
+                            prop="band_date"
+                            label="波段起止日期"
+                            min-width="150">
                         </el-table-column>
+                        <!--设计完成日期-->
                         <el-table-column
-                                prop="band_design"
-                                label="设计完成日期"
-                                min-width="100">
+                            prop="band_design"
+                            label="设计完成日期"
+                            min-width="100">
                         </el-table-column>
+                        <!--纸样完成日期-->
                         <el-table-column
-                                prop=""
-                                label="纸样完成日期"
-                                min-width="100">
+                            prop=""
+                            label="纸样完成日期"
+                            min-width="100">
                         </el-table-column>
+                        <!--上货日-->
                         <el-table-column
-                                prop="band_shop"
-                                label="上货日"
-                                min-width="100">
+                            prop="band_shop"
+                            label="上货日"
+                            min-width="100">
                         </el-table-column>
+                        <!--状态-->
                         <el-table-column
-                                prop="band_account"
-                                label="状态">
+                            prop="band_account"
+                            label="状态">
                         </el-table-column>
                     </el-table>
                 </el-tab-pane>
+                <!--商品品类-->
                 <el-tab-pane label="商品品类" name="third">商品品类</el-tab-pane>
             </el-tabs>
         </div>
@@ -179,21 +197,10 @@
 
     };
 </script>
-
 <style scoped lang="less">
     @import '../../../assets/css/ele_public.less';
 </style>
-
 <style>
-    .el-tabs__item.is-active{
-        color:rgba(0, 179, 139, 0.98);
-    }
-    .el-tabs__item:hover{
-        color:rgba(0, 179, 139, 0.98);
-    }
-    .el-tabs__item{
-        font-size:16px;
-    }
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 </style>
