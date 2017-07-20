@@ -39,10 +39,10 @@
             <div class="clear"></div>
             <!--table-->
             <el-table
-                    v-loading="loading"
-                    element-loading-text="拼命加载中..."
-                    :data="tableData33"
-                    style="width: 100%">
+                v-loading="loading"
+                element-loading-text="拼命加载中..."
+                :data="tableData33"
+                style="width: 100%">
                 <!--单号-->
                 <el-table-column
                     prop="dpsnumber"
