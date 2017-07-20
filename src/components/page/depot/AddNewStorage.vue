@@ -22,6 +22,7 @@
                 </el-cascader>
                 <!--table-->
                 <el-table
+
                     v-loading="loading"
                     element-loading-text="拼命加载中..."
                     :data="tableData3"

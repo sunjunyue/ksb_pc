@@ -72,8 +72,6 @@
                     </el-form-item>
                 </div>
             </el-form>
-
-
         </div>
     </div>
 </template>
@@ -223,8 +221,8 @@
     .el-form-item__label{
         color:rgba(255, 255, 255, 0.88)!important;
     }
-    .el-input__inner{
-        width:75%
-    }
+    /*.el-input__inner{*/
+        /*width:75%*/
+    /*}*/
 </style>
 

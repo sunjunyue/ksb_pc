@@ -180,8 +180,8 @@
                                         <!--具体要求-->
                                         <el-form-item label="具体要求">
                                             <el-input type="textarea"
-                                                      v-model="form.name"
-                                                      rows="4">
+                                              v-model="form.name"
+                                              rows="4">
                                             </el-input>
                                         </el-form-item>
                                     </el-col>
