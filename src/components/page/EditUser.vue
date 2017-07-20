@@ -4,38 +4,44 @@
         <div class="wm">
             <!--选项卡-->
             <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+                <!--用户管理-->
                 <el-tab-pane label="用户管理" name="first">
-                    <el-form :label-position="labelPosition" :model="formAccount" :rules="rules" ref="formAccount"
-                             label-width="100px">
-                        <el-row>
-                            <el-col :span="8">
+                    <el-form
+                        :label-position="labelPosition"
+                        :model="formAccount"
+                        :rules="rules"
+                        ref="formAccount"
+                        label-width="100px">
+                        <el-row :gutter="20">
+                            <el-col :span="11" >
+                                <!--头像-->
                                 <el-form-item label="头像:">
                                     <el-upload
-                                            class="avatar-uploader"
-                                            action="https://jsonplaceholder.typicode.com/posts/"
-                                            :show-file-list="false"
-                                            :on-success="handleAvatarSuccess"
-                                            :before-upload="beforeAvatarUpload">
+                                        class="avatar-uploader"
+                                        action="https://jsonplaceholder.typicode.com/posts/"
+                                        :show-file-list="false"
+                                        :on-success="handleAvatarSuccess"
+                                        :before-upload="beforeAvatarUpload">
                                         <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                                        <i v-else class="fa fa-user-circle fa-5x avatar-uploader-icon"
-                                           style="font-size:100px;"></i>
+                                        <i v-else class="fa fa-user-circle fa-5x avatar-uploader-icon" style="font-size:100px;"></i>
                                         <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
                                     </el-upload>
                                 </el-form-item>
+                                <!--用户名-->
                                 <el-form-item label="用户名" prop="accountname" required>
                                     <el-input v-model="formAccount.accountname"></el-input>
                                 </el-form-item>
-
+                                <!--姓名-->
                                 <el-form-item prop="name" label="姓名:" required>
                                     <el-input v-model="formAccount.name"></el-input>
                                 </el-form-item>
-
+                                <!--性别-->
                                 <el-form-item prop="sex" label="性别:" required>
                                     <el-radio class="radio" v-model="formAccount.sex" :label="1">女士</el-radio>
                                     <el-radio class="radio" v-model="formAccount.sex" :label="2">男士</el-radio>
                                     <el-radio class="radio" v-model="formAccount.sex" :label="3">保密</el-radio>
                                 </el-form-item>
-
+                                <!--出生日期-->
                                 <el-form-item prop="birthday" label="出生日期:" required>
                                     <el-date-picker
                                             v-model="formAccount.birthday"
@@ -46,27 +52,25 @@
                                     </el-date-picker>
                                 </el-form-item>
                             </el-col>
-                            <el-col :span="8">
-
+                            <el-col :span="11" :push="2">
+                                <!--手机号-->
                                 <el-form-item prop="mobile" label="手机号:" required>
                                     <el-input v-model="formAccount.mobile"></el-input>
                                 </el-form-item>
-
+                                <!--邮箱-->
                                 <el-form-item prop="email" label="邮箱:" required>
                                     <el-input v-model="formAccount.email"></el-input>
                                 </el-form-item>
-
+                                <!--微信-->
                                 <el-form-item prop="wechart" label="微信:">
                                     <el-input v-model="formAccount.wechart"></el-input>
                                 </el-form-item>
-
+                                <!--备注说明-->
                                 <el-form-item prop="remarks" label="备注说明:">
-                                    <el-input type="textarea" v-model="formAccount.remarks" rows="8"
-                                              style="width:75%;"></el-input>
+                                    <el-input type="textarea" v-model="formAccount.remarks" rows="8"></el-input>
                                 </el-form-item>
-
                             </el-col>
-                            <el-col :span="8"></el-col>
+                            <el-col :span="4"></el-col>
                         </el-row>
                         <div class="wSub">
                             <el-form-item>
@@ -76,24 +80,13 @@
                         </div>
                     </el-form>
                 </el-tab-pane>
+                <!--角色配置-->
                 <el-tab-pane label="角色配置" name="second"></el-tab-pane>
+                <!--用户状态-->
                 <el-tab-pane label="用户状态" name="third">
                     <el-form :label-position="labelPosition" :model="formAccount" label-width="100px">
                         <div style="width:50%;margin-top:30px;">
                             <el-form-item label="用户状态:" required>
-                                <!--<el-tooltip  placement="top" style="margin-top:8px;">
-                                    <el-switch
-                                            v-model="value3"
-                                            width="76"
-                                            on-color="#00B38B"
-                                            off-color="#FF4949"
-                                            on-value="100"
-                                            off-value="0"
-                                            on-text="激活"
-                                            off-text="未激活">
-                                    </el-switch>
-                                </el-tooltip>-->
-
                                 <el-radio-group @change="handleUserstatusChange()" v-model="formAccount.userstatus">
                                     <el-radio-button label="-1">待审核</el-radio-button>
                                     <el-radio-button label="1">启用</el-radio-button>
@@ -105,10 +98,6 @@
                     </el-form>
                 </el-tab-pane>
             </el-tabs>
-
-            <!--用户添加-->
-
-
         </div>
     </div>
 </template>
@@ -258,14 +247,11 @@
 </script>
 
 <style scoped lang="less">
-    /*@import '../../assets/css/behind_cont.less';*/
     @import '../../assets/css/ele_public.less';
 </style>
-
 <style>
-    /*@import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';*/
     @import '../../assets/css/behind_cont.css';
-
+    /*头像*/
     .avatar-uploader .el-upload {
         border-radius: 100px;
         cursor: pointer;
@@ -274,7 +260,7 @@
     }
 
     .avatar-uploader .el-upload:hover {
-        border-color: #00B38B;
+        border-color: rgba(0, 179, 139, 0.98);
     }
 
     .avatar-uploader-icon {
@@ -295,8 +281,12 @@
     .el-form-item__label{
     color:rgba(255, 255, 255, 0.88);
     }
-    .wm .el-input .el-input__inner{
-        width:75%
+    /*用户状态*/
+    .el-radio-button__orig-radio:checked+.el-radio-button__inner {
+        color: #fff;
+         background-color: rgba(0, 179, 139, 0.98);
+        border-color:rgba(0, 179, 139, 0.98);
+        box-shadow: -1px 0 0 0 rgba(0, 179, 139, 0.98);
     }
 </style>
 
