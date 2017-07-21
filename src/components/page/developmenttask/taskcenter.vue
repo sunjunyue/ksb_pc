@@ -2,27 +2,27 @@
     <div class="win fr" id="win">
         <div class="wm">
             <div class="wTit">| 研发任务管理</div>
-            <!--弹出框-->
-            <!--<el-dialog-->
-                <!--title="款式参考"-->
-                <!--:visible.sync="dialogFormVisible"-->
-                <!--:modal-append-to-body='false'-->
-                <!--size="small">-->
-                <!--&lt;!&ndash;轮播图&ndash;&gt;-->
-                <!--<el-carousel arrow="always" height="500px" :autoplay="false">-->
-                    <!--<el-carousel-item v-for="item in referencephoto_items" :key="item">-->
-                        <!--<div class="img_item">-->
-                            <!--<a href=""><img :src='item' height="600" width="450"></a>-->
-                            <!--<div class="img_ico">-->
-                                <!--<a :href='item' target="_blank">-->
-                                    <!--<el-button type="primary" icon="view"></el-button>-->
-                                <!--</a>-->
-                                <!--<el-button type="primary" icon="delete2" @click="handleRemove2({item})"></el-button>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</el-carousel-item>-->
-                <!--</el-carousel>-->
-            <!--</el-dialog>-->
+            弹出框
+            <el-dialog
+                title="款式参考"
+                :visible.sync="dialogFormVisible"
+                :modal-append-to-body='false'
+                size="small">
+                <!--轮播图-->
+                <el-carousel arrow="always" height="500px" :autoplay="false">
+                    <el-carousel-item v-for="item in referencephoto_items" :key="item">
+                        <div class="img_item">
+                            <a href=""><img :src='item' height="600" width="450"></a>
+                            <div class="img_ico">
+                                <a :href='item' target="_blank">
+                                    <el-button type="primary" icon="view"></el-button>
+                                </a>
+                                <el-button type="primary" icon="delete2" @click="handleRemove2({item})"></el-button>
+                            </div>
+                        </div>
+                    </el-carousel-item>
+                </el-carousel>
+            </el-dialog>
             <el-tabs type="border-card">
                 <!-- 进行中的研发任务 -->
                 <el-tab-pane>
@@ -233,10 +233,10 @@
                                         <el-form-item label="裁剪师:">
                                             <el-select v-model="task_item.devtask_cutterid" placeholder="请选择" style="width:100%">
                                                 <el-option
-                                                        v-for="item in cutteroptions"
-                                                        :key="item.value"
-                                                        :label="item.label"
-                                                        :value="item.value">
+                                                    v-for="item in cutteroptions"
+                                                    :key="item.value"
+                                                    :label="item.label"
+                                                    :value="item.value">
                                                 </el-option>
                                             </el-select>
                                         </el-form-item>
@@ -244,10 +244,10 @@
                                         <el-form-item label="样衣工:">
                                             <el-select v-model="task_item.devtask_yygid" placeholder="请选择" style="width:100%">
                                                 <el-option
-                                                        v-for="item in yygoptions"
-                                                        :key="item.value"
-                                                        :label="item.label"
-                                                        :value="item.value">
+                                                    v-for="item in yygoptions"
+                                                    :key="item.value"
+                                                    :label="item.label"
+                                                    :value="item.value">
                                                 </el-option>
                                             </el-select>
                                         </el-form-item>
@@ -343,7 +343,7 @@
                 postData: {
                     token: this.userphoto_token,
                 },
-//                dialogFormVisible: false,
+                dialogFormVisible: false,
             };
         },
 
