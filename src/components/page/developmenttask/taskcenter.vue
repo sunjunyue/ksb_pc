@@ -2,7 +2,7 @@
     <div class="win fr" id="win">
         <div class="wm">
             <div class="wTit">| 研发任务管理</div>
-            弹出框
+            <!--弹出框-->
             <el-dialog
                 title="款式参考"
                 :visible.sync="dialogFormVisible"
@@ -600,7 +600,9 @@
         border: none;
         background: none;
     }
-
+    .el-tabs__content{
+        margin-top:0;
+    }
     /*.el-tabs__item.is-active {*/
         /*color: rgba(0, 179, 139, 0.98);*/
     /*}*/
