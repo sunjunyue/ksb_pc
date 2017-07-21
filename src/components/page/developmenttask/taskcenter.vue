@@ -3,31 +3,31 @@
         <div class="wm">
             <div class="wTit">| 研发任务管理</div>
             <!--弹出框-->
-            <el-dialog
-                    title="款式参考"
-                    :visible.sync="dialogFormVisible"
-                    :modal-append-to-body='false'
-                    size="small">
-                <!--轮播图-->
-                <el-carousel arrow="always" height="500px" :autoplay="false">
-                    <el-carousel-item v-for="item in referencephoto_items" :key="item">
-                        <div class="img_item">
-                            <a href=""><img :src='item' height="600" width="450"></a>
-                            <div class="img_ico">
-                                <a :href='item' target="_blank">
-                                    <el-button type="primary" icon="view"></el-button>
-                                </a>
-                                <el-button type="primary" icon="delete2" @click="handleRemove2({item})"></el-button>
-                            </div>
-                        </div>
-                    </el-carousel-item>
-                </el-carousel>
-            </el-dialog>
+            <!--<el-dialog-->
+                <!--title="款式参考"-->
+                <!--:visible.sync="dialogFormVisible"-->
+                <!--:modal-append-to-body='false'-->
+                <!--size="small">-->
+                <!--&lt;!&ndash;轮播图&ndash;&gt;-->
+                <!--<el-carousel arrow="always" height="500px" :autoplay="false">-->
+                    <!--<el-carousel-item v-for="item in referencephoto_items" :key="item">-->
+                        <!--<div class="img_item">-->
+                            <!--<a href=""><img :src='item' height="600" width="450"></a>-->
+                            <!--<div class="img_ico">-->
+                                <!--<a :href='item' target="_blank">-->
+                                    <!--<el-button type="primary" icon="view"></el-button>-->
+                                <!--</a>-->
+                                <!--<el-button type="primary" icon="delete2" @click="handleRemove2({item})"></el-button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</el-carousel-item>-->
+                <!--</el-carousel>-->
+            <!--</el-dialog>-->
             <el-tabs type="border-card">
                 <!-- 进行中的研发任务 -->
                 <el-tab-pane>
                     <span slot="label">
-                        <i class="el-icon-loading"></i>
+                        <i class="fa fa-spinner"></i>
                         进行中的研发任务
                     </span>
                     <div style="margin-bottom:20px;">
@@ -36,11 +36,11 @@
                                 <!--日期选择-->
                                 <el-row>
                                     <el-date-picker
-                                            v-model="form.dates"
-                                            type="daterange"
-                                            align="right"
-                                            placeholder="请选择日期范围"
-                                            :picker-options="dateoptions">
+                                        v-model="form.dates"
+                                        type="daterange"
+                                        align="right"
+                                        placeholder="请选择日期范围"
+                                        :picker-options="dateoptions">
                                     </el-date-picker>
                                 </el-row>
                             </el-col>
@@ -60,17 +60,17 @@
                         <el-col :span="8">
                             <img :src="tasking_items[0].taskphotourl" width="300" height="300">
                             <p class="items_pro">
-                                任务名称：{{tasking_items[0].devtask_name}}
+                                <i>任务名称：</i>{{tasking_items[0].devtask_name}}
                             </p>
                             <p class="items_pro">
-                                截止时间：{{tasking_items[0].devtask_deadline}}
+                                <i>截止时间：</i>{{tasking_items[0].devtask_deadline}}
                             </p>
                             <p class="items_pro">
-                                完成情况：
+                                <i>完成情况：</i>
                                 <el-progress :percentage="tasking_items[0].devtask_progress" :text-inside="true" :stroke-width="16"  style="width:300px;margin-top:10px;"></el-progress>
                             </p>
                             <el-button size="small" type="primary" style="font-size:14px;"
-                                       @click="dialogFormVisible = true">查看详情
+                                       @click="handleCommand('taskdetail')">查看详情
                             </el-button>
                         </el-col>
                         </div>
@@ -87,9 +87,9 @@
                                 完成情况：
                                 <el-progress :percentage="100" status="success"></el-progress>
                             </p>
-                            <el-button size="small" type="primary" style="font-size:14px;"
-                                       @click="dialogFormVisible = true">查看详情
-                            </el-button>
+                                <el-button size="small" type="primary" style="font-size:14px;"
+                                           @click="handleCommand('taskdetail')">查看详情
+                                </el-button>
                             </div>
                         </el-col>
                         <el-col :span="8">
@@ -106,29 +106,29 @@
                                 <el-progress :percentage="100"></el-progress>
                             </p>
                             <el-button size="small" type="primary" style="font-size:14px;"
-                                       @click="dialogFormVisible = true">查看详情
+                                       @click="handleCommand('taskdetail')">查看详情
                             </el-button>
                             </div>
                         </el-col>
                     </el-row>
                     <!--page-->
                     <el-pagination
-                            @current-change="handleCurrentChange"
-                            layout="prev, pager, next"
-                            :pageSize="page_size"
-                            :total="total">
+                        @current-change="handleCurrentChange"
+                        layout="prev, pager, next"
+                        :pageSize="page_size"
+                        :total="total">
                     </el-pagination>
                 </el-tab-pane>
                 <!--已完成的研发任务-->
                 <el-tab-pane>
                     <span slot="label">
-                        <i class="el-icon-check"></i> 已完成的研发任务
+                        <i class="fa fa-check"></i> 已完成的研发任务
                     </span>
                 </el-tab-pane>
                 <!--新增研发任务-->
                 <el-tab-pane>
                     <span slot="label">
-                        <i class="el-icon-edit"></i> 新增研发任务
+                        <i class="fa fa-plus"></i> 新增研发任务
                     </span>
                     <el-row :gutter="10">
                         <!--左侧内容-->
@@ -271,7 +271,7 @@
                 <!--规划任务分配-->
                 <el-tab-pane>
                     <span slot="label">
-                        <i class="el-icon-caret-right"></i>
+                        <i class="fa fa-tasks"></i>
                         规划任务分配
                     </span>
                 </el-tab-pane>
@@ -343,7 +343,7 @@
                 postData: {
                     token: this.userphoto_token,
                 },
-                dialogFormVisible: false,
+//                dialogFormVisible: false,
             };
         },
 
@@ -576,7 +576,11 @@
                     }
                 }
             },
-
+            handleCommand(command){
+                if (command == 'taskdetail'){
+                    this.$router.push('taskdetail');
+                }
+            },
         }
     };
 </script>
@@ -597,13 +601,13 @@
         background: none;
     }
 
-    .el-tabs__item.is-active {
-        color: rgba(0, 179, 139, 0.98);
-    }
+    /*.el-tabs__item.is-active {*/
+        /*color: rgba(0, 179, 139, 0.98);*/
+    /*}*/
 
-    .el-tabs__item:hover {
-        color: rgba(0, 179, 139, 0.98);
-    }
+    /*.el-tabs__item:hover {*/
+        /*color: rgba(0, 179, 139, 0.98);*/
+    /*}*/
 
     .el-tabs--border-card {
         background: none;
