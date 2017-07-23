@@ -173,15 +173,15 @@
                                             <el-row>
                                                 <el-col :span="8">
                                                     <el-upload class="upload-demo"
-                                                               action="http://upload.qiniu.com/"
-                                                               :on-preview="handlePreview2"
-                                                               :on-remove="handleRemove2"
-                                                               :on-success="handleAvatarSuccess2"
-                                                               :on-error="handleError2"
-                                                               :before-upload="beforeAvatarUpload2"
-                                                               :data="postData"
-                                                               :file-list="fileList2"
-                                                               :show-file-list="false">
+                                                       action="http://upload.qiniu.com/"
+                                                       :on-preview="handlePreview2"
+                                                       :on-remove="handleRemove2"
+                                                       :on-success="handleAvatarSuccess2"
+                                                       :on-error="handleError2"
+                                                       :before-upload="beforeAvatarUpload2"
+                                                       :data="postData"
+                                                       :file-list="fileList2"
+                                                       :show-file-list="false">
                                                         <el-button size="small" type="primary" style="font-size:14px;">
                                                             点击上传
                                                         </el-button>
