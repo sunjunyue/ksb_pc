@@ -101,6 +101,11 @@ const RouterConfigs = {
                 components: {
                     default: require('./components/page/product/AddBand.vue'),
                 }
+            },{
+                path: '/taskdetail',
+                components: {
+                    default: require('./components/page/developmenttask/TaskDetail.vue'),
+                }
             }],
         },
         {
