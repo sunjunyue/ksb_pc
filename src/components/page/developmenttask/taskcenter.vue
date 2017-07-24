@@ -17,7 +17,11 @@
                                 <a :href='item' target="_blank">
                                     <el-button type="primary" icon="view"></el-button>
                                 </a>
-                                <el-button type="primary" icon="delete2" @click="handleRemove2({item})"></el-button>
+                                <el-button
+                                        type="primary"
+                                        icon="delete2"
+                                        @click="handleRemove2({item})">
+                                </el-button>
                             </div>
                         </div>
                     </el-carousel-item>
@@ -166,7 +170,10 @@
                                         </el-form-item>
                                         <!--任务来源-->
                                         <el-form-item label="任务来源:">
-                                            <el-input v-model="task_item.devtask_source"></el-input>
+                                            <el-radio-group v-model="task_item.devtask_source">
+                                                <el-radio-button label="自定义任务"></el-radio-button>
+                                                <el-radio-button label="产品规划任务"></el-radio-button>
+                                            </el-radio-group>
                                         </el-form-item>
                                         <!--参考图-->
                                         <el-form-item label="参考图:">
@@ -182,14 +189,21 @@
                                                        :data="postData"
                                                        :file-list="fileList2"
                                                        :show-file-list="false">
-                                                        <el-button size="small" type="primary" style="font-size:14px;">
+                                                        <el-button size="small"
+                                                                   type="primary"
+                                                                   style="font-size:14px;">
                                                             点击上传
                                                         </el-button>
                                                     </el-upload>
                                                 </el-col>
                                                 <el-col :span="8">
-                                                    <el-button size="small" type="primary" style="font-size:14px;"
-                                                               @click="dialogFormVisible = true" :disabled="uploadbtn2enable">查看款式参考
+                                                    <el-button
+                                                            size="small"
+                                                            type="primary"
+                                                            style="font-size:14px;"
+                                                            @click="dialogFormVisible = true"
+                                                            :disabled="uploadbtn2enable">
+                                                        查看参考图
                                                     </el-button>
                                                 </el-col>
                                             </el-row>
@@ -299,7 +313,7 @@
                     devtask_name: '',
                     devtask_builder: '',
                     devtask_builderid: '',
-                    devtask_source: '',
+                    devtask_source: '自定义任务',
                     devtask_referencephoto: '',
                     devtask_deadline: '',
                     devtask_designer: '',
@@ -450,7 +464,7 @@
             },
             handleRemove2(photourl) {
                 //alert(photourl.item);
-                var tpu = this.task_item.devtask_referencephoto.split('|');
+                                                                                    var tpu = this.task_item.devtask_referencephoto.split('|');
                 for (var t = 0; t <= tpu.length; t++) {
                     if (tpu[t] == photourl.item) {
                         tpu.splice(t,1);
