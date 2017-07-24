@@ -278,15 +278,10 @@
         height: 100px;
         display: block;
     }
-    .el-form-item__label{
-    color:rgba(255, 255, 255, 0.88);
-    }
-    /*用户状态*/
-    .el-radio-button__orig-radio:checked+.el-radio-button__inner {
-        color: #fff;
-         background-color: rgba(0, 179, 139, 0.98);
-        border-color:rgba(0, 179, 139, 0.98);
-        box-shadow: -1px 0 0 0 rgba(0, 179, 139, 0.98);
-    }
+    /*.el-form-item__label{*/
+    /*color:rgba(255, 255, 255, 0.88);*/
+    /*}*/
+
+
 </style>
 
