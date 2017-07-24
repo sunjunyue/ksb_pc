@@ -10,13 +10,13 @@
                         <!--头像-->
                         <el-form-item label="头像:">
                             <el-upload
-                                    class="avatar-uploader"
-                                    action="http://upload.qiniu.com/"
-                                    :show-file-list="false"
-                                    :on-success="handleAvatarSuccess"
-                                    :on-error="handleError"
-                                    :before-upload="beforeAvatarUpload"
-                                    :data="postData">
+                                class="avatar-uploader"
+                                action="http://upload.qiniu.com/"
+                                :show-file-list="false"
+                                :on-success="handleAvatarSuccess"
+                                :on-error="handleError"
+                                :before-upload="beforeAvatarUpload"
+                                :data="postData">
                                 <img v-if="imageUrl" :src="imageUrl" class="avatar">
                                 <i v-else class="fa fa-user-circle fa-5x avatar-uploader-icon" style="font-size:100px;"></i>
                                 <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -62,7 +62,6 @@
                         <el-form-item prop="remarks" label="备注说明:">
                             <el-input type="textarea" v-model="formAccount.remarks" :rows="8"></el-input>
                         </el-form-item>
-
                     </el-col>
                 </el-row>
                 <div class="wSub">
@@ -184,14 +183,12 @@
 </script>
 
 <style scoped lang="less">
-    /*@import '../../assets/css/behind_cont.less';*/
     @import '../../assets/css/ele_public.less';
 </style>
 
 <style scoped>
-    /*@import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';*/
     @import '../../assets/css/behind_cont.css';
-
+    /*头像*/
     .avatar-uploader .el-upload {
         border-radius: 100px;
         cursor: pointer;
@@ -218,11 +215,5 @@
         height: 100px;
         display: block;
     }
-    .el-form-item__label{
-        color:rgba(255, 255, 255, 0.88)!important;
-    }
-    /*.el-input__inner{*/
-        /*width:75%*/
-    /*}*/
 </style>
 
