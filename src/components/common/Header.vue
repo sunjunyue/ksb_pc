@@ -12,7 +12,12 @@
                     <el-menu-item index="1-1">个人信息</el-menu-item>
                     <el-menu-item index="1-2">修改密码</el-menu-item>
                 </el-submenu>
-                <el-menu-item index="2"><i class="fa fa-bell-o fa-lg"></i> &nbsp;消息</el-menu-item>
+                <el-menu-item index="2" @click="handlemessage('sysmessage')"><i class="fa fa-bell-o fa-lg"></i>
+                    <el-badge :value="2" class="item">
+                        消息
+                        <!--<div style="margin-top:-10px;">&nbsp;消息</div>-->
+                    </el-badge>
+                </el-menu-item>
                 <el-menu-item index="3" @click="handleCommand('loginout')">
                     退出
                 </el-menu-item>
@@ -47,11 +52,23 @@
             },
             handleSelect () {
                 
-            }
+            },
+            handlemessage(message){
+                if (message == 'sysmessage') {
+                    this.$router.push('sysmessage');
+                }
+            },
         }
     }
 </script>
 
 <style>
-
+    .el-badge__content.is-fixed {
+        top: 18px;
+        right: 3px;
+    }
+    /*.item {*/
+        /*margin-top: 10px;*/
+        /*margin-right: 40px;*/
+    /*}*/
 </style>
