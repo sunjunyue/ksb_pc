@@ -27,9 +27,9 @@
                     </el-carousel-item>
                 </el-carousel>
             </el-dialog>
-            <el-tabs type="border-card">
+            <el-tabs type="border-card" :value="tab_name">
                 <!-- 进行中的研发任务 -->
-                <el-tab-pane>
+                <el-tab-pane name="tab01">
                     <span slot="label">
                         <i class="fa fa-spinner"></i>
                         进行中的研发任务
@@ -62,7 +62,7 @@
                     <el-row :gutter="10">
                         <div v-if="tasking_items[0] != null">
                         <el-col :span="8">
-                            <img :src="tasking_items[0].taskphotourl" width="300" height="300">
+                            <img :src="tasking_items[0].taskphotourl" style="cursor: pointer;" width="300" height="300" @click="handleCommand('0')">
                             <p class="items_pro">
                                 <i>任务名称：</i>{{tasking_items[0].devtask_name}}
                             </p>
@@ -71,46 +71,46 @@
                             </p>
                             <p class="items_pro">
                                 <i>完成情况：</i>
-                                <el-progress :percentage="tasking_items[0].devtask_progress" :text-inside="true" :stroke-width="16"  style="width:300px;margin-top:10px;"></el-progress>
+                                <el-progress :percentage="tasking_items[0].devtask_progress" :stroke-width="8" style="width:300px;margin-top:10px;"></el-progress>
                             </p>
                             <el-button size="small" type="primary" style="font-size:14px;"
-                                       @click="handleCommand('taskdetail')">查看详情
+                                       @click="handleCommand('0')">查看详情
                             </el-button>
                         </el-col>
                         </div>
                         <el-col :span="8">
                             <div v-if="tasking_items[1] != null">
-                            <img :src="items.taskphotourl" width="300" height="300">
+                            <img :src="tasking_items[1].taskphotourl" style="cursor: pointer;"  width="300" height="300" @click="handleCommand('1')">
                             <p class="items_pro">
-                                任务名称：{{items.taskname}}
+                                <i>任务名称：</i>{{tasking_items[1].devtask_name}}
                             </p>
                             <p class="items_pro">
-                                截止时间：{{items.taskdeadline}}
+                                <i>截止时间：</i>{{tasking_items[1].devtask_deadline}}
                             </p>
                             <p class="items_pro">
-                                完成情况：
-                                <el-progress :percentage="100" status="success"></el-progress>
+                                <i>完成情况：</i>
+                                <el-progress :percentage="tasking_items[1].devtask_progress" :stroke-width="8" style="width:300px;margin-top:10px;"></el-progress>
                             </p>
                                 <el-button size="small" type="primary" style="font-size:14px;"
-                                           @click="handleCommand('taskdetail')">查看详情
+                                           @click="handleCommand('1')">查看详情
                                 </el-button>
                             </div>
                         </el-col>
                         <el-col :span="8">
-                            <div v-if="tasking_items[1] != null">
-                            <img :src="items.taskphotourl" width="300" height="300">
+                            <div v-if="tasking_items[2] != null">
+                            <img :src="tasking_items[2].taskphotourl" style="cursor: pointer;"  width="300" height="300" @click="handleCommand('2')">
                             <p class="items_pro">
-                                任务名称：{{items.taskname}}
+                                <i>任务名称：</i>{{tasking_items[2].devtask_name}}
                             </p>
                             <p class="items_pro">
-                                截止时间：{{items.taskdeadline}}
+                                <i>截止时间：</i>{{tasking_items[2].devtask_deadline}}
                             </p>
                             <p class="items_pro">
-                                完成情况：
-                                <el-progress :percentage="100"></el-progress>
+                                <i>完成情况：</i>
+                                <el-progress :percentage="tasking_items[2].devtask_progress" :stroke-width="8" style="width:300px;margin-top:10px;"></el-progress>
                             </p>
                             <el-button size="small" type="primary" style="font-size:14px;"
-                                       @click="handleCommand('taskdetail')">查看详情
+                                       @click="handleCommand('2')">查看详情
                             </el-button>
                             </div>
                         </el-col>
@@ -130,7 +130,7 @@
                     </span>
                 </el-tab-pane>
                 <!--新增研发任务-->
-                <el-tab-pane>
+                <el-tab-pane name="tab03">
                     <span slot="label">
                         <i class="fa fa-plus"></i> 新增研发任务
                     </span>
@@ -297,17 +297,16 @@
     export default {
         data() {
             return {
+                tab_name: 'tab01',
                 designeroptions: [],
                 cutteroptions: [],
                 patternmakeroptions: [],
                 yygoptions: [],
                 items: {},
-                tasking_items: [{
-                    taskphotourl: 'http://osyuuevsn.bkt.clouddn.com/Fmf3iyMUtsMKz9MAH5HWtvtZ5MM7',
-                    devtask_name: '测试任务',
-                    devtask_deadline: '2017-07-20',
-                    devtask_progress: '25',
-                }],
+                tasking_items: [],
+                cur_page: 1,
+                page_size: 3,
+                total: 0,
                 task_item: {
                     taskphotourl: '',
                     devtask_name: '',
@@ -349,9 +348,7 @@
                     resource: '',
                     desc: ''
                 },
-                cur_page: 1,
-                page_size: 5,
-                total: 0,
+
                 value1: '',
                 fileList: [],
                 postData: {
@@ -368,8 +365,34 @@
             this.getoptionsbyroleid(3);
             this.getoptionsbyroleid(4);
             this.getoptionsbyroleid(5);
+
+            this.gettasking_items();
         },
         methods: {
+            gettasking_items() {
+                const self = this;
+                this.$ajax({
+                    method: 'post',
+                    url: self.apiurl + 'devtask/getdevtasklist',
+                    params: {
+                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
+                    },
+                    data: {
+                        curr_page: self.cur_page,
+                        flag: 1,
+                    }
+                }).then(function (response) {
+                    if (response.data.flag == 'get_devtask_list_success') {
+                        self.tasking_items = response.data.data.devtask;
+                        for (var o in self.tasking_items) {
+                            self.tasking_items[o].devtask_deadline = self.tasking_items[o].devtask_deadline.substr(0,10);
+                        }
+                        self.total = response.data.data.devtask_count;
+                    }
+                }).catch(function (error) {
+
+                });
+            },
             getoptionsbyroleid (roleid) {
                 const self = this;
                 this.$ajax({
@@ -446,6 +469,7 @@
                             message: '新增任务成功',
                             type: 'success'
                         });
+                        self.tab_name = "tab01";
                     } else {
                         self.$message.error("新增任务失败");
                         console.log(response.data.flag + "||" + response.data.message);
@@ -456,7 +480,7 @@
             },
             handleCurrentChange(val){
                 this.cur_page = val;
-                this.getTableData1();
+                this.gettasking_items();
             },
             handleRemove1(file, fileList) {
                 this.task_item.taskphotourl = '';
@@ -464,7 +488,7 @@
             },
             handleRemove2(photourl) {
                 //alert(photourl.item);
-                                                                                    var tpu = this.task_item.devtask_referencephoto.split('|');
+                var tpu = this.task_item.devtask_referencephoto.split('|');
                 for (var t = 0; t <= tpu.length; t++) {
                     if (tpu[t] == photourl.item) {
                         tpu.splice(t,1);
@@ -590,10 +614,10 @@
                     }
                 }
             },
-            handleCommand(command){
-                if (command == 'taskdetail'){
-                    this.$router.push('taskdetail');
-                }
+            handleCommand(index){
+                const self = this;
+                localStorage.setItem('ksb_ctaskguid', this.tasking_items[index].guid);
+                self.$router.push('/taskdetail');
             },
         }
     };
@@ -658,7 +682,9 @@
         display: none;
         position: absolute;
     }
-
+    .el-progress__text{
+        color:#fff;
+    }
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 </style>

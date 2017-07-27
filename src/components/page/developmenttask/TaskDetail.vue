@@ -6,35 +6,32 @@
             <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
                 <!--任务管理-->
                 <el-tab-pane label="任务管理" name="first">
-                    <el-form :model="taskdetail" :rules="rules" ref="taskdetail"
+                    <el-form :model="tasking_item" ref="tasking_item"
                              label-width="100px">
                         <el-row>
                             <!--form left-->
                             <el-col :span="8">
                                 <!--封面图-->
                                 <el-form-item label="封面图:">
-                                    <img :src="tasking_items[0].taskphotourl" width="200" height="200" style="border-radius:4px;">
+                                    <img :src="tasking_item.taskphotourl" width="200" height="200" style="border-radius:4px;">
                                 </el-form-item>
                                 <!--二维码-->
                                 <el-form-item label="二维码:">
-                                    <img :src="taskdetailurl[0].code" width="200" height="200" style="border-radius:4px;">
+                                    <img :src="tasking_item.devtask_qrcodeurl" width="200" height="200" style="border-radius:4px;">
                                 </el-form-item>
                             </el-col>
                             <el-col :span="8" >
                                 <!--任务发起人-->
                                 <el-form-item label="发起人:">
-                                    <el-input v-model="taskdetail.devtask_builder"></el-input>
+                                    <el-input :disabled="true" v-model="tasking_item.devtask_builder"></el-input>
                                 </el-form-item>
                                 <!--任务名称-->
                                 <el-form-item label="任务名称:">
-                                    <el-input v-model="taskdetail.devtask_name"></el-input>
+                                    <el-input :disabled="true" v-model="tasking_item.devtask_name"></el-input>
                                 </el-form-item>
                                 <!--任务来源-->
                                 <el-form-item label="任务来源:">
-                                    <el-radio-group v-model="taskdetail.devtask_source">
-                                        <el-radio-button label="自定义任务"></el-radio-button>
-                                        <el-radio-button label="产品规划任务"></el-radio-button>
-                                    </el-radio-group>
+                                    <el-input :disabled="true" v-model="tasking_item.devtask_source"></el-input>
                                 </el-form-item>
                                 <!--参考图-->
                                 <el-form-item label="参考图:">
@@ -44,71 +41,38 @@
                                 </el-form-item>
                                 <!--截止时间-->
                                 <el-form-item label="截止时间:">
-                                    <el-input v-model="taskdetail.devtask_deadline"></el-input>
-
-                                    <!--<el-date-picker-->
-                                            <!--v-model="taskdetail.devtask_deadline"-->
-                                            <!--type="date"-->
-                                            <!--placeholder="选择日期"-->
-                                            <!--@change="dateChange"-->
-                                            <!--style="width:100%">-->
-                                    <!--</el-date-picker>-->
+                                    <el-input :disabled="true" v-model="tasking_item.devtask_deadline"></el-input>
                                 </el-form-item>
                                 <!--设计师-->
                                 <el-form-item label="设计师:">
-                                    <el-select v-model="taskdetail.devtask_designerid" placeholder="请选择" style="width:100%">
-                                        <el-option
-                                                v-for="item in designeroptions"
-                                                :key="item.value"
-                                                :label="item.label"
-                                                :value="item.value">
-                                        </el-option>
-                                    </el-select>
+                                    <el-input :disabled="true" v-model="tasking_item.devtask_designer"></el-input>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="8">
                                 <!--制版师-->
                                 <el-form-item label="制版师:">
-                                    <el-select v-model="taskdetail.devtask_patternmakerid" placeholder="请选择" style="width:100%">
-                                        <el-option
-                                                v-for="item in patternmakeroptions"
-                                                :key="item.value"
-                                                :label="item.label"
-                                                :value="item.value">
-                                        </el-option>
-                                    </el-select>
+                                    <el-input :disabled="true" v-model="tasking_item.devtask_patternmaker"></el-input>
                                 </el-form-item>
                                 <!--裁剪师-->
                                 <el-form-item label="裁剪师:">
-                                    <el-select v-model="taskdetail.devtask_cutterid" placeholder="请选择" style="width:100%">
-                                        <el-option
-                                                v-for="item in cutteroptions"
-                                                :key="item.value"
-                                                :label="item.label"
-                                                :value="item.value">
-                                        </el-option>
-                                    </el-select>
+                                    <el-input :disabled="true" v-model="tasking_item.devtask_cutter"></el-input>
                                 </el-form-item>
                                 <!--样衣工-->
                                 <el-form-item label="样衣工:">
-                                    <el-select v-model="taskdetail.devtask_yygid" placeholder="请选择" style="width:100%">
-                                        <el-option
-                                                v-for="item in yygoptions"
-                                                :key="item.value"
-                                                :label="item.label"
-                                                :value="item.value">
-                                        </el-option>
-                                    </el-select>
+                                    <el-input :disabled="true" v-model="tasking_item.devtask_yyg"></el-input>
                                 </el-form-item>
                                 <!--具体要求-->
                                 <el-form-item label="具体要求：">
-                                    <el-input type="textarea"
-                                              v-model="taskdetail.devtask_text"
+                                    <el-input :disabled="true" type="textarea"
+                                              v-model="tasking_item.devtask_text"
                                               :rows="7">
                                     </el-input>
                                 </el-form-item>
                             </el-col>
                         </el-row>
+                        <el-form-item>
+                            <el-button type="primary" @click="returnv()">返回</el-button>
+                        </el-form-item>
                     </el-form>
                 </el-tab-pane>
                 <!--任务进度-->
@@ -134,33 +98,64 @@
         data(){
             return{
                 activeName2: 'first',
-                taskdetail:{
+                tasking_item:{
+                    guid: '',
+                    taskphotourl: '',
+                    devtask_qrcodeurl: '',
                     devtask_builder:'',
                     devtask_name:'',
-                    devtask_source:'自定义任务',
+                    devtask_source:'',
                     devtask_deadline:'',
-                    devtask_designerid:'',
-                    devtask_patternmakerid:'',
-                    devtask_cutterid:'',
-                    devtask_yygid:'',
+                    devtask_designer:'',
+                    devtask_patternmaker:'',
+                    devtask_cutter:'',
+                    devtask_yyg:'',
                     devtask_text:''
                 },
-                taskdetailurl: [{
-                    code: 'http://192.168.31.71/ksbapi2/public/qrcodes/4f43e97f-ea7e-46f2-8aa8-0116dde1c069.png',
-                }],
-                radio: '1',
-                tasking_items: [{
-                    taskphotourl: 'http://osyuuevsn.bkt.clouddn.com/Fmf3iyMUtsMKz9MAH5HWtvtZ5MM7',
-                    devtask_name: '测试任务',
-                    devtask_deadline: '2017-07-20',
-                    devtask_progress: '25',
-                }],
             }
         },
+        mounted: function () {
+            //alert("DDDDD:"+this.$route.params.guid);
+            this.tasking_item.guid = localStorage.getItem('ksb_ctaskguid');
+            this.gettasking_item();
+        },
         methods:{
+            returnv() {
+               this.$router.push('/taskcenter');
+            },
             handleClick(tab, event) {
                 console.log(tab, event);
-            }
+            },
+            gettasking_item() {
+                const self = this;
+                this.$ajax({
+                    method: 'post',
+                    url: this.apiurl + 'devtask/getdevtaskbyguid',
+                    params: {
+                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
+                    },
+                    data: {
+                        guid: self.tasking_item.guid,
+                    }
+                }).then(function (response) {
+                    if(response.data.flag == "get_devtask_by_guid_success") {
+                        self.tasking_item.taskphotourl = response.data.data.devtask.taskphotourl
+                            self.tasking_item.devtask_qrcodeurl = response.data.data.devtask.devtask_qrcodeurl,
+                            self.tasking_item.devtask_builder = response.data.data.devtask.devtask_builder,
+                            self.tasking_item.devtask_name = response.data.data.devtask.devtask_name,
+                            self.tasking_item.devtask_source = response.data.data.devtask.devtask_source,
+                            self.tasking_item.devtask_deadline = response.data.data.devtask.devtask_deadline,
+                            self.tasking_item.devtask_designer = response.data.data.devtask.devtask_designer,
+                            self.tasking_item.devtask_patternmaker = response.data.data.devtask.devtask_patternmaker,
+                            self.tasking_item.devtask_cutter = response.data.data.devtask.devtask_cutter,
+                            self.tasking_item.devtask_yyg = response.data.data.devtask.devtask_yyg,
+                            self.tasking_item.devtask_text = response.data.data.devtask.devtask_text
+                    }
+                }).catch(function (error) {
+                    alert(error);
+
+                })
+            },
         }
     }
 </script>

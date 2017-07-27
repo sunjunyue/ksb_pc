@@ -17,7 +17,7 @@
                     </el-menu-item>
                 </el-submenu>
                 <el-menu-item index="2" @click="handlemessage('sysmessage')"><i class="fa fa-bell-o fa-lg"></i>
-                    <el-badge :value="2" class="item">
+                    <el-badge :value="sysmessagecount" class="item">
                         消息
                     </el-badge>
                 </el-menu-item>
@@ -36,6 +36,7 @@
             return {
                 name: '系统管理员',
                 activeIndex2: '',
+                sysmessagecount: 0,
             }
         },
         computed: {
@@ -44,7 +45,35 @@
                 return username.accountname ? username.accountname : this.name;
             }
         },
+        mounted: function () {
+            this.getsysmessagecount();
+            this.gsysmessagecount();
+        },
         methods: {
+            gsysmessagecount() {
+              setInterval(() => {
+                  this.getsysmessagecount();
+              }, 60000)
+            },
+            getsysmessagecount () {
+                const self = this;
+                this.$ajax({
+                    method: 'post',
+                    url: self.apiurl + 'sm/getsncountbyuid',
+                    params: {
+                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
+                    },
+                    data: {
+                        uid: JSON.parse(localStorage.getItem('ksb_user')).data.id,
+                    }
+                }).then(function (response) {
+                    if (response.data.flag == 'get_sncount_by_uid_success') {
+                        self.sysmessagecount = response.data.data.smcount;
+                    }
+                }).catch(function (error) {
+
+                });
+            },
             handleCommand(command) {
                 const self = this;
                 if (command == 'loginout') {
