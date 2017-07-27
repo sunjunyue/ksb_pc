@@ -9,13 +9,16 @@
                      style="margin-right:20px;">
                 <el-submenu index="1">
                     <template slot="title"><i class="fa fa-user-o fa-lg"></i> &nbsp;{{username}}</template>
-                    <el-menu-item index="1-1">个人信息</el-menu-item>
-                    <el-menu-item index="1-2">修改密码</el-menu-item>
+                    <el-menu-item index="1-1" @click="handlepersonal('personal')">
+                        个人信息
+                    </el-menu-item>
+                    <el-menu-item index="1-2" @click="handlepassword('password')">
+                        修改密码
+                    </el-menu-item>
                 </el-submenu>
                 <el-menu-item index="2" @click="handlemessage('sysmessage')"><i class="fa fa-bell-o fa-lg"></i>
                     <el-badge :value="2" class="item">
                         消息
-                        <!--<div style="margin-top:-10px;">&nbsp;消息</div>-->
                     </el-badge>
                 </el-menu-item>
                 <el-menu-item index="3" @click="handleCommand('loginout')">
@@ -58,6 +61,16 @@
                     this.$router.push('sysmessage');
                 }
             },
+            handlepersonal(personal){
+                if (personal == 'personal') {
+                    this.$router.push('personal');
+                }
+            },
+            handlepassword(password){
+                if (password == 'password') {
+                    this.$router.push('password');
+                }
+            },
         }
     }
 </script>
@@ -67,8 +80,4 @@
         top: 18px;
         right: 3px;
     }
-    /*.item {*/
-        /*margin-top: 10px;*/
-        /*margin-right: 40px;*/
-    /*}*/
 </style>
