@@ -106,6 +106,11 @@ const RouterConfigs = {
                 components: {
                     default: require('./components/page/developmenttask/TaskDetail.vue'),
                 }
+            },{
+                path: '/styledraft',
+                components: {
+                    default: require('./components/page/developmenttask/styleDraft.vue'),
+                }
             }],
         },
         {
