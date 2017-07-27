@@ -16,7 +16,7 @@
             <el-table
                     v-loading="loading"
                     element-loading-text="拼命加载中..."
-                    :data="tableData33"
+                    :data="tableData"
                     style="width: 100%;margin-top:30px;">
                 <!--系统信息id-->
                 <el-table-column
@@ -41,13 +41,79 @@
                         prop="sm_status"
                         label="系统信息状态">
                 </el-table-column>
+                <!--操作-->
+                <el-table-column label="操作" width="180">
+                    <template scope="scope">
+                        <el-button type="primary" icon="edit" size="small" v-show="scope.row.sm_status == 2"></el-button>
+                    </template>
+                </el-table-column>
             </el-table>
+            <!--page-->
+            <el-pagination
+                    @current-change ="handleCurrentChange"
+                    layout="prev, pager, next"
+                    :pageSize="page_size"
+                    :total="total">
+            </el-pagination>
         </div>
     </div>
 </template>
 
 <script>
+    export default {
+        data() {
+            return {
+                tableData: [],
+                cur_page: 1,
+                page_size: 10,
+                total: 0,
+                loading: false,
+                flag: 3,
+                input2: '',
+            }
+        },
+        mounted: function(){
+            this.gettabledata();
+        },
+        methods: {
+            handleIconClick () {
 
+            },
+            gettabledata () {
+                const self = this;
+                self.loading = true;
+                this.$ajax({
+                    method: 'post',
+                    url: this.apiurl + 'sm/getsmcountlist',
+                    params: {
+                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
+                    },
+                    data: {
+                        curr_page: self.cur_page,
+                        page_size: self.page_size,
+                        flag: self.flag,
+                        uid: JSON.parse(localStorage.getItem('ksb_user')).data.id
+                    }
+                }).then(function (response) {
+                    if(response.data.flag == 'get_smcount_list_success') {
+                        self.tableData = response.data.data.sms;
+                        for (var o in self.tableData) {
+                            if (self.tableData[o].sm_status == '1') {
+                                self.tableData[o].sm_status = '未读';
+                            } else {
+                                self.tableData[o].sm_status = '已读';
+                            }
+                        }
+                        self.total = response.data.data.sms_count;
+                    }
+                    self.loading = false;
+                }).catch(function (error) {
+                    alert(error);
+                    self.loading = false;
+                })
+            },
+        },
+    };
 </script>
 
 <style>
