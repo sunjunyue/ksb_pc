@@ -116,6 +116,16 @@ const RouterConfigs = {
                 components: {
                     default: require('./components/page/SysMessage.vue'),
                 }
+            },{
+                path: '/personal',
+                components: {
+                    default: require('./components/page/Personal.vue'),
+                }
+            },{
+                path: '/password',
+                components: {
+                    default: require('./components/page/Password.vue'),
+                }
             }],
         },
         {
