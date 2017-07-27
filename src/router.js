@@ -111,6 +111,11 @@ const RouterConfigs = {
                 components: {
                     default: require('./components/page/developmenttask/styleDraft.vue'),
                 }
+            },{
+                path: '/sysmessage',
+                components: {
+                    default: require('./components/page/SysMessage.vue'),
+                }
             }],
         },
         {
