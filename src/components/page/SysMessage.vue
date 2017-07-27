@@ -4,11 +4,8 @@
             <el-row>
                 <el-col :span="8">
                     <!--搜索-->
-                    <el-input
-                            placeholder="消息管理"
-                            icon="search"
-                            v-model="input2"
-                            :on-icon-click="handleIconClick">
+                    <el-input placeholder="请输入内容" v-model="input2">
+                        <el-button slot="append" icon="search"></el-button>
                     </el-input>
                 </el-col>
             </el-row>
