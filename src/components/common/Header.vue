@@ -59,7 +59,7 @@
                 const self = this;
                 this.$ajax({
                     method: 'post',
-                    url: self.apiurl + 'sm/getsncountbyuid',
+                    url: self.apiurl + 'sm/getsmcountbyuid',
                     params: {
                         token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                     },

@@ -113,7 +113,33 @@
                 }
             };
         },
+        mounted: function () {
+            this.getformaccount();
+        },
         methods: {
+            getformaccount () {
+                const self = this;
+                this.$ajax({
+                    method: 'post',
+                    url: this.apiurl + 'user/getuserbyid',
+                    params: {
+                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
+                    },
+                    data: {
+                        user_id: JSON.parse(localStorage.getItem('ksb_user')).data.id
+                    }
+                }).then(function (response) {
+                    //alert(response.data.flag);
+                    if (response.data.flag == "get_users_by_id_success") {
+                        self.imageUrl = response.data.data.user.photourl;
+                        self.formAccount.accountname = response.data.data.user.accountname;
+                    } else {
+                        self.$message.error("获取用户信息失败：" + response.data.data.error_message);
+                    }
+                }).catch(function (error) {
+                    self.$message.error("获取用户信息失败：" + error);
+                })
+            },
             handleAvatarSuccess(res, file) {
                 //alert(res.key);
                 this.imageUrl ='http://osyuuevsn.bkt.clouddn.com/'+ res.key
