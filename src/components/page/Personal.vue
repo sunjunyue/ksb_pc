@@ -213,7 +213,7 @@
 
             },
             resetForm(formAccount) {
-                this.$refs[formAccount].resetFields();
+                this.getformaccount();
             }
         }
     }
