@@ -40,8 +40,9 @@
                             <el-date-picker
                                     v-model="formAccount.birthday"
                                     type="date"
-                                    format="yyyy年MM月dd日"
-                                    placeholder="选择日期">
+                                    format="yyyy-MM-dd"
+                                    placeholder="选择日期"
+                                    @change="dateChange">
                             </el-date-picker>
                         </el-form-item>
                     </el-col>
@@ -66,7 +67,7 @@
                 </el-row>
                 <div class="wSub">
                     <el-form-item>
-                        <el-button type="primary" @click="submitForm('formAccount')">立即创建</el-button>
+                        <el-button type="primary" @click="submitForm('formAccount')">更新</el-button>
                         <el-button @click="resetForm('formAccount')">重置</el-button>
                     </el-form-item>
                 </div>
@@ -117,6 +118,9 @@
             this.getformaccount();
         },
         methods: {
+            dateChange (val) {
+                this.formAccount.birthday = val;
+            },
             getformaccount () {
                 const self = this;
                 this.$ajax({
@@ -129,16 +133,17 @@
                         user_id: JSON.parse(localStorage.getItem('ksb_user')).data.id
                     }
                 }).then(function (response) {
-                    //alert(response.data.flag);
                     if (response.data.flag == "get_users_by_id_success") {
                         self.imageUrl = response.data.data.user.photourl;
                         self.formAccount.accountname = response.data.data.user.accountname;
                         self.formAccount.name = response.data.data.user.name;
-                        self.formAccount.sex = response.data.data.user.sex;
+                        self.formAccount.birthday = response.data.data.user.birthday;
+                        self.formAccount.sex = parseInt(response.data.data.user.sex);
                         self.formAccount.mobile = response.data.data.user.mobile;
                         self.formAccount.email = response.data.data.user.email;
                         self.formAccount.wechart = response.data.data.user.wechart;
                         self.formAccount.remarks = response.data.data.user.remarks;
+                        //alert(self.formAccount.birthday);
                     } else {
                         self.$message.error("获取用户信息失败：" + response.data.data.error_message);
                     }
@@ -170,44 +175,43 @@
                 return true;
             },
             submitForm(formName) {
+                //alert(this.formAccount.birthday);
                 const self = this;
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
+
+
                         this.$ajax({
                             method: 'post',
-                            url: this.apiurl + 'user/mregister',
+                            url: this.apiurl + 'user/modifyuserbyid',
                             params: {
                                 token: JSON.parse(localStorage.getItem('ksb_user')).data.token
                             },
                             data: {
-                                accountname: this.formAccount.accountname,
-                                name: this.formAccount.name,
-                                sex: this.formAccount.sex,
-                                birthday: this.formAccount.birthday,
-                                mobile: this.formAccount.mobile,
-                                email: this.formAccount.email,
-                                wechart: this.formAccount.wechart,
-                                remarks: this.formAccount.remarks,
-                                photourl: this.imageUrl,
+                                user_id: JSON.parse(localStorage.getItem('ksb_user')).data.id,
+                                accountname: self.formAccount.accountname,
+                                name: self.formAccount.name,
+                                sex: self.formAccount.sex,
+                                birthday: self.formAccount.birthday,
+                                mobile: self.formAccount.mobile,
+                                email: self.formAccount.email,
+                                wechart: self.formAccount.wechart,
+                                remarks: self.formAccount.remarks,
                             }
                         }).then(function (response) {
                             //alert(response.data.flag);
-                            if (response.data.flag == "m_register_success") {
+                            if (response.data.flag == "modify_user_success") {
                                 self.$message({
-                                    message: '新增用户成功！',
+                                    message: '用户信息更新成功',
                                     type: 'success'
                                 });
-                                self.$router.push('/usersmanage');
+                                //self.$router.push('/usersmanage');
                             } else {
-                                self.$message.error("新增用户失败");
+                                self.$message.error("用户信息更新失败2" + response.data.flag);
                             }
                         }).catch(function (error) {
-                            self.$message.error("新增用户失败" + error);
+                            self.$message.error("用户信息更新失败：" + error);
                         })
-                    } else {
-                        return false;
-                    }
-                });
+
+
             },
 
         }

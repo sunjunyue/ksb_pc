@@ -12,10 +12,10 @@
                     element-loading-text="拼命加载中..."
                     :data="tableData"
                     style="width: 100%">
-                <!--工号-->
+                <!--姓名-->
                 <el-table-column
-                        prop="id"
-                        label="工号"
+                        prop="name"
+                        label="姓名"
                         min-width="50">
                 </el-table-column>
                 <!--账户名-->
