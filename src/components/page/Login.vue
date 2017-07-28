@@ -38,7 +38,7 @@
                 labelPosition: 'right',
                 loginForm: {
                     account: 'bll@163.com',
-                    password: 'ksb123456',
+                    password: '123456s',
                 },
                 rules: {
                     account: [{
