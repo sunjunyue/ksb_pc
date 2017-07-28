@@ -37,8 +37,8 @@
                                 </el-form-item>
                                 <!--性别-->
                                 <el-form-item prop="sex" label="性别:" required>
-                                    <el-radio class="radio" v-model="formAccount.sex" :label="1">女士</el-radio>
-                                    <el-radio class="radio" v-model="formAccount.sex" :label="2">男士</el-radio>
+                                    <el-radio class="radio" v-model="formAccount.sex" :label="1">男士</el-radio>
+                                    <el-radio class="radio" v-model="formAccount.sex" :label="2">女士</el-radio>
                                     <el-radio class="radio" v-model="formAccount.sex" :label="3">保密</el-radio>
                                 </el-form-item>
                                 <!--出生日期-->
