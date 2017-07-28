@@ -133,6 +133,12 @@
                     if (response.data.flag == "get_users_by_id_success") {
                         self.imageUrl = response.data.data.user.photourl;
                         self.formAccount.accountname = response.data.data.user.accountname;
+                        self.formAccount.name = response.data.data.user.name;
+                        self.formAccount.sex = response.data.data.user.sex;
+                        self.formAccount.mobile = response.data.data.user.mobile;
+                        self.formAccount.email = response.data.data.user.email;
+                        self.formAccount.wechart = response.data.data.user.wechart;
+                        self.formAccount.remarks = response.data.data.user.remarks;
                     } else {
                         self.$message.error("获取用户信息失败：" + response.data.data.error_message);
                     }
