@@ -6,11 +6,11 @@
             <el-row>
                 <el-col :span="12">
                     <el-form :model="form" :rules="rules2" ref="form" label-width="100px" class="demo-ruleForm">
-                        <el-form-item label="原密码" prop="pw">
-                            <el-input type="password" v-model="form.pw" auto-complete="off"></el-input>
+                        <el-form-item label="原密码" prop="old_password">
+                            <el-input type="password" v-model="form.old_password" auto-complete="off"></el-input>
                         </el-form-item>
-                        <el-form-item label="新密码" prop="pass" required>
-                            <el-input type="password" v-model="form.pass" auto-complete="off"></el-input>
+                        <el-form-item label="新密码" prop="new_password" required>
+                            <el-input type="password" v-model="form.new_password" auto-complete="off"></el-input>
                         </el-form-item>
                         <el-form-item label="确认密码" prop="checkPass" required>
                             <el-input type="password" v-model="form.checkPass" auto-complete="off"></el-input>
@@ -44,7 +44,7 @@
             var validatePass2 = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('请再次输入密码'));
-                } else if (value !== this.form.pass) {
+                } else if (value !== this.form.new_password) {
                     callback(new Error('两次输入密码不一致!'));
                 } else {
                     callback();
@@ -52,37 +52,57 @@
             };
             return {
                 form: {
-                    pw:'',
-                    pass: '',
+                    old_password:'',
+                    new_password: '',
                     checkPass: '',
                 },
                 rules2: {
-                    pass: [
+                    new_password: [
                         { validator: validatePass, trigger: 'blur' }
                     ],
                     checkPass: [
                         { validator: validatePass2, trigger: 'blur' }
                     ],
-                    pw: [
+                    old_password: [
                         { required: true, message: '请填写原密码', trigger: 'blur' }
                     ]
                 }
             };
         },
         methods: {
-            submitForm(formName) {
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        alert('submit!');
-                    } else {
-                        console.log('error submit!!');
-                        return false;
+              submitForm(formName) {
+                //alert(this.formAccount.birthday);
+                const self = this;
+                this.$ajax({
+                    method: 'post',
+                    url: this.apiurl + 'user/modifyuserpassword',
+                    params: {
+                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
+                    },
+                    data: {
+                        user_id: JSON.parse(localStorage.getItem('ksb_user')).data.id,
+                        old_password: self.form.old_password,
+                        new_password: self.form.new_password,
+                        checkPass: self.form.checkPass,
                     }
-                });
+                }).then(function (response) {
+                    //alert(response.data.flag);
+                    if (response.data.flag == "modify_user_password_success") {
+                        self.$message({
+                            message: '用户信息更新成功',
+                            type: 'success'
+                        });
+                        //self.$router.push('/usersmanage');
+                    } else {
+                        self.$message.error("用户信息更新失败2" + response.data.flag);
+                    }
+                }).catch(function (error) {
+                    self.$message.error("用户信息更新失败：" + error);
+                })
             },
-            resetForm(formName) {
-                this.$refs[formName].resetFields();
-            }
+              resetForm(form) {
+                this.$refs[form].resetFields();
+              }
         }
     }
 </script>

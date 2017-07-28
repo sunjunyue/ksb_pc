@@ -100,7 +100,8 @@
                                 <div class="wSub">
                                     <el-form-item>
                                         <el-button type="primary" @click="submitformdata2">保存</el-button>
-                                        <el-button>取消</el-button>
+                                        <el-button @click="resetForm('ruleForm2')">重置</el-button>
+                                        <!--<el-button>取消</el-button>-->
                                     </el-form-item>
                                 </div>
                             </el-form>
@@ -236,9 +237,11 @@
                 }).catch(function (error) {
                     console.log(error);
                 })
+            },
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
             }
         },
-
         data() {
             return {
                 labelPosition: 'right',

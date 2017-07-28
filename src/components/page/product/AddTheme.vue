@@ -173,8 +173,8 @@
                 </el-row>
                 <div class="wSub">
                     <el-form-item>
-                        <el-button type="primary" @click="onSubmit('theme_edit')">保存</el-button>
-                        <el-button>取消</el-button>
+                        <el-button type="primary" @click="submitForm('theme_edit')">保存</el-button>
+                        <el-button @click="resetForm('theme_edit')">重置</el-button>
                     </el-form-item>
                 </div>
             </el-form>
@@ -223,7 +223,7 @@
             }
         },
         methods: {
-            onSubmit() {
+            submitForm() {
                 const self = this;
                 this.$ajax({
                     method: 'post',
@@ -485,9 +485,10 @@
                     }
                 }
             },
+            resetForm(theme_edit) {
+                this.$refs[theme_edit].resetFields();
+            }
         },
-
-
     }
 </script>
 

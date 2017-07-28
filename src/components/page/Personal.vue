@@ -58,7 +58,7 @@
                         </el-form-item>
                         <!--微信-->
                         <el-form-item prop="wechart" label="微信:">
-                            <el-input v-model="formAccount.wechart"></el-input>
+                            <el-input v-model="formAccount.wechart" :disabled="true"></el-input>
                         </el-form-item>
                         <!--备注说明-->
                         <el-form-item prop="remarks" label="备注说明:">

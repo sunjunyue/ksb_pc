@@ -13,8 +13,14 @@
             <el-table
                     v-loading="loading"
                     element-loading-text="拼命加载中..."
+                    ref="multipleTable"
                     :data="tableData"
                     style="width: 100%;margin-top:30px;">
+                    <!--v-loading="loading"-->
+                    <!--element-loading-text="拼命加载中..."-->
+                    <!--ref="multipleTable"-->
+                    <!--:data="tableData"-->
+                    <!--style="width: 100%;margin-top:30px;">-->
                 <!--系统信息id-->
                 <el-table-column
                         prop="sm_id"
@@ -113,6 +119,14 @@
     };
 </script>
 
+<style scoped lang="less">
+    @import '../../assets/css/ele_public.less';
+</style>
 <style>
-
+    .line{
+        text-align:center;
+        line-height:30px;
+    }
+    @import '../../assets/css/behind_cont.css';
+    @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 </style>

@@ -2,6 +2,7 @@
     <div class="win fr" id="win">
         <div class="wm">
             <p class="wTit">| 添加波段</p>
+            <!--选择商品主题-->
             <el-dialog title="选择商品主题" :visible.sync="dialogForm">
                 <el-form :label-position="form" :model="form" label-width="140px">
                     <el-cascader
@@ -51,6 +52,7 @@
                     </el-table>
                 </el-form>
             </el-dialog>
+            <!--form-->
             <el-form :label-position="form" :model="form" label-width="140px">
                 <el-row>
                     <el-col :span="12">
@@ -83,13 +85,23 @@
                         <el-form-item label="波段日期：" required>
                             <el-col :span="12">
                                 <el-form-item prop="date1">
-                                    <el-date-picker type="date" placeholder="开始时间" v-model="form.date1" style="width: 100%;"></el-date-picker>
+                                    <el-date-picker
+                                            type="date"
+                                            placeholder="开始时间"
+                                            v-model="form.date"
+                                            style="width: 100%;">
+                                    </el-date-picker>
                                 </el-form-item>
                             </el-col>
                             <el-col class="line" :span="1" > - </el-col>
                             <el-col :span="11">
                                 <el-form-item prop="date2">
-                                    <el-date-picker type="date" placeholder="结束时间" v-model="form.date2" style="width: 100%;"></el-date-picker>
+                                    <el-date-picker
+                                            type="date"
+                                            placeholder="结束时间"
+                                            v-model="form.date1"
+                                            style="width: 100%;">
+                                    </el-date-picker>
                                 </el-form-item>
                             </el-col>
                         </el-form-item>
@@ -98,15 +110,16 @@
                         <!--设计完成日期-->
                         <el-form-item label="设计完成日期:" required>
                             <el-date-picker
-                                    v-model="value1"
+                                    v-model="value2"
                                     type="date"
                                     placeholder="选择日期"
                                     :picker-options="pickerOptions0">
                             </el-date-picker>
                         </el-form-item>
+                        <!--内审会-->
                         <el-form-item label="内审会:" required>
                             <el-date-picker
-                                    v-model="value1"
+                                    v-model="value3"
                                     type="date"
                                     placeholder="选择日期"
                                     :picker-options="pickerOptions0">
@@ -115,7 +128,7 @@
                         <!--纸样完成日期-->
                         <el-form-item label="纸样完成日期:" required>
                             <el-date-picker
-                                    v-model="value1"
+                                    v-model="value4"
                                     type="date"
                                     placeholder="选择日期"
                                     :picker-options="pickerOptions0">
@@ -125,20 +138,30 @@
                         <el-form-item label="期货：" required>
                             <el-col :span="12">
                                 <el-form-item prop="date1">
-                                    <el-date-picker type="date" placeholder="开始时间" v-model="form.date1" style="width: 100%;"></el-date-picker>
+                                    <el-date-picker
+                                            type="date"
+                                            placeholder="开始时间"
+                                            v-model="form.date3"
+                                            style="width: 100%;">
+                                    </el-date-picker>
                                 </el-form-item>
                             </el-col>
                             <el-col class="line" :span="1" > -</el-col>
                             <el-col :span="11">
                                 <el-form-item prop="date2">
-                                    <el-date-picker type="date" placeholder="结束时间" v-model="form.date2" style="width: 100%;"></el-date-picker>
+                                    <el-date-picker
+                                            type="date"
+                                            placeholder="结束时间"
+                                            v-model="form.date4"
+                                            style="width: 100%;">
+                                    </el-date-picker>
                                 </el-form-item>
                             </el-col>
                         </el-form-item>
                         <!--上货日-->
                         <el-form-item label="上货日:" required>
                             <el-date-picker
-                                    v-model="value1"
+                                    v-model="value5"
                                     type="date"
                                     placeholder="选择日期"
                                     :picker-options="pickerOptions0">
@@ -146,10 +169,10 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
-                <div class="wSub" style="margin-top:0;">
+                <div class="wSub">
                     <el-form-item>
-                        <el-button type="primary" @click="onSubmit()" >保存</el-button>
-                        <el-button>取消</el-button>
+                        <el-button type="primary" @click="submitForm('form')" >保存</el-button>
+                        <el-button @click="resetForm('form')">重置</el-button>
                     </el-form-item>
                 </div>
             </el-form>
@@ -164,12 +187,19 @@
                     name: '',
                     region: '',
                     type: '',
+                    date:'',
                     date1: '',
                     date2: '',
+                    date3:'',
+                    date4:'',
                 },
                 color1: '#E3a0ff',
                 color2: '#ccc',
                 value1:'',
+                value2:'',
+                value3:'',
+                value4:'',
+                value5:'',
                 dialogForm:false,
                 loading: false,
                 tableData1: [],
@@ -182,10 +212,12 @@
         },
         methods:{
             theme_edit(){
-
             },
-            onSubmit(){
+            submitForm(){
             },
+            resetForm(form) {
+                this.$refs[form].resetFields();
+            }
         },
 
     }

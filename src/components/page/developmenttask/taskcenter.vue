@@ -276,7 +276,8 @@
                                 </el-row>
                                 <el-form-item>
                                     <el-button type="primary" @click="submitItems()">立即创建</el-button>
-                                    <el-button @click="resetForm('formAccount')">重置</el-button>
+                                    <!--<el-button @click="resetForm('formAccount')">重置</el-button>-->
+                                    <el-button @click="resetForm('ruleForm2')">重置</el-button>
                                 </el-form-item>
                             </el-form>
                         </el-col>
@@ -619,6 +620,9 @@
                 localStorage.setItem('ksb_ctaskguid', this.tasking_items[index].guid);
                 self.$router.push('/taskdetail');
             },
+            resetForm(formAccount) {
+                this.$refs[formAccount].resetFields();
+            }
         }
     };
 </script>

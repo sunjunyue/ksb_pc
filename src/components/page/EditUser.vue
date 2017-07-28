@@ -63,7 +63,7 @@
                                 </el-form-item>
                                 <!--微信-->
                                 <el-form-item prop="wechart" label="微信:">
-                                    <el-input v-model="formAccount.wechart"></el-input>
+                                    <el-input v-model="formAccount.wechart" :disabled="true"></el-input>
                                 </el-form-item>
                                 <!--备注说明-->
                                 <el-form-item prop="remarks" label="备注说明:">
@@ -200,48 +200,44 @@
                 }
 
             },
-            submitForm(formName) {
+            submitForm(formAccount) {
                 //alert(this.formAccount.name);
                 const self = this;
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        this.$ajax({
-                            method: 'post',
-                            url: this.apiurl + 'user/modifyuserbyid',
-                            params: {
-                                token: JSON.parse(localStorage.getItem('ksb_user')).data.token
-                            },
-                            data: {
-                                user_id: this.formAccount.id,
-                                accountname: this.formAccount.accountname,
-                                name: this.formAccount.name,
-                                sex: this.formAccount.sex,
-                                birthday: this.formAccount.birthday,
-                                mobile: this.formAccount.mobile,
-                                email: this.formAccount.email,
-                                wechart: this.formAccount.wechart,
-                                remarks: this.formAccount.remarks,
-                            }
-                        }).then(function (response) {
-                            //alert(response.data.flag);
-                            if (response.data.flag == "modify_user_success") {
-                                self.$message({
-                                    message: '用户信息更新成功',
-                                    type: 'success'
-                                });
-                                self.$router.push('/usersmanage');
-                            } else {
-                                self.$message.error("用户信息更新失败" + response.data.data.error_message);
-                            }
-                        }).catch(function (error) {
-                            self.$message.error("用户信息更新失败：" + error);
-                        })
-                    } else {
-                        return false;
+                this.$ajax({
+                    method: 'post',
+                    url: this.apiurl + 'user/modifyuserbyid',
+                    params: {
+                        token: JSON.parse(localStorage.getItem('ksb_user')).data.token
+                    },
+                    data: {
+                        user_id: this.formAccount.id,
+                        accountname: this.formAccount.accountname,
+                        name: this.formAccount.name,
+                        sex: this.formAccount.sex,
+                        birthday: this.formAccount.birthday,
+                        mobile: this.formAccount.mobile,
+                        email: this.formAccount.email,
+                        wechart: this.formAccount.wechart,
+                        remarks: this.formAccount.remarks,
                     }
-                });
+                }).then(function (response) {
+                    //alert(response.data.flag);
+                    if (response.data.flag == "modify_user_success") {
+                        self.$message({
+                            message: '用户信息更新成功',
+                            type: 'success'
+                        });
+                        self.$router.push('/usersmanage');
+                    } else {
+                        self.$message.error("用户信息更新失败" + response.data.data.error_message);
+                    }
+                }).catch(function (error) {
+                    self.$message.error("用户信息更新失败：" + error);
+                })
             },
-
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
+            }
         }
     }
 </script>
