@@ -75,7 +75,7 @@
                         <div class="wSub">
                             <el-form-item>
                                 <el-button type="primary" @click="submitForm('formAccount')">提交更新</el-button>
-                                <el-button @click="resetForm('formAccount')">重置</el-button>
+                                <el-button @click="resetForm()">重置</el-button>
                             </el-form-item>
                         </div>
                     </el-form>
@@ -236,7 +236,7 @@
                 })
             },
             resetForm(formName) {
-                this.$refs[formName].resetFields();
+                this.getData();
             }
         }
     }
