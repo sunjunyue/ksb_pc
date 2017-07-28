@@ -2,6 +2,7 @@
     <!--主题区域-->
     <div class="win fr" id="win">
         <div class="wm">
+            <div class="wTit">| 个人信息</div>
             <!--用户添加-->
             <el-form :model="formAccount" :rules="rules" ref="formAccount"
                      label-width="100px">
@@ -31,8 +32,8 @@
                         </el-form-item>
                         <!--性别-->
                         <el-form-item prop="sex" label="性别:" required>
-                            <el-radio class="radio" v-model="formAccount.sex" :label="1">女士</el-radio>
-                            <el-radio class="radio" v-model="formAccount.sex" :label="2">男士</el-radio>
+                            <el-radio class="radio" v-model="formAccount.sex" :label="1">男士</el-radio>
+                            <el-radio class="radio" v-model="formAccount.sex" :label="2">女士</el-radio>
                             <el-radio class="radio" v-model="formAccount.sex" :label="3">保密</el-radio>
                         </el-form-item>
                         <!--出生日期-->
@@ -174,11 +175,9 @@
                 }
                 return true;
             },
-            submitForm(formName) {
+            submitForm(formAccount) {
                 //alert(this.formAccount.birthday);
                 const self = this;
-
-
                         this.$ajax({
                             method: 'post',
                             url: this.apiurl + 'user/modifyuserbyid',
@@ -213,7 +212,9 @@
 
 
             },
-
+            resetForm(formAccount) {
+                this.$refs[formAccount].resetFields();
+            }
         }
     }
 </script>
