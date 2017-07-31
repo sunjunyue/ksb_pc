@@ -139,8 +139,8 @@
                     }
                 }).then(function (response) {
                     if(response.data.flag == "get_devtask_by_guid_success") {
-                        self.tasking_item.taskphotourl = response.data.data.devtask.taskphotourl
-                            self.tasking_item.devtask_qrcodeurl = response.data.data.devtask.devtask_qrcodeurl,
+                        self.tasking_item.taskphotourl = response.data.data.devtask.taskphotourl,
+                            self.tasking_item.devtask_qrcodeurl = self.apiurl2 + response.data.data.devtask.devtask_qrcodeurl,
                             self.tasking_item.devtask_builder = response.data.data.devtask.devtask_builder,
                             self.tasking_item.devtask_name = response.data.data.devtask.devtask_name,
                             self.tasking_item.devtask_source = response.data.data.devtask.devtask_source,
