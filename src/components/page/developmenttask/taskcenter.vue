@@ -4,10 +4,10 @@
             <div class="wTit">| 研发任务管理</div>
             <!--弹出框-->
             <el-dialog
-                title="款式参考"
-                :visible.sync="dialogFormVisible"
-                :modal-append-to-body='false'
-                size="small">
+                    title="款式参考"
+                    :visible.sync="dialogFormVisible"
+                    :modal-append-to-body='false'
+                    size="small">
                 <!--轮播图-->
                 <el-carousel arrow="always" height="500px" :autoplay="false">
                     <el-carousel-item v-for="item in referencephoto_items" :key="item">
@@ -27,9 +27,9 @@
                     </el-carousel-item>
                 </el-carousel>
             </el-dialog>
-            <el-tabs type="border-card" :value="tab_name">
+            <el-tabs type="border-card" :value="tab_name" @tab-click="toTab">
                 <!-- 进行中的研发任务 -->
-                <el-tab-pane name="tab01">
+                <el-tab-pane name="1">
                     <span slot="label">
                         <i class="fa fa-spinner"></i>
                         进行中的研发任务
@@ -40,11 +40,11 @@
                                 <!--日期选择-->
                                 <el-row>
                                     <el-date-picker
-                                        v-model="form.dates"
-                                        type="daterange"
-                                        align="right"
-                                        placeholder="请选择日期范围"
-                                        :picker-options="dateoptions">
+                                            v-model="form.dates"
+                                            type="daterange"
+                                            align="right"
+                                            placeholder="请选择日期范围"
+                                    >
                                     </el-date-picker>
                                 </el-row>
                             </el-col>
@@ -52,45 +52,47 @@
                                 <!--搜索-->
                                 <el-input
                                         placeholder="任务名称"
-                                        icon="search"
-                                        v-model="input2"
-                                        :on-icon-click="handleIconClick">
+                                        icon="search">
                                 </el-input>
                             </el-col>
                         </el-row>
                     </div>
                     <el-row :gutter="10">
                         <div v-if="tasking_items[0] != null">
-                        <el-col :span="8">
-                            <img :src="tasking_items[0].taskphotourl" style="cursor: pointer;" width="300" height="300" @click="handleCommand('0')">
-                            <p class="items_pro">
-                                <i>任务名称：</i>{{tasking_items[0].devtask_name}}
-                            </p>
-                            <p class="items_pro">
-                                <i>截止时间：</i>{{tasking_items[0].devtask_deadline}}
-                            </p>
-                            <p class="items_pro">
-                                <i>完成情况：</i>
-                                <el-progress :percentage="tasking_items[0].devtask_progress" :stroke-width="8" style="width:300px;margin-top:10px;"></el-progress>
-                            </p>
-                            <el-button size="small" type="primary" style="font-size:14px;"
-                                       @click="handleCommand('0')">查看详情
-                            </el-button>
-                        </el-col>
+                            <el-col :span="8">
+                                <img :src="tasking_items[0].taskphotourl" style="cursor: pointer;" width="300"
+                                     height="300" @click="handleCommand('0')">
+                                <p class="items_pro">
+                                    <i>任务名称：</i>{{tasking_items[0].devtask_name}}
+                                </p>
+                                <p class="items_pro">
+                                    <i>截止时间：</i>{{tasking_items[0].devtask_deadline}}
+                                </p>
+                                <p class="items_pro">
+                                    <i>完成情况：</i>
+                                    <el-progress :percentage="tasking_items[0].devtask_progress" :stroke-width="8"
+                                                 style="width:300px;margin-top:10px;"></el-progress>
+                                </p>
+                                <el-button size="small" type="primary" style="font-size:14px;"
+                                           @click="handleCommand('0')">查看详情
+                                </el-button>
+                            </el-col>
                         </div>
                         <el-col :span="8">
                             <div v-if="tasking_items[1] != null">
-                            <img :src="tasking_items[1].taskphotourl" style="cursor: pointer;"  width="300" height="300" @click="handleCommand('1')">
-                            <p class="items_pro">
-                                <i>任务名称：</i>{{tasking_items[1].devtask_name}}
-                            </p>
-                            <p class="items_pro">
-                                <i>截止时间：</i>{{tasking_items[1].devtask_deadline}}
-                            </p>
-                            <p class="items_pro">
-                                <i>完成情况：</i>
-                                <el-progress :percentage="tasking_items[1].devtask_progress" :stroke-width="8" style="width:300px;margin-top:10px;"></el-progress>
-                            </p>
+                                <img :src="tasking_items[1].taskphotourl" style="cursor: pointer;" width="300"
+                                     height="300" @click="handleCommand('1')">
+                                <p class="items_pro">
+                                    <i>任务名称：</i>{{tasking_items[1].devtask_name}}
+                                </p>
+                                <p class="items_pro">
+                                    <i>截止时间：</i>{{tasking_items[1].devtask_deadline}}
+                                </p>
+                                <p class="items_pro">
+                                    <i>完成情况：</i>
+                                    <el-progress :percentage="tasking_items[1].devtask_progress" :stroke-width="8"
+                                                 style="width:300px;margin-top:10px;"></el-progress>
+                                </p>
                                 <el-button size="small" type="primary" style="font-size:14px;"
                                            @click="handleCommand('1')">查看详情
                                 </el-button>
@@ -98,39 +100,41 @@
                         </el-col>
                         <el-col :span="8">
                             <div v-if="tasking_items[2] != null">
-                            <img :src="tasking_items[2].taskphotourl" style="cursor: pointer;"  width="300" height="300" @click="handleCommand('2')">
-                            <p class="items_pro">
-                                <i>任务名称：</i>{{tasking_items[2].devtask_name}}
-                            </p>
-                            <p class="items_pro">
-                                <i>截止时间：</i>{{tasking_items[2].devtask_deadline}}
-                            </p>
-                            <p class="items_pro">
-                                <i>完成情况：</i>
-                                <el-progress :percentage="tasking_items[2].devtask_progress" :stroke-width="8" style="width:300px;margin-top:10px;"></el-progress>
-                            </p>
-                            <el-button size="small" type="primary" style="font-size:14px;"
-                                       @click="handleCommand('2')">查看详情
-                            </el-button>
+                                <img :src="tasking_items[2].taskphotourl" style="cursor: pointer;" width="300"
+                                     height="300" @click="handleCommand('2')">
+                                <p class="items_pro">
+                                    <i>任务名称：</i>{{tasking_items[2].devtask_name}}
+                                </p>
+                                <p class="items_pro">
+                                    <i>截止时间：</i>{{tasking_items[2].devtask_deadline}}
+                                </p>
+                                <p class="items_pro">
+                                    <i>完成情况：</i>
+                                    <el-progress :percentage="tasking_items[2].devtask_progress" :stroke-width="8"
+                                                 style="width:300px;margin-top:10px;"></el-progress>
+                                </p>
+                                <el-button size="small" type="primary" style="font-size:14px;"
+                                           @click="handleCommand('2')">查看详情
+                                </el-button>
                             </div>
                         </el-col>
                     </el-row>
                     <!--page-->
                     <el-pagination
-                        @current-change="handleCurrentChange"
-                        layout="prev, pager, next"
-                        :pageSize="page_size"
-                        :total="total">
+                            @current-change="handleCurrentChange"
+                            layout="prev, pager, next"
+                            :pageSize="page_size"
+                            :total="total">
                     </el-pagination>
                 </el-tab-pane>
                 <!--已完成的研发任务-->
-                <el-tab-pane>
+                <el-tab-pane name="2">
                     <span slot="label">
                         <i class="fa fa-check"></i> 已完成的研发任务
                     </span>
                 </el-tab-pane>
                 <!--新增研发任务-->
-                <el-tab-pane name="tab03">
+                <el-tab-pane name="3">
                     <span slot="label">
                         <i class="fa fa-plus"></i> 新增研发任务
                     </span>
@@ -148,7 +152,7 @@
                                        :before-upload="beforeAvatarUpload1"
                                        :data="postData"
                                        :file-list="fileList"
-                                       :show-file-list="true">
+                                       :show-file-list="true" ref="upload01">
                                 <el-button size="small" :disabled="uploadbtn1enable" type="primary"
                                            style="font-size:14px;">点击上传
                                 </el-button>
@@ -180,15 +184,15 @@
                                             <el-row>
                                                 <el-col :span="8">
                                                     <el-upload class="upload-demo"
-                                                       action="http://upload.qiniu.com/"
-                                                       :on-preview="handlePreview2"
-                                                       :on-remove="handleRemove2"
-                                                       :on-success="handleAvatarSuccess2"
-                                                       :on-error="handleError2"
-                                                       :before-upload="beforeAvatarUpload2"
-                                                       :data="postData"
-                                                       :file-list="fileList2"
-                                                       :show-file-list="false">
+                                                               action="http://upload.qiniu.com/"
+                                                               :on-preview="handlePreview2"
+                                                               :on-remove="handleRemove2"
+                                                               :on-success="handleAvatarSuccess2"
+                                                               :on-error="handleError2"
+                                                               :before-upload="beforeAvatarUpload2"
+                                                               :data="postData"
+                                                               :file-list="fileList2"
+                                                               :show-file-list="false" ref="upload02">
                                                         <el-button size="small"
                                                                    type="primary"
                                                                    style="font-size:14px;">
@@ -220,7 +224,8 @@
                                         </el-form-item>
                                         <!--设计师-->
                                         <el-form-item label="设计师:">
-                                            <el-select v-model="task_item.devtask_designerid" placeholder="请选择" style="width:100%">
+                                            <el-select v-model="task_item.devtask_designerid" placeholder="请选择"
+                                                       style="width:100%">
                                                 <el-option
                                                         v-for="item in designeroptions"
                                                         :key="item.value"
@@ -233,7 +238,8 @@
                                     <el-col :span="12">
                                         <!--制版师-->
                                         <el-form-item label="制版师:">
-                                            <el-select v-model="task_item.devtask_patternmakerid" placeholder="请选择" style="width:100%">
+                                            <el-select v-model="task_item.devtask_patternmakerid" placeholder="请选择"
+                                                       style="width:100%">
                                                 <el-option
                                                         v-for="item in patternmakeroptions"
                                                         :key="item.value"
@@ -245,23 +251,25 @@
                                         </el-form-item>
                                         <!--裁剪师-->
                                         <el-form-item label="裁剪师:">
-                                            <el-select v-model="task_item.devtask_cutterid" placeholder="请选择" style="width:100%">
+                                            <el-select v-model="task_item.devtask_cutterid" placeholder="请选择"
+                                                       style="width:100%">
                                                 <el-option
-                                                    v-for="item in cutteroptions"
-                                                    :key="item.value"
-                                                    :label="item.label"
-                                                    :value="item.value">
+                                                        v-for="item in cutteroptions"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value">
                                                 </el-option>
                                             </el-select>
                                         </el-form-item>
                                         <!--样衣工-->
                                         <el-form-item label="样衣工:">
-                                            <el-select v-model="task_item.devtask_yygid" placeholder="请选择" style="width:100%">
+                                            <el-select v-model="task_item.devtask_yygid" placeholder="请选择"
+                                                       style="width:100%">
                                                 <el-option
-                                                    v-for="item in yygoptions"
-                                                    :key="item.value"
-                                                    :label="item.label"
-                                                    :value="item.value">
+                                                        v-for="item in yygoptions"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value">
                                                 </el-option>
                                             </el-select>
                                         </el-form-item>
@@ -276,15 +284,14 @@
                                 </el-row>
                                 <el-form-item>
                                     <el-button type="primary" @click="submitItems()">立即创建</el-button>
-                                    <!--<el-button @click="resetForm('formAccount')">重置</el-button>-->
-                                    <el-button @click="resetForm('ruleForm2')">重置</el-button>
+                                    <el-button @click="resetForm()">重置</el-button>
                                 </el-form-item>
                             </el-form>
                         </el-col>
                     </el-row>
                 </el-tab-pane>
                 <!--规划任务分配-->
-                <el-tab-pane>
+                <el-tab-pane name="4">
                     <span slot="label">
                         <i class="fa fa-tasks"></i>
                         规划任务分配
@@ -298,7 +305,7 @@
     export default {
         data() {
             return {
-                tab_name: 'tab01',
+                tab_name: '1',
                 designeroptions: [],
                 cutteroptions: [],
                 patternmakeroptions: [],
@@ -386,7 +393,8 @@
                     if (response.data.flag == 'get_devtask_list_success') {
                         self.tasking_items = response.data.data.devtask;
                         for (var o in self.tasking_items) {
-                            self.tasking_items[o].devtask_deadline = self.tasking_items[o].devtask_deadline.substr(0,10);
+                            self.tasking_items[o].devtask_progress = parseFloat(self.tasking_items[o].devtask_progress);
+                            self.tasking_items[o].devtask_deadline = self.tasking_items[o].devtask_deadline.substr(0, 10);
                         }
                         self.total = response.data.data.devtask_count;
                     }
@@ -407,13 +415,13 @@
                     }
                 }).then(function (response) {
                     if (response.data.flag == 'get_userlist_by_roleid_success') {
-                        if(roleid == 2) {
+                        if (roleid == 2) {
                             self.designeroptions = eval(response.data.data.users);
-                        }else if(roleid == 3) {
+                        } else if (roleid == 3) {
                             self.cutteroptions = eval(response.data.data.users);
-                        }else if(roleid == 4){
+                        } else if (roleid == 4) {
                             self.patternmakeroptions = eval(response.data.data.users);
-                        }else if(roleid == 5){
+                        } else if (roleid == 5) {
                             self.yygoptions = eval(response.data.data.users);
                         }
                     } else {
@@ -428,21 +436,21 @@
             },
             submitItems () {
                 /*console.log(this.task_item.taskphotourl);
-                console.log(this.task_item.devtask_builder);
-                console.log(this.task_item.devtask_builderid);
-                console.log(this.task_item.devtask_name);
-                console.log(this.task_item.devtask_source);
-                console.log(this.task_item.devtask_referencephoto);
-                console.log(this.task_item.devtask_deadline);
-                console.log(this.task_item.devtask_designer);
-                console.log(this.task_item.devtask_designerid);
-                console.log(this.task_item.devtask_patternmaker);
-                console.log(this.task_item.devtask_patternmakerid);
-                console.log(this.task_item.devtask_cutter);
-                console.log(this.task_item.devtask_cutterid);
-                console.log(this.task_item.devtask_yyg);
-                console.log(this.task_item.devtask_yygid);
-                console.log(this.task_item.devtask_text);*/
+                 console.log(this.task_item.devtask_builder);
+                 console.log(this.task_item.devtask_builderid);
+                 console.log(this.task_item.devtask_name);
+                 console.log(this.task_item.devtask_source);
+                 console.log(this.task_item.devtask_referencephoto);
+                 console.log(this.task_item.devtask_deadline);
+                 console.log(this.task_item.devtask_designer);
+                 console.log(this.task_item.devtask_designerid);
+                 console.log(this.task_item.devtask_patternmaker);
+                 console.log(this.task_item.devtask_patternmakerid);
+                 console.log(this.task_item.devtask_cutter);
+                 console.log(this.task_item.devtask_cutterid);
+                 console.log(this.task_item.devtask_yyg);
+                 console.log(this.task_item.devtask_yygid);
+                 console.log(this.task_item.devtask_text);*/
                 const self = this;
                 self.$ajax({
                     method: 'post',
@@ -470,7 +478,8 @@
                             message: '新增任务成功',
                             type: 'success'
                         });
-                        self.tab_name = "tab01";
+                        self.tab_name = "1";
+                        self.gettasking_items();
                     } else {
                         self.$message.error("新增任务失败");
                         console.log(response.data.flag + "||" + response.data.message);
@@ -478,6 +487,33 @@
                 }).catch(function (error) {
                     self.$message.error("新增任务失败" + error);
                 })
+            },
+            toTab(target) {
+              //console.log(target.name);
+              this.tab_name = target.name;
+            },
+            resetForm() {
+                this.task_item.taskphotourl = '';
+                    this.task_item.devtask_name = '';
+                    //this.task_item.devtask_builder = '';
+                    this.task_item.devtask_builderid = '';
+                    this.task_item.devtask_source = '自定义任务';
+                    this.task_item.devtask_referencephoto = '';
+                    this.task_item.devtask_deadline = '';
+                    this.task_item.devtask_designer = '';
+                    this.task_item.devtask_designerid = '';
+                    this.task_item.devtask_patternmaker = '';
+                    this.task_item.devtask_patternmakerid = '';
+                    this.task_item.devtask_cutter = '';
+                    this.task_item.devtask_cutterid = '';
+                    this.task_item.devtask_yyg = '';
+                    this.task_item.devtask_yygid = '';
+                    this.task_item.devtask_text = '';
+                    this.$refs.upload01.clearFiles();
+                this.$refs.upload02.clearFiles();
+                this.dialogFormVisible = false;
+                this.referencephoto_items = [];
+                this.uploadbtn2enable = true;
             },
             handleCurrentChange(val){
                 this.cur_page = val;
@@ -492,7 +528,7 @@
                 var tpu = this.task_item.devtask_referencephoto.split('|');
                 for (var t = 0; t <= tpu.length; t++) {
                     if (tpu[t] == photourl.item) {
-                        tpu.splice(t,1);
+                        tpu.splice(t, 1);
                         break;
                     }
                 }
@@ -506,7 +542,7 @@
                 //alert(this.task_item.devtask_referencephoto);
                 for (var i = 0; i <= this.referencephoto_items.length; i++) {
                     if (this.referencephoto_items[i] == photourl.item) {
-                        this.referencephoto_items.splice(i,1);
+                        this.referencephoto_items.splice(i, 1);
                         break;
                     }
                 }
@@ -620,9 +656,6 @@
                 localStorage.setItem('ksb_ctaskguid', this.tasking_items[index].guid);
                 self.$router.push('/taskdetail');
             },
-            resetForm(formAccount) {
-                this.$refs[formAccount].resetFields();
-            }
         }
     };
 </script>
@@ -642,15 +675,17 @@
         border: none;
         background: none;
     }
-    .el-tabs__content{
-        margin-top:0;
+
+    .el-tabs__content {
+        margin-top: 0;
     }
+
     /*.el-tabs__item.is-active {*/
-        /*color: rgba(0, 179, 139, 0.98);*/
+    /*color: rgba(0, 179, 139, 0.98);*/
     /*}*/
 
     /*.el-tabs__item:hover {*/
-        /*color: rgba(0, 179, 139, 0.98);*/
+    /*color: rgba(0, 179, 139, 0.98);*/
     /*}*/
 
     .el-tabs--border-card {
@@ -686,9 +721,11 @@
         display: none;
         position: absolute;
     }
-    .el-progress__text{
-        color:#fff;
+
+    .el-progress__text {
+        color: #fff;
     }
+
     @import '../../../assets/css/behind_cont.css';
     @import 'http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 </style>
