@@ -127,7 +127,7 @@
         data(){
             return{
                 activeName2: 'first',
-                tasking_item:{
+                tasking_item: {
                     guid: '',
                     taskphotourl: '',
                     devtask_qrcodeurl: '',
@@ -171,20 +171,21 @@
                     }
                 }).then(function (response) {
                     if(response.data.flag == "get_devtask_by_guid_success") {
-                        self.tasking_item.taskphotourl = response.data.data.devtask.taskphotourl,
-                            self.tasking_item.devtask_qrcodeurl = self.apiurl2 + response.data.data.devtask.devtask_qrcodeurl,
-                            self.tasking_item.devtask_builder = response.data.data.devtask.devtask_builder,
-                            self.tasking_item.devtask_name = response.data.data.devtask.devtask_name,
-                            self.tasking_item.devtask_source = response.data.data.devtask.devtask_source,
-                            self.tasking_item.devtask_referencephoto = response.data.data.devtask.devtask_referencephoto,
-                            self.tasking_item.devtask_deadline = response.data.data.devtask.devtask_deadline,
-                            self.tasking_item.devtask_designer = response.data.data.devtask.devtask_designer,
-                            self.tasking_item.devtask_patternmaker = response.data.data.devtask.devtask_patternmaker,
-                            self.tasking_item.devtask_cutter = response.data.data.devtask.devtask_cutter,
-                            self.tasking_item.devtask_yyg = response.data.data.devtask.devtask_yyg,
-                            self.tasking_item.devtask_text = response.data.data.devtask.devtask_text
+                        self.tasking_item.taskphotourl = response.data.data.devtask.taskphotourl;
+                            self.tasking_item.devtask_qrcodeurl = self.apiurl2 + response.data.data.devtask.devtask_qrcodeurl;
+                            self.tasking_item.devtask_builder = response.data.data.devtask.devtask_builder;
+                            self.tasking_item.devtask_name = response.data.data.devtask.devtask_name;
+                            self.tasking_item.devtask_source = response.data.data.devtask.devtask_source;
+                            self.tasking_item.devtask_referencephoto = response.data.data.devtask.devtask_referencephoto;
+                            self.tasking_item.devtask_deadline = response.data.data.devtask.devtask_deadline;
+                            self.tasking_item.devtask_designer = response.data.data.devtask.devtask_designer;
+                            self.tasking_item.devtask_patternmaker = response.data.data.devtask.devtask_patternmaker;
+                            self.tasking_item.devtask_cutter = response.data.data.devtask.devtask_cutter;
+                            self.tasking_item.devtask_yyg = response.data.data.devtask.devtask_yyg;
+                            self.tasking_item.devtask_text = response.data.data.devtask.devtask_text;
+
                     }
-                    console.log(this.tasking_item.devtask_referencephoto);
+                    console.log(self.tasking_item.devtask_referencephoto);
 
                 }).catch(function (error) {
                     alert(error);
