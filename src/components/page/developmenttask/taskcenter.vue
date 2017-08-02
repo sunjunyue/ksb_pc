@@ -478,6 +478,7 @@
                             message: '新增任务成功',
                             type: 'success'
                         });
+                        self.resetForm();
                         self.tab_name = "1";
                         self.gettasking_items();
                     } else {
