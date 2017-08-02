@@ -63,6 +63,7 @@
                                     <el-button
                                             size="small"
                                             @click="dialogFormVisible = true"
+                                            v-model="handleRemove2"
                                             type="primary"
                                             style="font-size:14px;">
                                         查看款式参考
@@ -190,6 +191,29 @@
                 }).catch(function (error) {
                     alert(error);
                 })
+            },
+            handleRemove2(photourl) {
+\                var tpu = this.tasking_item.devtask_referencephoto.split('|');
+                for (var t = 0; t <= tpu.length; t++) {
+                    if (tpu[t] == photourl.item) {
+                        tpu.splice(t, 1);
+                        break;
+                    }
+                }
+                if (tpu.length == 0) {
+                    this.tasking_item.devtask_referencephoto = '';
+                } else if (tpu.length == 1) {
+                    this.tasking_item.devtask_referencephoto = tpu[0];
+                } else {
+                    this.tasking_item.devtask_referencephoto = tpu.join('|');
+                }
+                for (var i = 0; i <= this.referencephoto_items.length; i++) {
+                    if (this.referencephoto_items[i] == photourl.item) {
+                        this.referencephoto_items.splice(i, 1);
+                        break;
+                    }
+                }
+
             },
         }
     }
