@@ -2,6 +2,31 @@
     <!--主题区域-->
     <div class="win fr" id="win">
         <div class="wm">
+            <!--弹出框-->
+            <el-dialog
+                    title="款式参考"
+                    :visible.sync="dialogFormVisible"
+                    :modal-append-to-body='false'
+                    size="small">
+                <!--轮播图-->
+                <el-carousel arrow="always" height="500px" :autoplay="false">
+                    <el-carousel-item v-for="item in referencephoto_items" :key="item">
+                        <div class="img_item">
+                            <a href=""><img :src='item' height="600" width="450"></a>
+                            <div class="img_ico">
+                                <a :href='item' target="_blank">
+                                    <el-button type="primary" icon="view"></el-button>
+                                </a>
+                                <el-button
+                                        type="primary"
+                                        icon="delete2"
+                                        @click="handleRemove2({item})">
+                                </el-button>
+                            </div>
+                        </div>
+                    </el-carousel-item>
+                </el-carousel>
+            </el-dialog>
             <!--选项卡-->
             <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
                 <!--任务管理-->
@@ -35,7 +60,11 @@
                                 </el-form-item>
                                 <!--参考图-->
                                 <el-form-item label="参考图:">
-                                    <el-button size="small" type="primary" style="font-size:14px;">
+                                    <el-button
+                                            size="small"
+                                            @click="dialogFormVisible = true"
+                                            type="primary"
+                                            style="font-size:14px;">
                                         查看款式参考
                                     </el-button>
                                 </el-form-item>
@@ -105,6 +134,7 @@
                     devtask_builder:'',
                     devtask_name:'',
                     devtask_source:'',
+                    devtask_referencephoto:'',
                     devtask_deadline:'',
                     devtask_designer:'',
                     devtask_patternmaker:'',
@@ -112,6 +142,8 @@
                     devtask_yyg:'',
                     devtask_text:''
                 },
+                dialogFormVisible: false,
+                referencephoto_items: [],
             }
         },
         mounted: function () {
@@ -144,6 +176,7 @@
                             self.tasking_item.devtask_builder = response.data.data.devtask.devtask_builder,
                             self.tasking_item.devtask_name = response.data.data.devtask.devtask_name,
                             self.tasking_item.devtask_source = response.data.data.devtask.devtask_source,
+                            self.tasking_item.devtask_referencephoto = response.data.data.devtask.devtask_referencephoto,
                             self.tasking_item.devtask_deadline = response.data.data.devtask.devtask_deadline,
                             self.tasking_item.devtask_designer = response.data.data.devtask.devtask_designer,
                             self.tasking_item.devtask_patternmaker = response.data.data.devtask.devtask_patternmaker,
@@ -151,9 +184,10 @@
                             self.tasking_item.devtask_yyg = response.data.data.devtask.devtask_yyg,
                             self.tasking_item.devtask_text = response.data.data.devtask.devtask_text
                     }
+                    console.log(this.tasking_item.devtask_referencephoto);
+
                 }).catch(function (error) {
                     alert(error);
-
                 })
             },
         }
