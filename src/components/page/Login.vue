@@ -37,8 +37,8 @@
             return {
                 labelPosition: 'right',
                 loginForm: {
-                    account: 'bll@163.com',
-                    password: '123456s',
+                    account: 'tomchen01',
+                    password: '12345678a',
                 },
                 rules: {
                     account: [{

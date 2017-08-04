@@ -516,6 +516,7 @@
                 this.dialogFormVisible = false;
                 this.referencephoto_items = [];
                 this.uploadbtn2enable = true;
+                this.uploadbtn1enable = false;
             },
             handleCurrentChange(val){
                 this.cur_page = val;
