@@ -317,7 +317,7 @@
                 page_size: 3,
                 total: 0,
                 task_item: {
-                    taskphotourl: '',
+                    taskphotourl: 'http://192.168.1.6/ksbapi2/public/img/WechatIMG138.jpeg',
                     devtask_name: '',
                     devtask_builder: '',
                     devtask_builderid: '',
@@ -370,6 +370,7 @@
         mounted: function () {
             this.task_item.devtask_builder = JSON.parse(localStorage.getItem('ksb_user')).data.name;
             this.task_item.devtask_builderid = JSON.parse(localStorage.getItem('ksb_user')).data.id;
+            this.task_item.taskphotourl = this.apiurl3 + 'img/WechatIMG138.jpeg';
             this.getoptionsbyroleid(2);
             this.getoptionsbyroleid(3);
             this.getoptionsbyroleid(4);
