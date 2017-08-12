@@ -317,7 +317,7 @@
                 page_size: 3,
                 total: 0,
                 task_item: {
-                    taskphotourl: 'http://192.168.1.6/ksbapi2/public/img/WechatIMG138.jpeg',
+                    taskphotourl: 'http://192.168.1.9/ksbapi2/public/img/WechatIMG138.jpeg',
                     devtask_name: '',
                     devtask_builder: '',
                     devtask_builderid: '',
