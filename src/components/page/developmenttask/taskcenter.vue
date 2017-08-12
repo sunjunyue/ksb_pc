@@ -274,11 +274,23 @@
                                                 </el-option>
                                             </el-select>
                                         </el-form-item>
+                                        <!--样衣审核-->
+                                        <el-form-item label="样衣审核:">
+                                            <el-select v-model="task_item.devtask_yysh" placeholder="请选择"
+                                                       style="width:100%">
+                                                <el-option
+                                                        v-for="item in yyshoptions"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value">
+                                                </el-option>
+                                            </el-select>
+                                        </el-form-item>
                                         <!--具体要求-->
                                         <el-form-item label="具体要求">
                                             <el-input type="textarea"
                                                       v-model="task_item.devtask_text"
-                                                      :rows="7">
+                                                      :rows="3">
                                             </el-input>
                                         </el-form-item>
                                     </el-col>
@@ -317,7 +329,7 @@
                 page_size: 3,
                 total: 0,
                 task_item: {
-                    taskphotourl: 'http://192.168.1.9/ksbapi2/public/img/WechatIMG138.jpeg',
+                    taskphotourl: 'http://192.168.1.6/ksbapi2/public/img/WechatIMG138.jpeg',
                     devtask_name: '',
                     devtask_builder: '',
                     devtask_builderid: '',
@@ -332,6 +344,7 @@
                     devtask_cutterid: '',
                     devtask_yyg: '',
                     devtask_yygid: '',
+                    devtask_yysh:'',
                     devtask_text: '',
                 },
                 referencephoto_items: [],
@@ -375,7 +388,7 @@
             this.getoptionsbyroleid(3);
             this.getoptionsbyroleid(4);
             this.getoptionsbyroleid(5);
-
+            this.getoptionsbyroleid(6);
             this.gettasking_items();
         },
         methods: {
@@ -425,6 +438,8 @@
                             self.patternmakeroptions = eval(response.data.data.users);
                         } else if (roleid == 5) {
                             self.yygoptions = eval(response.data.data.users);
+                        }else if (roleid == 6) {
+                            self.yyshoptions = eval(response.data.data.users);
                         }
                     } else {
 
@@ -471,6 +486,7 @@
                         devtask_patternmakerid: this.task_item.devtask_patternmakerid,
                         devtask_cutterid: this.task_item.devtask_cutterid,
                         devtask_yygid: this.task_item.devtask_yygid,
+                        devtask_yysh: this.task_item.devtask_yysh,
                         devtask_text: this.task_item.devtask_text,
                     }
                 }).then(function (response) {
@@ -492,27 +508,28 @@
                 })
             },
             toTab(target) {
-              //console.log(target.name);
-              this.tab_name = target.name;
+                //console.log(target.name);
+                this.tab_name = target.name;
             },
             resetForm() {
                 this.task_item.taskphotourl = '';
-                    this.task_item.devtask_name = '';
-                    //this.task_item.devtask_builder = '';
-                    this.task_item.devtask_builderid = '';
-                    this.task_item.devtask_source = '自定义任务';
-                    this.task_item.devtask_referencephoto = '';
-                    this.task_item.devtask_deadline = '';
-                    this.task_item.devtask_designer = '';
-                    this.task_item.devtask_designerid = '';
-                    this.task_item.devtask_patternmaker = '';
-                    this.task_item.devtask_patternmakerid = '';
-                    this.task_item.devtask_cutter = '';
-                    this.task_item.devtask_cutterid = '';
-                    this.task_item.devtask_yyg = '';
-                    this.task_item.devtask_yygid = '';
-                    this.task_item.devtask_text = '';
-                    this.$refs.upload01.clearFiles();
+                this.task_item.devtask_name = '';
+                //this.task_item.devtask_builder = '';
+                this.task_item.devtask_builderid = '';
+                this.task_item.devtask_source = '自定义任务';
+                this.task_item.devtask_referencephoto = '';
+                this.task_item.devtask_deadline = '';
+                this.task_item.devtask_designer = '';
+                this.task_item.devtask_designerid = '';
+                this.task_item.devtask_patternmaker = '';
+                this.task_item.devtask_patternmakerid = '';
+                this.task_item.devtask_cutter = '';
+                this.task_item.devtask_cutterid = '';
+                this.task_item.devtask_yyg = '';
+                this.task_item.devtask_yygid = '';
+                this.task_item.devtask_yyshs = '';
+                this.task_item.devtask_text = '';
+                this.$refs.upload01.clearFiles();
                 this.$refs.upload02.clearFiles();
                 this.dialogFormVisible = false;
                 this.referencephoto_items = [];
