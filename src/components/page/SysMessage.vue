@@ -47,7 +47,7 @@
                 <!--操作-->
                 <el-table-column label="操作" width="180">
                     <template scope="scope">
-                        <el-button type="primary" icon="edit" size="small" v-show="scope.row.sm_status == 2"></el-button>
+                        <el-button type="primary" icon="view" size="small"></el-button>
                     </template>
                 </el-table-column>
             </el-table>

@@ -126,6 +126,11 @@ const RouterConfigs = {
                 components: {
                     default: require('./components/page/Password.vue'),
                 }
+            },{
+                path: '/taskmanage',
+                components: {
+                    default: require('./components/page/taskmanage.vue'),
+                }
             }],
         },
         {

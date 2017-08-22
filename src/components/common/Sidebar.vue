@@ -88,7 +88,7 @@
                     },
                     {
                         icon: 'el-icon-date',
-                        index: '3',
+                        index: 'taskmanage',
                         title: '任务管理',
                     },
                     {
